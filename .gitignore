@@ -1,0 +1,14 @@
+*.log
+*.pot
+*.pyc
+*.db
+*.sqlite*
+*.mo
+.AppleDouble
+.DS_Store
+
+media/
+collected_static/
+django-summernote/
+**/static/components/**
+settings_*.py

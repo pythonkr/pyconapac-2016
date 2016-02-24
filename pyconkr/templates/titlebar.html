@@ -1,0 +1,22 @@
+{% load staticfiles %}
+{% load i18n %}
+{% if title %}
+<div class="titlebar">
+  <div class="container">
+    <h1>
+      {{ title }}
+    </h1>
+    <img class="halftone halftone-red" src="{% static "image/halftone-red.png" %}" alt="PyCon Korea Red">
+    <img class="halftone halftone-blue" src="{% static "image/halftone-blue.png" %}" alt="PyCon Korea Blue">
+  </div>
+</div>
+<script type="text/javascript">
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+$(".halftone").each(function() {
+    $(this).css({'marginTop' : getRandomInt(-10,10)+'%', 'marginRight' : getRandomInt(-20,0)+'%'});
+    $(this).css({'width' : getRandomInt(30,50)+'%'});
+});
+</script>
+{% endif %}

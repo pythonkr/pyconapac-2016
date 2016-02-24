@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block wrap %}
+<div class="row">
+  <div class="col-md-12">
+    {% include "sponsors.html" with detail="True" %}
+  </div>
+</div>
+{% endblock %}

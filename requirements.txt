@@ -1,0 +1,9 @@
+Django
+Pillow
+django-allauth
+django-crispy-forms
+django-jsonfield
+django-modeltranslation
+django-rosetta
+django-summernote
+sorl-thumbnail

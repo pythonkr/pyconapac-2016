@@ -1,0 +1,76 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>{% block title %}{% trans "PyCon Korea 2016" %}{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=0.85">
+
+  <!-- Opengraph tag -->
+  <meta property="og:site_name" content="{% trans "PyCon Korea 2016" %}">
+  <meta property="og:title" content="{% block og-title %}{% trans "PyCon Korea 2016" %}{% endblock %}">
+  <meta property="og:image" content="{{ domain }}{% block og-image %}{% static "image/pyconkr-badge.png" %}{% endblock %}">
+  <meta property="og:url" content="{{ domain }}{{ request.path }}">
+  <meta property="og:description" content="{% block og-desc %}{% trans "PyCon Korea Opengraph Description" %}{% endblock %}">
+
+  <!-- Include basic items -->
+  <link href="{% static "components/bootstrap/dist/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "components/bootstrap-social/bootstrap-social.css" %}" rel="stylesheet">
+  <link href="{% static "components/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet">
+
+  <!-- Override bootstrap css -->
+  <link href="{% static "css/pyconkr.css" %}" rel="stylesheet">
+  <link href="{% static "css/pyconkr-media.css" %}" rel="stylesheet">
+
+  <!-- Google fonts -->
+  <link href='//fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/earlyaccess/nanumgothic.css' rel='stylesheet' type='text/css'>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{% static "image/favicon.ico" %}" type="image/x-icon">
+  <link rel="icon" href="{% static "image/favicon.ico" %}" type="image/x-icon">
+
+  <!-- Scripts -->
+  <!--[if lt IE 9]>
+    <script src="{% static "components/html5shiv/dist/html5shiv.min.js" %}"></script>
+    <script src="{% static "components/respond/dest/respond.min.js" %}"></script>
+  <![endif]-->
+  <script src="{% static "components/jquery/jquery.min.js" %}"></script>
+  <script src="{% static "components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+  {% block head %}{% endblock %}
+</head>
+
+<body>
+{% block top %}
+{% include "nav.html" %}
+{% endblock %}
+{% block titlebar %}{% include "titlebar.html" %}{% endblock %}
+{% block container %}
+<div class="container">
+    {% block wrap %}
+    <div class="row wrap">
+        <div class="col-md-9 content">
+            {{ base_content | safe }}
+            {% block content %}{% endblock %}
+        </div>
+        <div class="col-md-3 sponsors">
+            {% include "sponsors.html" %}
+        </div>
+    </div>
+    {% endblock %}
+</div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}
+
+{% include "footer.html" %}
+{% include "ga.html" %}
+{% include "facebook_script.html" %}
+</body>
+
+</html>
