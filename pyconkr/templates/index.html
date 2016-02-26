@@ -3,29 +3,19 @@
 {% load i18n %}
 
 {% block head %}
-<link href="{% static "components/kenburnsy/dist/jquery.kenburnsy.css" %}" rel="stylesheet">
-<script src="{% static "components/velocity/velocity.min.js" %}"></script>
-<script src="{% static "components/kenburnsy/dist/jquery.kenburnsy.min.js" %}"></script>
-<script src="{% static "js/jquery.shuffle.js" %}"></script>
+<script src="{% static "components/typed.js/js/typed.js" %}"></script>
 {% endblock %}
 
 {% block top %}
 <div class="frontpage">
     <div class="slides">
-        <img src="{% static "image/jumboback1.jpg" %}">
-        <img src="{% static "image/jumboback2.jpg" %}">
-        <img src="{% static "image/jumboback3.jpg" %}">
-        <img src="{% static "image/jumboback4.jpg" %}">
-        <img src="{% static "image/jumboback5.jpg" %}">
     </div>
     <div class="onslides">
         <div class="container">
             <div class="slogan">
-                <h1>{% trans "Python," %}</h1>
-                <h1>{% trans "Together," %}</h1>
-                <h1>{% trans "Successful." %}</h1>
-                <h3>{% trans "Frontpage schedule" %}</h3>
-                {% include "badge/all.html" %}
+                <h1>{% trans "Respect, Diversity" %}</h1>
+                <h3>of <span id="typed"></span>in PyCon APAC.</h3>
+                <!--{% include "badge/all.html" %}-->
             </div>
         </div>
         {% with navbar_class="navbar-translucent" %}
@@ -38,9 +28,21 @@
 {% block script %}
 <script>
 $(function() {
-    $(".slides img").shuffle();
-    $(".slides").kenburnsy({
-        'height': $(".slides").height()
+    var sloganStrings = [
+        "Python runtimes",
+        "Programming languages",
+        "Human races",
+        "Development processes",
+        "Python libraries",
+        "Frameworks"
+    ];
+    $("#typed").typed({
+        strings: sloganStrings,
+        contentType: 'html',
+        typeSpeed: 50,
+        backDealy: 1200,
+        loop: true,
+        shuffle: true
     });
 });
 </script>

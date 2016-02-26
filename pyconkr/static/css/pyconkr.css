@@ -274,20 +274,25 @@ small a:hover {
 
 .frontpage .slogan {
     color: #FAFAFA;
-    padding: 3% 15px;
+    padding: 5% 15px;
+    text-align: center;
 }
 
 .frontpage .slogan h1 {
     color: #FFFFFF;
-    font-size: 600%;
+    font-size: 500%;
     line-height: 90%;
     font-weight: 700;
 }
 
 .frontpage .slogan h3 {
     color: #FFFFFF;
-    font-weight: 400;
+    font-weight: 300;
     margin-bottom: 20px;
+}
+
+.frontpage .slogan h3 span {
+    font-weight: 700;
 }
 
 .frontpage .background {
@@ -537,4 +542,27 @@ small a:hover {
 
 .badges .btn {
     margin-bottom: 5px;
+}
+
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+    margin-left: -0.4rem;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
 }
