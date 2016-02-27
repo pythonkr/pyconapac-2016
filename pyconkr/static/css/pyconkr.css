@@ -242,28 +242,31 @@ small a:hover {
 .frontpage {
     position: relative;
     padding: 0;
-    background: #394556;
     z-index: 1;
+    background: url("../image/milkyway.jpg");
+    background-size: cover;
 }
 
-.frontpage .slides {
+.frontpage .sky {
     width: 100%;
-    height: 800px;
+    height: 400px;
 }
 
-.frontpage .slides img {
-    width: 100%;
-    display: none;
-}
-
-.frontpage .onslides {
+.frontpage .onsky {
     width: 100%;
     height: 100%;
+    background: #51656F;
     position: absolute;
     top: 0;
+
+    -webkit-transition: background 2000ms linear;
+    -moz-transition: background 2000ms linear;
+    -o-transition: background 2000ms linear;
+    -ms-transition: background 2000ms linear;
+    transition: background 2000ms linear;
 }
 
-.frontpage .onslides .navbar {
+.frontpage .onsky .navbar {
     width: 100%;
     position: absolute;
     bottom: 0;
@@ -274,7 +277,7 @@ small a:hover {
 
 .frontpage .slogan {
     color: #FAFAFA;
-    padding: 5% 15px;
+    padding: 7% 4%;
     text-align: center;
 }
 
@@ -499,7 +502,7 @@ small a:hover {
 }
 
 .footer .pyconkr-badge img {
-    width: 96px;
+    width: 80px;
     height: auto;
 }
 
