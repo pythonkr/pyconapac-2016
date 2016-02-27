@@ -49,7 +49,7 @@ urlpatterns = patterns(
     url(r'^logout/$', logout, name='logout'),
     url(r'^profile/$', profile, name='profile'),
 
-    url(r'^registration/$', registration_info, name='registration_info'),
+    #url(r'^registration/$', registration_info, name='registration_info'),
     url(r'^registration/payment/$', registration_payment, name='registration_payment'),
     url(r'^registration/status/$', registration_status, name='registration_status'),
     url(r'^registration/payment/callback/$', registration_payment_callback, name='registration_payment_callback'),

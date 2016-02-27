@@ -18,10 +18,10 @@ def default(request):
             'title': _('About'),
             'icon': 'python',
             'dropdown': OrderedDict([
-                ('pyconkr', {'title': _('About PyCon APAC 2016')}),
+#                ('pyconkr', {'title': _('About PyCon APAC 2016')}),
                 ('coc', {'title': _('Code of Conduct')}),
-                ('announcements', {'title': _('Announcements')}),
-                ('sponsors', {'title': _('Sponsors')}),
+#                ('announcements', {'title': _('Announcements')}),
+#                ('sponsors', {'title': _('Sponsors')}),
                 ('staff', {'title': _('Staff')}),
                 ('contact', {'title': _('Contact')}),
             ]),

@@ -53,20 +53,24 @@
 <div class="container">
     {% block wrap %}
     <div class="row wrap">
-        <div class="col-md-9 content">
+        <div class="col-md-12 content">
             {{ base_content | safe }}
             {% block content %}{% endblock %}
         </div>
+        <!--
         <div class="col-md-3 submenu">
             submenu
         </div>
+        -->
     </div>
     {% endblock %}
+    <!--
     <div class="row wrap">
         <div class="col-md-12 sponsors">
             {% include "sponsors.html" %}
         </div>
     </div>
+    -->
 </div>
 {% endblock %}
 
