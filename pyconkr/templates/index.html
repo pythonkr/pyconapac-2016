@@ -25,7 +25,14 @@
         {% endwith %}
     </div>
 </div>
-<div id="buttons">
+{% endblock %}
+
+{% block wrap %}
+<div class="row wrap">
+    <div class="col-md-12 content">
+        {{ base_content | safe }}
+        {% block content %}{% endblock %}
+    </div>
 </div>
 {% endblock %}
 

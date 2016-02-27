@@ -12,7 +12,7 @@
   <!-- Opengraph tag -->
   <meta property="og:site_name" content="{% trans "PyCon APAC 2016" %}">
   <meta property="og:title" content="{% block og-title %}{% trans "PyCon APAC 2016" %}{% endblock %}">
-  <meta property="og:image" content="{{ domain }}{% block og-image %}{% static "image/pyconkr-badge.png" %}{% endblock %}">
+  <meta property="og:image" content="{{ domain }}{% block og-image %}{% static "image/pyconkr-2016-tag.jpg" %}{% endblock %}">
   <meta property="og:url" content="{{ domain }}{{ request.path }}">
   <meta property="og:description" content="{% block og-desc %}{% trans "PyCon Korea Opengraph Description" %}{% endblock %}">
 
@@ -57,11 +57,16 @@
             {{ base_content | safe }}
             {% block content %}{% endblock %}
         </div>
-        <div class="col-md-3 sponsors">
-            {% include "sponsors.html" %}
+        <div class="col-md-3 submenu">
+            submenu
         </div>
     </div>
     {% endblock %}
+    <div class="row wrap">
+        <div class="col-md-12 sponsors">
+            {% include "sponsors.html" %}
+        </div>
+    </div>
 </div>
 {% endblock %}
 

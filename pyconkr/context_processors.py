@@ -26,30 +26,34 @@ def default(request):
                 ('contact', {'title': _('Contact')}),
             ]),
         }),
-        ('programs', {
-            'title': _('Programs'),
-            'icon': 'calendar',
-            'dropdown': OrderedDict([
-                ('cfp', {'title': _('Call for proposals')}),
-                ('schedule', {'title': _('Schedule')}),
-                ('list', {'title': _('Program list')}),
-                ('speakers', {'title': _('Speakers')}),
-                ('ost', {'title': _('Open Spaces')}),
-            ]),
-        }),
-        ('venue', {
-            'title': _('Getting here'),
-            'icon': 'map-marker',
-            'dropdown': OrderedDict([
-                ('map', {'title': _('Venue Map')}),
-                ('transportation', {'title': _('Transportation')}),
-                ('hotels', {'title': _('Hotels')}),
-                ('restaurants', {'title': _('Restaurants')}),
-            ]),
+#        ('programs', {
+#            'title': _('Programs'),
+#            'icon': 'calendar',
+#            'dropdown': OrderedDict([
+#                ('cfp', {'title': _('Call for proposals')}),
+#                ('schedule', {'title': _('Schedule')}),
+#                ('list', {'title': _('Program list')}),
+#                ('speakers', {'title': _('Speakers')}),
+#                ('ost', {'title': _('Open Spaces')}),
+#            ]),
+#        }),
+#        ('venue', {
+#            'title': _('Getting here'),
+#            'icon': 'map-marker',
+#            'dropdown': OrderedDict([
+#                ('map', {'title': _('Venue Map')}),
+#                ('transportation', {'title': _('Transportation')}),
+#                ('hotels', {'title': _('Hotels')}),
+#                ('restaurants', {'title': _('Restaurants')}),
+#            ]),
+#        }),
+        ('cfp', {
+            'title': _('Call for proposals'),
+            'icon': 'edit',
         }),
         ('registration', {
             'title': _('Registration'),
-            'icon': 'pencil',
+            'icon': 'book',
         }),
     ])
 
