@@ -77,10 +77,7 @@
 
 @media (max-width: 640px) {
     .frontpage .sky {
-        height: 260px;
-    }
-    .frontpage .slogan {
-        padding: 0 15px 3%;
+        height: 320px;
     }
     .frontpage .slogan h1 {
         font-size: 400%;
@@ -92,7 +89,7 @@
 
 @media (max-width: 480px) {
     .frontpage .sky {
-        height: 240px;
+        height: 280px;
     }
     .container {
         padding-left: 5px;
