@@ -1,6 +1,6 @@
 {% load staticfiles %}
 {% load i18n %}
-<nav class="navbar {{ navbar_class|default:"navbar-default" }}" role="navigation">
+<nav class="navbar navbar-translucent" role="navigation">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -8,9 +8,11 @@
         <span class="sr-only">{% trans "Toggle navigation" %}</span>
         <span class="glyphicon glyphicon-python"></span>
       </button>
-      <a class="navbar-brand" href="{% url "index" %}">
+      {% if title %}
+      <a class="navbar-logo" href="{% url "index" %}">
         <img src="{% static "image/pyconkr-logo-small.png" %}" alt="PyCon Korea">
       </a>
+      {% endif %}
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -87,11 +89,27 @@
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container -->
+  {% if title %}
+  <div class="container titlebar">
+    <div class="navbar-header">
+    <h1>
+      {{ title }}
+    </h1>
+  </div>
+  </div>
+  {% endif %}
 </nav>
 <script>
-$("#language-menu a").click(function() {
-    var form = $("#language-form");
-    form.find("input[name='language']").val($(this).data("code"));
-    form.submit();
+$(function() {
+  $("#language-menu a").click(function() {
+      var form = $("#language-form");
+      form.find("input[name='language']").val($(this).data("code"));
+      form.submit();
+  });
+
+  {% if title %}
+  var d = new Date();
+  $(".navbar").css("background", getSkyColorAt(d.getHours(), d.getMinutes()));
+  {% endif %}
 });
 </script>

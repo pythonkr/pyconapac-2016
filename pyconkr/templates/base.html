@@ -41,6 +41,7 @@
   <![endif]-->
   <script src="{% static "components/jquery/jquery.min.js" %}"></script>
   <script src="{% static "components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+  <script src="{% static "js/rgb-hsv.js" %}"></script>
   {% block head %}{% endblock %}
 </head>
 
@@ -48,7 +49,6 @@
 {% block top %}
 {% include "nav.html" %}
 {% endblock %}
-{% block titlebar %}{% include "titlebar.html" %}{% endblock %}
 {% block container %}
 <div class="container">
     {% block wrap %}
