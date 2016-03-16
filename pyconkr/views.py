@@ -12,15 +12,16 @@ from django.shortcuts import render, redirect
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView, DetailView, UpdateView
+from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from datetime import datetime, timedelta
 from uuid import uuid4
-from .forms import EmailLoginForm, SpeakerForm, ProgramForm, RegistrationForm
+from .forms import EmailLoginForm, SpeakerForm, ProgramForm, RegistrationForm, ProposalForm
 from .helper import sendEmailToken, render_json, send_email_ticket_confirm, render_io_error
 from .models import (Room,
                      Program, ProgramDate, ProgramTime, ProgramCategory,
                      Speaker, Sponsor, Announcement,
-                     EmailToken, Registration, Product)
+                     EmailToken, Registration, Product,
+                     Proposal)
 from iamporter import get_access_token, Iamporter, IamporterError
 
 logger = logging.getLogger(__name__)
@@ -217,7 +218,9 @@ def logout(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'profile.html', {
+        'title': _('Login'),
+    })
 
 
 @login_required
@@ -394,3 +397,8 @@ def is_registration_time():
         return True
     else:
         return False
+
+
+class ProposalCreate(CreateView):
+    form_class = ProposalForm
+    template_name = "pyconkr/proposal_form.html"

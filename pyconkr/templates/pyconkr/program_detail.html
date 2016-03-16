@@ -5,10 +5,6 @@
 {% block og-title %}{{ program.name }}{% endblock %}
 {% block og-desc %}{{ program.desc|striptags|safe }}{% endblock %}
 
-{% block titlebar %}
-{% include "titlebar.html" with title=program.name %}
-{% endblock %}
-
 {% block content %}
 {% include "badge/all.html" %}
 <ul class="list-group">

@@ -9,6 +9,7 @@ from .views import AnnouncementList, AnnouncementDetail
 from .views import SpeakerList, SpeakerDetail, SpeakerUpdate
 from .views import SponsorList, SponsorDetail
 from .views import ProgramList, ProgramDetail, ProgramUpdate
+from .views import ProposalCreate
 from .views import login, login_req, login_mailsent, logout, profile
 
 from django.contrib import admin
@@ -42,6 +43,8 @@ urlpatterns = patterns(
         SpeakerUpdate.as_view(), name='speaker_edit'),
     url(r'^programs/schedule/$',
         schedule, name='schedule'),
+    url(r'^proposal/new/$',
+        ProposalCreate.as_view(), name='proposal_new'),
 
     url(r'^login/$', login, name='login'),
     url(r'^login/req/(?P<token>[a-z0-9\-]+)$', login_req, name='login_req'),

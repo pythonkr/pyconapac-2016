@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_summernote.widgets import SummernoteInplaceWidget
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-from .models import Speaker, Program, Registration
+from .models import Speaker, Program, Registration, Proposal
 
 
 class EmailLoginForm(forms.Form):
@@ -117,4 +117,33 @@ class RegistrationForm(forms.ModelForm):
             'company': u'소속',
             'phone_number':  u'전화번호',
             'payment_method': u'결제수단',
+        }
+
+
+class ProposalForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ProposalForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', _('Submit')))
+
+    class Meta:
+        model = Proposal
+        exclude = ('user', )
+
+        labels = {
+            'name_eng': _('Name in English (required)'),
+            'name_kor': _('Name in Korean'),
+            'phone': _('Phone number'),
+            'organization': _('Organization'),
+
+            'subject_eng': _('Subject in English (required)'),
+            'subject_kor': _('Subject in Korean'),
+            'summary_eng': _('Summary in English (required)'),
+            'summary_kor': _('Summary in Korean'),
+            'bio_eng': _('Biography in English (required)'),
+            'bio_kor': _('Biography in Korean'),
+
+            'difficulty': _('Session difficulty'),
+            'duration': _('Session duration'),
         }

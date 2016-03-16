@@ -203,8 +203,33 @@ class EmailToken(models.Model):
         super(EmailToken, self).save(*args, **kwargs)
 
 
+class Proposal(models.Model):
+    user = models.ForeignKey(User)
+
+    title = models.CharField(max_length=255)
+    brief = models.TextField(max_length=1000)
+    desc = models.TextField(max_length=4000)
+    comment = models.TextField(max_length=4000, null=True, blank=True)
+
+    difficulty = models.CharField(max_length=1,
+                                  choices=(
+                                      ('B', _('Beginner')),
+                                      ('I', _('Intermediate')),
+                                      ('E', _('Experienced')),
+                                  ))
+
+    duration = models.CharField(max_length=1,
+                                choices=(
+                                    ('S', _('25 mins')),
+                                    ('L', _('40 mins')),
+                                ))
+
+
 class Profile(models.Model):
-    pass
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100)
+    organization = models.CharField(max_length=100, null=True, blank=True)
+    bio = models.TextField()
 
 
 class Product(object):  # product is not django model now.
