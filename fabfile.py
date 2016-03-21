@@ -24,7 +24,7 @@ def deploy(target='dev', sha1=None):
     home_dir = '/home/pyconkr/{target}.pycon.kr/pyconkr-2016'.format(target=target)
     with cd(home_dir):
         sudo('git fetch -p', user='pyconkr')
-        sudo('git reset ' + sha1, user='pyconkr')
+        sudo('git reset --hard ' + sha1, user='pyconkr')
     # worker reload
     with cd(home_dir):
-        sudo('restart.sh', user='pyconkr')
+        sudo('./restart.sh', user='pyconkr')
