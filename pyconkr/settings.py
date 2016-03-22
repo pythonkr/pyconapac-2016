@@ -53,9 +53,11 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.twitter',
     'sorl.thumbnail',
+    'constance.backends.database',
 ) + (
     # local apps
     'pyconkr',
+    'registration',
 )
 
 MIDDLEWARE_CLASSES = [
@@ -89,14 +91,15 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
                 'pyconkr.context_processors.default',
                 'pyconkr.context_processors.sponsors',
                 'pyconkr.context_processors.profile',
+                'constance.context_processors.config',
             ],
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'pyconkr.wsgi.application'
 
@@ -208,3 +211,5 @@ SPEAKER_IMAGE_MINIMUM_DIMENSION = (500, 500)
 IMP_USER_CODE = '---'
 IMP_API_KEY = '---'
 IMP_API_SECRET = '---'
+
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
