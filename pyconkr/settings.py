@@ -189,6 +189,7 @@ EMAIL_HOST_PASSWORD = ''
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 SUMMERNOTE_CONFIG = {
+    'width': '100%',
     'toolbar': [
         ['style', ['style']],
         ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -196,9 +197,9 @@ SUMMERNOTE_CONFIG = {
         ['insert', ['link']],
         ['misc', ['codeview']],
     ],
-    'inplacewidget_external_css': (
+    'external_css': (
     ),
-    'inplacewidget_external_js': (
+    'external_js': (
     ),
 }
 

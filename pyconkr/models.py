@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models.signals import post_save
 from django.template.defaultfilters import date as _date
 from django.utils.translation import ugettext_lazy as _
 from jsonfield import JSONField
@@ -226,10 +227,18 @@ class Proposal(models.Model):
 
 
 class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    phone = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100, null=True, blank=True)
     organization = models.CharField(max_length=100, null=True, blank=True)
-    bio = models.TextField()
+    image = models.ImageField(upload_to='speaker', null=True, blank=True)
+    bio = models.TextField(max_length=4000, null=True, blank=True)
+
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    post_save.connect(create_user_profile, sender=User)
 
 
 class Product(object):  # product is not django model now.

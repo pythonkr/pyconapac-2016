@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_summernote.widgets import SummernoteInplaceWidget
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-from .models import Speaker, Program, Registration, Proposal
+from .models import Speaker, Program, Registration, Proposal, Profile
 
 
 class EmailLoginForm(forms.Form):
@@ -132,18 +132,54 @@ class ProposalForm(forms.ModelForm):
         exclude = ('user', )
 
         labels = {
-            'name_eng': _('Name in English (required)'),
-            'name_kor': _('Name in Korean'),
-            'phone': _('Phone number'),
-            'organization': _('Organization'),
-
             'subject_eng': _('Subject in English (required)'),
-            'subject_kor': _('Subject in Korean'),
             'summary_eng': _('Summary in English (required)'),
-            'summary_kor': _('Summary in Korean'),
             'bio_eng': _('Biography in English (required)'),
-            'bio_kor': _('Biography in Korean'),
 
             'difficulty': _('Session difficulty'),
             'duration': _('Session duration'),
         }
+
+
+class ProfileForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', _('Submit')))
+        self.fields['image'].help_text += _('Maximum size is %d MB') \
+            % settings.SPEAKER_IMAGE_MAXIMUM_FILESIZE_IN_MB
+        self.fields['image'].help_text += ' / ' + _('Minimum dimension is %d x %d') \
+            % settings.SPEAKER_IMAGE_MINIMUM_DIMENSION
+
+    class Meta:
+        model = Profile
+        fields = ('name', 'phone', 'organization', 'image', 'bio')
+        widgets = {
+            'bio': SummernoteInplaceWidget(),
+        }
+        labels = {
+            'image': _('Photo'),
+        }
+
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+        if image:
+            try:
+                if image._size > settings.SPEAKER_IMAGE_MAXIMUM_FILESIZE_IN_MB * 1024 * 1024:
+                    raise forms.ValidationError(
+                        _('Maximum size is %d MB')
+                        % settings.SPEAKER_IMAGE_MAXIMUM_FILESIZE_IN_MB
+                    )
+            except AttributeError:
+                pass
+
+            w, h = get_image_dimensions(image)
+            if w < settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[0] \
+                    or h < settings.SPEAKER_IMAGE_MINIMUM_DIMENSION[1]:
+                raise forms.ValidationError(
+                    _('Minimum dimension is %d x %d')
+                    % settings.SPEAKER_IMAGE_MINIMUM_DIMENSION
+                )
+
+        return image

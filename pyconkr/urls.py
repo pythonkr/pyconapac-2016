@@ -10,7 +10,7 @@ from .views import SpeakerList, SpeakerDetail, SpeakerUpdate
 from .views import SponsorList, SponsorDetail
 from .views import ProgramList, ProgramDetail, ProgramUpdate
 from .views import ProposalCreate
-from .views import login, login_req, login_mailsent, logout, profile
+from .views import login, login_req, login_mailsent, logout, profile, profile_edit
 
 from django.contrib import admin
 admin.autodiscover()
@@ -51,6 +51,7 @@ urlpatterns = patterns(
     url(r'^login/mailsent/$', login_mailsent, name='login_mailsent'),
     url(r'^logout/$', logout, name='logout'),
     url(r'^profile/$', profile, name='profile'),
+    url(r'^profile/edit/$', profile_edit, name='profile_edit'),
 
     #url(r'^registration/$', registration_info, name='registration_info'),
     url(r'^registration/payment/$', registration_payment, name='registration_payment'),

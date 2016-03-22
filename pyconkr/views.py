@@ -15,7 +15,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from datetime import datetime, timedelta
 from uuid import uuid4
-from .forms import EmailLoginForm, SpeakerForm, ProgramForm, RegistrationForm, ProposalForm
+from .forms import EmailLoginForm, SpeakerForm, ProgramForm, RegistrationForm, ProposalForm, ProfileForm
 from .helper import sendEmailToken, render_json, send_email_ticket_confirm, render_io_error
 from .models import (Room,
                      Program, ProgramDate, ProgramTime, ProgramCategory,
@@ -219,7 +219,23 @@ def logout(request):
 @login_required
 def profile(request):
     return render(request, 'profile.html', {
-        'title': _('Login'),
+        'title': _('Profile'),
+    })
+
+
+@login_required
+def profile_edit(request):
+    form = ProfileForm(instance=request.user.profile)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('profile'))
+
+    return render(request, 'profile_edit.html', {
+        'title': _('Profile'),
+        'form': form,
     })
 
 
