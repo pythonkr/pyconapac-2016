@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth import login as user_login, logout as user_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -230,6 +231,7 @@ def profile_edit(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, instance=request.user.profile)
         if form.is_valid():
+            messages.success(request, _('Profile updated.'))
             form.save()
             return redirect(reverse('profile'))
 

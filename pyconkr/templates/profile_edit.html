@@ -3,9 +3,6 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="row">
-    <div class="span12">
-        {% crispy form %}
-    </div>
-</div>
+<h2>{% trans "Update your profile" %}</h2>
+{% crispy form %}
 {% endblock %}

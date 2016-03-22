@@ -27,6 +27,7 @@ h1, h2, h3, h4, h5, h6, th {
     font-family: 'Lato', 'Helvetica Neue', 'Apple SD Gothic Neo', 'Nanum Gothic', 'Arial', 'Apple Gothic', sans-serif;
     font-weight: 700;
     line-height: 200%;
+    margin: 0.3rem 0 0.25rem;
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -485,7 +486,7 @@ small a:hover {
 }
 
 .footer .pyconkr-badge img {
-    width: 80px;
+    width: 72px;
     height: auto;
 }
 
