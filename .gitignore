@@ -8,6 +8,7 @@
 .DS_Store
 .ropeproject
 
+env/
 media/
 collected_static/
 django-summernote/
