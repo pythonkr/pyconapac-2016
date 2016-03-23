@@ -6,4 +6,6 @@ django-jsonfield
 django-modeltranslation
 django-rosetta
 django-summernote
+django-constance
+django-picklefield
 sorl-thumbnail

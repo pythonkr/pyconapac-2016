@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.twitter',
     'sorl.thumbnail',
+    'constance',
     'constance.backends.database',
 ) + (
     # local apps
