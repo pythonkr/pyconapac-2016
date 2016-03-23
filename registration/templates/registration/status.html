@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n humanize %}
 
 {% block content %}
     <div>
@@ -27,8 +27,12 @@
                     <td>{{ registration.phone_number }}</td>
                 </tr>
                 <tr>
+                    <th>옵션</th>
+                    <td>{{ registration.option }}</td>
+                </tr>
+                <tr>
                     <th>금액</th>
-                    <td>15,000원</td>
+                    <td>{{ registration.option.price|intcomma }} KRW</td>
                 </tr>
                 <tr>
                     <th>거래번호</th>
@@ -53,7 +57,7 @@
                     </tr>
                     <tr>
                         <th>가격</th>
-                        <td>15,000원</td>
+                        <td>{{ registration.option.price|intcomma }} KRW</td>
                     </tr>
                     <tr>
                         <th>거래번호</th>

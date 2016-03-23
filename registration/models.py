@@ -4,13 +4,20 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 
-class Options(models.Model):
+class Option(models.Model):
     name = models.CharField(max_length=50)
+    description = models.TextField()
+    is_active = models.BooleanField(default=False)
+    price = models.IntegerField()
+
+    def __unicode__(self):
+        return self.name
 
 
 class Registration(models.Model):
     user = models.ForeignKey(User)
     merchant_uid = models.CharField(max_length=32)
+    option = models.ForeignKey(Option, null=True)
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=255)
     company = models.CharField(max_length=100, blank=True)

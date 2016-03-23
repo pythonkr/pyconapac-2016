@@ -3,9 +3,15 @@
 
 {% block content %}
     <div>
-        {% if not is_ticket_open %}<div>등록 기간이 아닙니다</div>{% endif %}
+        {% if not is_ticket_open %}<div>등록 기간이 아닙니다</div>
+        {% elif is_sold_out %}<div>SOLD OUT</div>
+        {% endif %}
         <div>
-            <a href="{% url 'registration_status' %}" >등록확인</a>{% if is_ticket_open %}|<a href="{% url 'registration_payment' %}" ><b>등록하기</b></a>{% endif %}
+            <ul>
+                {% for option in options %}
+                <li><a href='{% url 'registration_payment' option.id %}'>{{option.name}}</a></li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock %}

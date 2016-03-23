@@ -25,6 +25,7 @@
                 response['company'] = $('#id_company').val();
                 response['phone_number'] = $('#id_phone_number').val();
                 response['payment_method'] = $('#id_payment_method').val();
+                response['option'] = $('#id_option').val();
 
                 $.ajax({
                     method: 'POST',
@@ -53,7 +54,7 @@
 
                 var paymentMethod = $('#id_payment_method').val();
                 if(paymentMethod === 'card') {
-                    IMP.SBCR.init('{{ IMP_USER_CODE }}');
+                    IMP.SBCR.init('{{ config.IMP_USER_CODE }}');
                     IMP.SBCR.onetime({
                         merchant_uid: '{{ uid }}',
                         amount: parseInt('{{ amount }}'),
@@ -66,7 +67,7 @@
                         handleResponse(response);
                     }.bind(this));
                 } else if(paymentMethod === 'vbank') {
-                    IMP.init('{{ IMP_USER_CODE }}');
+                    IMP.init('{{ config.IMP_USER_CODE }}');
                     IMP.request_pay({
                         pay_method : 'vbank',
                         merchant_uid: '{{ uid }}',

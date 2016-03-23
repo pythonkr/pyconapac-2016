@@ -9,6 +9,7 @@ class RegistrationForm(forms.ModelForm):
 
         super(RegistrationForm, self).__init__(*args, **kwargs)
         self.fields['email'].widget.attrs['readonly'] = True
+        self.fields['option'].widget.attrs['disabled'] = True
         self.helper = FormHelper()
         self.helper.form_id = 'registration-form'
         self.helper.form_method = 'post'
@@ -16,9 +17,10 @@ class RegistrationForm(forms.ModelForm):
 
     class Meta:
         model = Registration
-        fields = ('email', 'name', 'company', 'phone_number', 'payment_method', )
+        fields = ('email', 'option', 'name', 'company', 'phone_number', 'payment_method', )
         labels = {
             'name': u'이름',
+            'option': u'옵션',
             'email': u'이메일',
             'company': u'소속',
             'phone_number':  u'전화번호',
