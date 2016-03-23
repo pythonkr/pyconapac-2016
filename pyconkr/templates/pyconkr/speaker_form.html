@@ -5,9 +5,7 @@
 {{ form.media }}
 {% endblock %}
 
-{% block titlebar %}
-{% include "titlebar.html" with title=speaker %}
-{% endblock %}
+{% block title %}{{ speaker }}{% endblock %}
 
 {% block content %}
 {% crispy form %}

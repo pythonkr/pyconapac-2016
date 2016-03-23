@@ -6,6 +6,7 @@
 *.mo
 .AppleDouble
 .DS_Store
+.ropeproject
 
 media/
 collected_static/

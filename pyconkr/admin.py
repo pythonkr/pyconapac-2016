@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import User
 from django.contrib.flatpages.models import FlatPage
 from django.db import models
 from django_summernote.admin import SummernoteModelAdmin
@@ -6,7 +8,7 @@ from django_summernote.widgets import SummernoteWidget
 from modeltranslation.admin import TranslationAdmin
 from .models import (Room, Program, ProgramTime, ProgramDate, ProgramCategory,
                      Speaker, Sponsor, SponsorLevel,
-                     Announcement, EmailToken)
+                     Profile, Announcement, EmailToken)
 
 
 class RoomAdmin(SummernoteModelAdmin, TranslationAdmin):
@@ -98,3 +100,15 @@ class FlatPageAdmin(TranslationAdmin):
 
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, FlatPageAdmin)
+
+
+class ProfileInline(admin.StackedInline):
+    model = Profile
+    can_delete = False
+
+
+class UserAdmin(BaseUserAdmin):
+    inlines = (ProfileInline, )
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth import login as user_login, logout as user_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -12,15 +13,15 @@ from django.shortcuts import render, redirect
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView, DetailView, UpdateView
+from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from datetime import datetime, timedelta
 from uuid import uuid4
-from .forms import EmailLoginForm, SpeakerForm, ProgramForm
+from .forms import EmailLoginForm, SpeakerForm, ProgramForm, ProposalForm, ProfileForm
 from .helper import sendEmailToken, render_json, send_email_ticket_confirm, render_io_error
 from .models import (Room,
                      Program, ProgramDate, ProgramTime, ProgramCategory,
                      Speaker, Sponsor, Announcement,
-                     EmailToken, Product)
+                     EmailToken, Product, Proposal)
 
 logger = logging.getLogger(__name__)
 payment_logger = logging.getLogger('payment')
@@ -219,5 +220,29 @@ def logout(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'profile.html', {
+        'title': _('Profile'),
+    })
+
+
+@login_required
+def profile_edit(request):
+    form = ProfileForm(instance=request.user.profile)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            messages.success(request, _('Profile updated.'))
+            form.save()
+            return redirect(reverse('profile'))
+
+    return render(request, 'profile_edit.html', {
+        'title': _('Profile'),
+        'form': form,
+    })
+
+
+class ProposalCreate(CreateView):
+    form_class = ProposalForm
+    template_name = "pyconkr/proposal_form.html"
 

@@ -6,10 +6,6 @@
 {% block og-image %}{{ speaker.get_image_url }}{% endblock %}
 {% block og-desc %}{{ speaker.desc|striptags }}{% endblock %}
 
-{% block titlebar %}
-{% include "titlebar.html" with title=speaker %}
-{% endblock %}
-
 {% block content %}
 {% include "badge/all.html" %}
 <div class="speaker">

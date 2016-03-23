@@ -20,13 +20,14 @@
 
 body, html {
     margin: 0;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 h1, h2, h3, h4, h5, h6, th {
     font-family: 'Lato', 'Helvetica Neue', 'Apple SD Gothic Neo', 'Nanum Gothic', 'Arial', 'Apple Gothic', sans-serif;
     font-weight: 700;
     line-height: 200%;
+    margin: 0.3rem 0 0.25rem;
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -74,7 +75,7 @@ small a:hover {
     font-family: 'Lato', 'Helvetica Neue', 'Apple SD Gothic Neo', 'Nanum Gothic', 'Arial', 'Apple Gothic', sans-serif;
     font-weight: 300;
     color: #333;
-    font-size: 16px;
+    font-size: 1rem;
     padding: 3px 20px;
 }
 
@@ -106,12 +107,12 @@ small a:hover {
     background-size: 100% 100%;
 }
 
-.navbar .navbar-brand {
+.navbar .navbar-logo {
     float: none;
     padding: 5px 25px 5px 15px;
 }
 
-.navbar .navbar-brand img {
+.navbar .navbar-logo img {
     width: auto;
     height: 50px;
 }
@@ -121,16 +122,17 @@ small a:hover {
     padding: 5px;
 }
 
-.navbar .navbar-toggle .glyphicon {
-    width: 24px;
-    height: 24px;
+.navbar .glyphicon {
+    margin-right: 12px;
+    font-size: 1.25rem;
     top: 4px;
     margin: 0 4px;
 }
-
-.navbar-translucent .navbar-brand {
-    display: none;
+.navbar .glyphicon-python {
+    width: 1.25rem;
+    height: 1.25rem;
 }
+
 
 .navbar-translucent .glyphicon-python {
     background: url("../image/python-white.png");
@@ -169,6 +171,7 @@ small a:hover {
 
 .content {
     padding-bottom: 100px;
+    min-height: 360px;
 }
 
 .content > p:first-child,
@@ -188,7 +191,7 @@ small a:hover {
 
 .content .table td,
 .content .table th {
-    font-size: 1em;
+    font-size: 1rem;
     text-align: center;
 }
 
@@ -204,39 +207,19 @@ small a:hover {
 
 .titlebar {
     position: relative;
-    padding: 2px 0 10px 0;
-    background: #FAFAFA;
-    border-top: 1px solid #E7E7E7;
-    border-bottom: 1px solid #E7E7E7;
     overflow: hidden;
 }
 
 .titlebar h1 {
+    padding: 5% 15px;
     margin: 1% 0;
-    max-width: 66%;
-    line-height: 160%;
+    font-size: 3rem;
+    line-height: 120%;
+    color: white;
 }
 
 .titlebar .container {
     position: relative;
-}
-
-.titlebar .halftone {
-    position: absolute;
-}
-
-.titlebar .halftone-red {
-    width: 50%;
-    height: auto;
-    top: -200px;
-    right: 60px;
-}
-
-.titlebar .halftone-blue {
-    width: 50%;
-    height: auto;
-    top: -90px;
-    right: -40px;
 }
 
 .frontpage {
@@ -283,7 +266,7 @@ small a:hover {
 
 .frontpage .slogan h1 {
     color: #FFFFFF;
-    font-size: 500%;
+    font-size: 5rem;
     line-height: 90%;
     font-weight: 700;
 }
@@ -352,7 +335,7 @@ small a:hover {
 }
 
 .announcements dt h4 {
-    font-size: 140%;
+    font-size: 1.4rem;
 }
 
 .announcements dt h4 a {
@@ -360,7 +343,7 @@ small a:hover {
 }
 
 .announcements dt h4 span {
-    font-size: 60%;
+    font-size: 0.8rem;
 }
 
 .announcements dd {
@@ -406,7 +389,7 @@ small a:hover {
 }
 
 .list-group-item {
-    font-size: 110%;
+    font-size: 1.1rem;
 }
 
 .list-group-item span {
@@ -430,7 +413,7 @@ small a:hover {
 }
 
 .timetable .title {
-    font-size: 110%;
+    font-size: 1.1rem;
 }
 
 .timetable .speaker {
@@ -478,12 +461,13 @@ small a:hover {
 }
 
 .footer {
+    background: #FAFAFA;
     padding: 10px 0;
     border-top: 1px solid #E7E7E7;
 }
 
 .footer p {
-    font-size: 90%;
+    font-size: 0.8rem;
     margin-bottom: 0;
 }
 
@@ -502,12 +486,12 @@ small a:hover {
 }
 
 .footer .pyconkr-badge img {
-    width: 80px;
+    width: 72px;
     height: auto;
 }
 
 .footer .btn-social-icon {
-    font-size: 16px;
+    font-size: 1rem;
     width: 44px;
     height: 44px;
     border-radius: 44px;
