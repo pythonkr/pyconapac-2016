@@ -152,6 +152,9 @@ def robots(request):
 
 
 def login(request):
+    if request.user.is_authenticated():
+        return redirect('profile')
+
     form = EmailLoginForm()
 
     if request.method == 'POST':

@@ -21,10 +21,15 @@ payment_logger = logging.getLogger('payment')
 _is_ticket_open = lambda : True if config.REGISTRATION_OPEN <= datetime.date.today() <= config.REGISTRATION_CLOSE else False
 
 def index(request):
+    is_registered = Registration.objects.filter(
+        user=request.user,
+        payment_status__in=['paid', 'ready']
+    ).exists()
     options = Option.objects.filter(is_active=True)
     return render(request, 'registration/info.html',
                   {'is_ticket_open': _is_ticket_open,
-                   'options': options})
+                   'options': options,
+                   'is_registered': is_registered})
 
 @login_required
 def status(request):
