@@ -6,6 +6,7 @@ from django.db import models
 from django_summernote.admin import SummernoteModelAdmin
 from django_summernote.widgets import SummernoteWidget
 from modeltranslation.admin import TranslationAdmin
+from sorl.thumbnail.admin import AdminImageMixin
 from .models import (Room, Program, ProgramTime, ProgramDate, ProgramCategory,
                      Speaker, Sponsor, SponsorLevel,
                      Profile, Announcement, EmailToken)
@@ -102,7 +103,7 @@ admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, FlatPageAdmin)
 
 
-class ProfileInline(admin.StackedInline):
+class ProfileInline(AdminImageMixin, admin.StackedInline):
     model = Profile
     can_delete = False
 

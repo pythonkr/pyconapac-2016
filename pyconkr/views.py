@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import logging
 from django.conf import settings
-from django.contrib import messages
 from django.contrib.auth import login as user_login, logout as user_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.flatpages.models import FlatPage
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db.models import Q
@@ -21,7 +21,8 @@ from .helper import sendEmailToken, render_json, send_email_ticket_confirm, rend
 from .models import (Room,
                      Program, ProgramDate, ProgramTime, ProgramCategory,
                      Speaker, Sponsor, Announcement,
-                     EmailToken, Product, Proposal)
+                     EmailToken, Registration, Product, Profile, Proposal)
+from iamporter import get_access_token, Iamporter, IamporterError
 
 logger = logging.getLogger(__name__)
 payment_logger = logging.getLogger('payment')
@@ -218,28 +219,27 @@ def logout(request):
     return redirect(reverse('index'))
 
 
-@login_required
-def profile(request):
-    return render(request, 'profile.html', {
-        'title': _('Profile'),
-    })
+class ProfileDetail(DetailView):
+    model = Profile
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileDetail, self).get_context_data(**kwargs)
+
+        if self.request.user.is_authenticated():
+            if self.request.user == self.object.user:
+                context['editable'] = True
+
+        return context
 
 
-@login_required
-def profile_edit(request):
-    form = ProfileForm(instance=request.user.profile)
+class ProfileUpdate(SuccessMessageMixin, UpdateView):
+    model = Profile
+    form_class = ProfileForm
+    success_message = _("Profile successfully updated.")
 
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=request.user.profile)
-        if form.is_valid():
-            messages.success(request, _('Profile updated.'))
-            form.save()
-            return redirect(reverse('profile'))
-
-    return render(request, 'profile_edit.html', {
-        'title': _('Profile'),
-        'form': form,
-    })
+    def get_queryset(self):
+        queryset = super(ProfileUpdate, self).get_queryset()
+        return queryset.filter(user=self.request.user)
 
 
 class ProposalCreate(CreateView):

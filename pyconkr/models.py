@@ -7,6 +7,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.template.defaultfilters import date as _date
 from django.utils.translation import ugettext_lazy as _
+from sorl.thumbnail import ImageField as SorlImageField
 from jsonfield import JSONField
 from uuid import uuid4
 
@@ -231,12 +232,15 @@ class Profile(models.Model):
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=100, null=True, blank=True)
     organization = models.CharField(max_length=100, null=True, blank=True)
-    image = models.ImageField(upload_to='speaker', null=True, blank=True)
+    image = SorlImageField(upload_to='profile', null=True, blank=True)
     bio = models.TextField(max_length=4000, null=True, blank=True)
 
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
             Profile.objects.create(user=instance)
+
+    def get_absolute_url(self):
+        return reverse('profile', args=[self.id])
 
     post_save.connect(create_user_profile, sender=User)
 

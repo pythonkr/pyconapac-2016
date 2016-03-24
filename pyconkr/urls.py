@@ -9,7 +9,8 @@ from .views import SpeakerList, SpeakerDetail, SpeakerUpdate
 from .views import SponsorList, SponsorDetail
 from .views import ProgramList, ProgramDetail, ProgramUpdate
 from .views import ProposalCreate
-from .views import login, login_req, login_mailsent, logout, profile, profile_edit
+from .views import ProfileDetail, ProfileUpdate
+from .views import login, login_req, login_mailsent, logout
 
 from django.contrib import admin
 admin.autodiscover()
@@ -44,13 +45,15 @@ urlpatterns = patterns(
         schedule, name='schedule'),
     url(r'^proposal/new/$',
         ProposalCreate.as_view(), name='proposal_new'),
+    url(r'^profile/(?P<pk>\d+)$',
+        ProfileDetail.as_view(), name='profile'),
+    url(r'^profile/(?P<pk>\d+)/edit$',
+        ProfileUpdate.as_view(), name='profile_edit'),
 
     url(r'^login/$', login, name='login'),
     url(r'^login/req/(?P<token>[a-z0-9\-]+)$', login_req, name='login_req'),
     url(r'^login/mailsent/$', login_mailsent, name='login_mailsent'),
     url(r'^logout/$', logout, name='logout'),
-    url(r'^profile/$', profile, name='profile'),
-    url(r'^profile/edit/$', profile_edit, name='profile_edit'),
 
     url(r'^registration/', include('registration.urls')),
     #url(r'^registration/$', registration_info, name='registration_info'),

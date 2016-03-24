@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_summernote.widgets import SummernoteInplaceWidget
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-from .models import Speaker, Program, Proposal, Profile
+from .models import Speaker, Program, Registration, Proposal, Profile
 
 
 class EmailLoginForm(forms.Form):
@@ -118,6 +118,7 @@ class ProposalForm(forms.ModelForm):
             'difficulty': _('Session difficulty'),
             'duration': _('Session duration'),
         }
+
 
 
 class ProfileForm(forms.ModelForm):
