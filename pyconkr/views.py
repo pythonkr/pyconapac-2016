@@ -21,7 +21,7 @@ from .helper import sendEmailToken, render_json, send_email_ticket_confirm, rend
 from .models import (Room,
                      Program, ProgramDate, ProgramTime, ProgramCategory,
                      Speaker, Sponsor, Announcement,
-                     EmailToken, Registration, Product, Profile, Proposal)
+                     EmailToken, Product, Profile, Proposal)
 from iamporter import get_access_token, Iamporter, IamporterError
 
 logger = logging.getLogger(__name__)

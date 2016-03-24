@@ -7,6 +7,7 @@
 .AppleDouble
 .DS_Store
 .ropeproject
+.idea
 
 env/
 media/
