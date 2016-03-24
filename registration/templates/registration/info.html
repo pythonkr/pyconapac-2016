@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n humanize %}
+
+{% block content %}
+    <div>
+        {% if not is_ticket_open %}<div>등록 기간이 아닙니다</div>
+        {% elif is_sold_out %}<div>SOLD OUT</div>
+        {% endif %}
+        {% if is_registered %}
+        <a href='{% url 'registration_status' %}'>My Registration status</a>
+        {% else %}
+        <div>
+            <ul>
+                {% for option in options %}
+                <li>
+                    <div>
+                        <a href='{% url 'registration_payment' option.id %}'>{{option.name}}</a>
+                        <span>{{ option.price|intcomma }} KRW</span>
+                        <p>
+                        {{ option.description}}
+                        </p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

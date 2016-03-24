@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
+    'django.contrib.humanize',
 ) + (
     # thirt-party apps
     'django_summernote',
@@ -53,9 +55,12 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.twitter',
     'sorl.thumbnail',
+    'constance',
+    'constance.backends.database',
 ) + (
     # local apps
     'pyconkr',
+    'registration',
 )
 
 MIDDLEWARE_CLASSES = [
@@ -89,14 +94,15 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
                 'pyconkr.context_processors.default',
                 'pyconkr.context_processors.sponsors',
                 'pyconkr.context_processors.profile',
+                'constance.context_processors.config',
             ],
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'pyconkr.wsgi.application'
 
@@ -173,13 +179,14 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/profile/'
 ACCOUNT_EMAIL_REQUIRED = True
 
 DOMAIN = ''
 
 EMAIL_LOGIN_TITLE = ugettext("PyCon APAC 2016 one-time login token")
-EMAIL_SENDER = ugettext("PyCon APAC 2016") + "<foo@bar.com>"
+EMAIL_SENDER = ugettext("PyCon APAC 2016") + "<registration@pycon.kr>"
 EMAIL_USE_TLS = True
 EMAIL_HOST = ''
 EMAIL_PORT = 587
@@ -206,6 +213,13 @@ SUMMERNOTE_CONFIG = {
 SPEAKER_IMAGE_MAXIMUM_FILESIZE_IN_MB = 5
 SPEAKER_IMAGE_MINIMUM_DIMENSION = (500, 500)
 
-IMP_USER_CODE = '---'
-IMP_API_KEY = '---'
-IMP_API_SECRET = '---'
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+
+CONSTANCE_CONFIG = {
+        'REGISTRATION_OPEN': (datetime.date(2016, 3, 23), 'Registration opening date'),
+        'REGISTRATION_CLOSE': (datetime.date(2016, 9, 1), 'Registration closing date'),
+        'TOTAL_TICKET': (1500, 'How many ticket to sold'),
+        'IMP_USER_CODE': ('', 'iamport user code'),
+        'IMP_API_KEY': ('', 'iamport api key'),
+        'IMP_API_SECRET': ('', 'iamport api secret'),
+}
