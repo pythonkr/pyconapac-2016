@@ -4,7 +4,7 @@
 <html>
 
 <head>
-<title>{% block title %}{% trans "PyCon APAC 2016" %}{% endblock %}</title>
+  <title>{% block head-title %}{% trans "PyCon APAC 2016" %}{% endblock %}</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=0.85">
@@ -42,7 +42,7 @@
   <script src="{% static "components/jquery/jquery.min.js" %}"></script>
   <script src="{% static "components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
   <script src="{% static "js/rgb-hsv.js" %}"></script>
-  {% block head %}{% endblock %}
+  {% block head-include %}{% endblock %}
 </head>
 
 <body>

@@ -21,7 +21,7 @@ from .helper import sendEmailToken, render_json, send_email_ticket_confirm, rend
 from .models import (Room,
                      Program, ProgramDate, ProgramTime, ProgramCategory,
                      Speaker, Sponsor, Announcement,
-                     EmailToken, Product, Profile, Proposal)
+                     EmailToken, Profile, Proposal)
 from iamporter import get_access_token, Iamporter, IamporterError
 
 logger = logging.getLogger(__name__)
@@ -229,6 +229,7 @@ class ProfileDetail(DetailView):
             if self.request.user == self.object.user:
                 context['editable'] = True
 
+        context['title'] = _("Profile")
         return context
 
 
@@ -240,6 +241,11 @@ class ProfileUpdate(SuccessMessageMixin, UpdateView):
     def get_queryset(self):
         queryset = super(ProfileUpdate, self).get_queryset()
         return queryset.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileUpdate, self).get_context_data(**kwargs)
+        context['title'] = _("Update profile")
+        return context
 
 
 class ProposalCreate(CreateView):

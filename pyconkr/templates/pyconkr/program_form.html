@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-{% block head %}
+{% block head-include %}
 {{ form.media }}
 {% endblock %}
 
-{% block title %}{{ program }}{% endblock %}
+{% block head-title %}{{ program }}{% endblock %}
 
 {% block content %}
 {% crispy form %}

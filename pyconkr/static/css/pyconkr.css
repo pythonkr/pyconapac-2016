@@ -178,6 +178,10 @@ input[type=file] {
     min-height: 360px;
 }
 
+.content form {
+    margin: 1rem 0;
+}
+
 .content > p:first-child,
 .content > div:first-child {
     margin-top: 15px;
@@ -542,6 +546,12 @@ input[type=file] {
     animation: blink 0.7s infinite;
     margin-left: -0.4rem;
 }
+
+.note-editor {
+    /* to remove bootstrap panel's 20px margin-bottom */
+    margin-bottom: 0;
+}
+ 
 @keyframes blink{
     0% { opacity:1; }
     50% { opacity:0; }

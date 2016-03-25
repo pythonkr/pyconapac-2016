@@ -3,7 +3,7 @@
 
 {% block og-title %}{{ block.super }} {{ object.title }}{% endblock %}
 {% block og-desc %}{{ object.desc|striptags|truncatechars:300 }}{% endblock %}
-{% block title %}{{ object.title }}{% endblock %}
+{% block head-title %}{{ object.title }}{% endblock %}
 
 {% block content %}
 {{ object.desc|safe }}
