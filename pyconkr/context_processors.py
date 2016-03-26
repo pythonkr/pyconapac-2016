@@ -13,11 +13,12 @@ def default(request):
         url = url[len(settings.FORCE_SCRIPT_NAME):]
     base_content = FlatPage.objects.filter(url=url).first()
 
+    submenu = None
     menu = OrderedDict([
         ('about', {
             'title': _('About'),
             'icon': 'python',
-            'dropdown': OrderedDict([
+            'submenu': OrderedDict([
 #                ('pyconkr', {'title': _('About PyCon APAC 2016')}),
                 ('coc', {'title': _('Code of Conduct')}),
 #                ('announcements', {'title': _('Announcements')}),
@@ -29,7 +30,7 @@ def default(request):
 #        ('programs', {
 #            'title': _('Programs'),
 #            'icon': 'calendar',
-#            'dropdown': OrderedDict([
+#            'submenu': OrderedDict([
 #                ('cfp', {'title': _('Call for proposals')}),
 #                ('schedule', {'title': _('Schedule')}),
 #                ('list', {'title': _('Program list')}),
@@ -40,7 +41,7 @@ def default(request):
 #        ('venue', {
 #            'title': _('Getting here'),
 #            'icon': 'map-marker',
-#            'dropdown': OrderedDict([
+#            'submenu': OrderedDict([
 #                ('map', {'title': _('Venue Map')}),
 #                ('transportation', {'title': _('Transportation')}),
 #                ('hotels', {'title': _('Hotels')}),
@@ -64,16 +65,18 @@ def default(request):
             v['active'] = True
             title = v['title']
 
-        if 'dropdown' in v:
-            for sk, sv in v['dropdown'].iteritems():
+        if 'submenu' in v:
+            for sk, sv in v['submenu'].iteritems():
                 subpath = '{}{}/'.format(path, sk)
 
                 if request.path.endswith(subpath):
                     sv['active'] = True
                     title = sv['title']
+                    submenu = v['submenu']
 
     return {
         'menu': menu,
+        'submenu': submenu,
         'title': title,
         'domain': settings.DOMAIN,
         'base_content': base_content.content if base_content else '',

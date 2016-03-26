@@ -92,6 +92,12 @@ input[type=file] {
     padding: 3px 20px;
 }
 
+.navbar .navbar-nav>.active>a,
+.navbar .navbar-nav>.active>a:hover,
+.navbar .navbar-nav>.active>a:focus {
+    border-bottom: 3px solid white;
+}
+
 .navbar .dropdown-menu>.active>a,
 .navbar .dropdown-menu>.active>a:hover,
 .navbar .dropdown-menu>.active>a:focus {
@@ -228,7 +234,7 @@ input[type=file] {
 }
 
 .titlebar h1 {
-    padding: 5% 15px;
+    padding: 1rem;
     margin: 1% 0;
     font-size: 3rem;
     line-height: 120%;

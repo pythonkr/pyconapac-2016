@@ -19,12 +19,12 @@
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <ul class="nav navbar-nav">
         {% for k, v in menu.items %}
-        {% if v.dropdown %}
+        {% if v.submenu %}
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="glyphicon glyphicon-{{ v.icon }}"></span> {{ v.title }} <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-          {% for sk, sv in v.dropdown.items %}
+          {% for sk, sv in v.submenu.items %}
             <li class="{% if sv.active %}active{% endif %}">
               <a href="{% url "index" %}{{ k }}/{{ sk }}">{{ sv.title }}</a>
             </li>

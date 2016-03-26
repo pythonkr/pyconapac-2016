@@ -53,7 +53,7 @@
 <div class="container">
     {% block wrap %}
     <div class="row wrap">
-        <div class="col-md-12 content">
+        <div class="col-md-9 content">
             {% if messages %}
             {% for message in messages %}
             <div class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %}" role="alert">
@@ -64,20 +64,16 @@
             {{ base_content | safe }}
             {% block content %}{% endblock %}
         </div>
-        <!--
         <div class="col-md-3 submenu">
-            submenu
+            {% include "submenu.html" %}
         </div>
-        -->
     </div>
     {% endblock %}
-    <!--
     <div class="row wrap">
         <div class="col-md-12 sponsors">
             {% include "sponsors.html" %}
         </div>
     </div>
-    -->
 </div>
 {% endblock %}
 

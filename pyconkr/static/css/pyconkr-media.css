@@ -26,6 +26,14 @@
         min-height: 1024px;
         max-height: 1024px;
     }
+
+    .navbar .navbar-nav>.active>a,
+    .navbar .navbar-nav>.active>a:hover,
+    .navbar .navbar-nav>.active>a:focus {
+        border-bottom: none;
+        background-color: #aaa;
+    }
+
     .navbar-translucent {
     }
     .navbar-translucent .navbar-toggle{
