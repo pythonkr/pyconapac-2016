@@ -232,6 +232,11 @@ class ProfileDetail(DetailView):
         context['title'] = _("Profile")
         return context
 
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.profile.name:
+            return redirect('profile_edit', self.request.user.profile.id)
+        return super(ProfileDetail, self).dispatch(request, *args, **kwargs)
+
 
 class ProfileUpdate(SuccessMessageMixin, UpdateView):
     model = Profile

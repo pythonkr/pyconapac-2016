@@ -1,14 +1,44 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load thumbnail %}
 {% load crispy_forms_tags %}
 
 {% block content %}
 <div class="row">
-<table class="table">
-  <tr>
-    <th>{% trans "Name" %}</th>
-    <td>{{ profile.name }}</td>
-  </tr>
-</table>
+    {% if profile.name %}
+        <ul class="nav nav-pills">
+            <li role="presentation" class="active">
+                <a href="{% url 'profile_edit' user.profile.id %}">Edit Profile</a>
+            </li>
+            <li role="presentation"><a href="#">Buy ticket</a></li>
+        </ul>
+
+        <table class="table">
+            <tr>
+                <th>{% trans "Name" %}</th>
+                <td>{{ profile.name }}</td>
+            </tr>
+            <tr>
+                <th>{% trans "Phone" %}</th>
+                <td>{{ profile.phone }}</td>
+            </tr>
+            <tr>
+                <th>{% trans "Organization" %}</th>
+                <td>{{ profile.organization }}</td>
+            </tr>
+            <tr>
+                <th>{% trans "Image" %}</th>
+                <td>
+                    {% if profile.image %}
+                        <img src="/media/{{ profile.image }}" width="300">
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>{% trans "Bio" %}</th>
+                <td>{{ profile.bio|safe }}</td>
+            </tr>
+        </table>
+    {% endif %}
 </div>
 {% endblock %}
