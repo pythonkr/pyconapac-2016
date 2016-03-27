@@ -195,6 +195,9 @@ EMAIL_HOST_PASSWORD = ''
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
+def static_url(url):
+    return os.path.join(STATIC_URL, url)
+
 SUMMERNOTE_CONFIG = {
     'width': '100%',
     'toolbar': [
@@ -204,9 +207,9 @@ SUMMERNOTE_CONFIG = {
         ['insert', ['link']],
         ['misc', ['codeview']],
     ],
-    'external_css': (
-    ),
-    'external_js': (
+    'internal_css': (
+        static_url('django_summernote/summernote.css'),
+        static_url('css/pyconkr.css'),
     ),
 }
 
