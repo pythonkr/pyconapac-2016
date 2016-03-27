@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.conf.urls import patterns, include, url
+from django.conf.urls.static import static
 from django.contrib.flatpages import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from .views import index, schedule, robots
@@ -15,8 +16,7 @@ from .views import login, login_req, login_mailsent, logout
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^$', index, name='index'),
 
     url(r'^room/(?P<pk>\d+)$',
@@ -64,17 +64,14 @@ urlpatterns = patterns(
     url(r'^summernote/', include('django_summernote.urls')),
     url(r'^admin/', include(admin.site.urls)),
 
-    (r'^accounts/', include('allauth.urls')),
-    (r'^i18n/', include('django.conf.urls.i18n')),
-)
+    url(r'^accounts/', include('allauth.urls')),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
+]
 
 # for development
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += [
-        url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
-            {'document_root': settings.MEDIA_ROOT})
-    ]
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # for rosetta
 if 'rosetta' in settings.INSTALLED_APPS:
