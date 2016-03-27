@@ -1,4 +1,7 @@
 @media (max-width: 768px) {
+    body {
+        padding-bottom: 18rem;
+    }
     .navbar {
         top: 0px;
         width: 100%;

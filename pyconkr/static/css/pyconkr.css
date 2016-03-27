@@ -18,9 +18,18 @@
     transition: background 0.2s;
 }
 
-body, html {
+html {
     margin: 0;
     font-size: 1rem;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-size: 1rem;
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 7rem;
 }
 
 h1, h2, h3, h4, h5, h6, th {
@@ -472,6 +481,10 @@ input[type=file] {
     background: #FAFAFA;
     padding: 10px 0;
     border-top: 1px solid #E7E7E7;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .footer p {
