@@ -15,3 +15,4 @@ collected_static/
 django-summernote/
 **/static/components/**
 settings_*.py
+deploy/server.py
