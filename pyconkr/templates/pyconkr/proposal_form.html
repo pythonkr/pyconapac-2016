@@ -1,10 +1,14 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags i18n %}
 
 {% block head-include %}
 {{ form.media }}
 {% endblock %}
 
 {% block content %}
+{% if request.user.profile.is_empty %}
+<div>{% trans "Please make your profile first" %}</div>
+{% else %}
 {% crispy form %}
+{% endif %}
 {% endblock %}

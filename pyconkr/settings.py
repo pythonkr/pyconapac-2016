@@ -143,7 +143,7 @@ LANGUAGES = (
     ('ko', ugettext('Korean')),
     ('en', ugettext('English')),
 )
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 MODELTRANSLATION_FALLBACK_LANGUAGES = {
     'default': ('ko', 'en'),
 }

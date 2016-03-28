@@ -42,3 +42,12 @@ class ProfileTest(TestCase):
     def test_profile_is_created_when_user_save(self):
         user = User.objects.create_user('test', 'test@email.com', 'password')
         self.assertNotEqual(user.profile, None)
+
+class ProposeTest(TestCase):
+    def test_redirect_to_profile_when_propose_without_profile(self):
+        user = User.objects.create_user('test', 'test@email.com', 'password')
+        client = Client()
+        client.login(username='test', password='password')
+        response = client.get(reverse('propose'))
+        self.assertIn('Please make your profile first', response.content)
+
