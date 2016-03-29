@@ -35,5 +35,19 @@ class PaymentTestCase(TestCase):
     def test_view_registration_payment(self):
         url = reverse('registration_payment')
         response = self.client.post(url, {'test': 1})
-        self.assertEqual(response['content-type'], 'application/javascript', 'error raise and must be ajax' )
-        print response.content
+        self.assertEqual(response['content-type'], 'application/json', 'Result has to be JSON')
+
+
+class ProfileTest(TestCase):
+    def test_profile_is_created_when_user_save(self):
+        user = User.objects.create_user('test', 'test@email.com', 'password')
+        self.assertNotEqual(user.profile, None)
+
+class ProposeTest(TestCase):
+    def test_redirect_to_profile_when_propose_without_profile(self):
+        user = User.objects.create_user('test', 'test@email.com', 'password')
+        client = Client()
+        client.login(username='test', password='password')
+        response = client.get(reverse('propose'))
+        self.assertIn('Please make your profile first', response.content)
+

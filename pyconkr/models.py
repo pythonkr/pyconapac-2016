@@ -5,6 +5,7 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.template.defaultfilters import date as _date
 from django.utils.translation import ugettext_lazy as _
 from sorl.thumbnail import ImageField as SorlImageField
@@ -206,7 +207,7 @@ class EmailToken(models.Model):
 
 
 class Proposal(models.Model):
-    user = models.ForeignKey(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     title = models.CharField(max_length=255)
     brief = models.TextField(max_length=1000)
@@ -226,6 +227,13 @@ class Proposal(models.Model):
                                     ('L', _('40 mins')),
                                 ))
 
+    language = models.CharField(max_length=1,
+                                choices=(
+                                    ('E', _('English')),
+                                    ('K', _('Korean')),
+                                ),
+                                default='E')
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -235,6 +243,7 @@ class Profile(models.Model):
     image = SorlImageField(upload_to='profile', null=True, blank=True)
     bio = models.TextField(max_length=4000, null=True, blank=True)
 
+    @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
             Profile.objects.create(user=instance)
@@ -242,7 +251,9 @@ class Profile(models.Model):
     def get_absolute_url(self):
         return reverse('profile', args=[self.id])
 
-    post_save.connect(create_user_profile, sender=User)
+    @property
+    def is_empty(self):
+        return self.name == '' or self.phone is None or self.organization is None or self.bio is None
 
 
 class Product(object):  # product is not django model now.

@@ -9,7 +9,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
@@ -222,6 +222,14 @@ def logout(request):
 class ProfileDetail(DetailView):
     model = Profile
 
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.profile.name:
+            return redirect('profile_edit', self.request.user.profile.id)
+        return super(ProfileDetail, self).dispatch(request, *args, **kwargs)
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Profile, pk=self.request.user.profile.pk)
+
     def get_context_data(self, **kwargs):
         context = super(ProfileDetail, self).get_context_data(**kwargs)
 
@@ -232,10 +240,6 @@ class ProfileDetail(DetailView):
         context['title'] = _("Profile")
         return context
 
-    def dispatch(self, request, *args, **kwargs):
-        if not self.request.user.profile.name:
-            return redirect('profile_edit', self.request.user.profile.id)
-        return super(ProfileDetail, self).dispatch(request, *args, **kwargs)
 
 
 class ProfileUpdate(SuccessMessageMixin, UpdateView):
@@ -247,13 +251,43 @@ class ProfileUpdate(SuccessMessageMixin, UpdateView):
         queryset = super(ProfileUpdate, self).get_queryset()
         return queryset.filter(user=self.request.user)
 
+    def get_object(self, queryset=None):
+        return get_object_or_404(Profile, pk=self.request.user.profile.pk)
+
     def get_context_data(self, **kwargs):
         context = super(ProfileUpdate, self).get_context_data(**kwargs)
         context['title'] = _("Update profile")
         return context
 
 
+class ProposalUpdate(UpdateView):
+    form_class = ProposalForm
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Proposal, pk=self.request.user.proposal.pk)
+
+    def get_context_data(self, **kwargs):
+        context = super(ProposalUpdate, self).get_context_data(**kwargs)
+        context['title'] = _("Proposal")
+        return context
+
+    def get_success_url(self):
+        return reverse('profile')
+
+
 class ProposalCreate(CreateView):
     form_class = ProposalForm
     template_name = "pyconkr/proposal_form.html"
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.save()
+        return super(ProposalCreate, self).form_valid(form)
+
+    def dispatch(self, request, *args, **kwargs):
+        if Proposal.objects.filter(user=request.user).exists():
+            return redirect('proposal')
+        return super(ProposalCreate, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('profile')

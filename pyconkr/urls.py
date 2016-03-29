@@ -3,13 +3,15 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.contrib.flatpages import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib.auth.decorators import login_required
+
 from .views import index, schedule, robots
 from .views import RoomDetail
 from .views import AnnouncementList, AnnouncementDetail
 from .views import SpeakerList, SpeakerDetail, SpeakerUpdate
 from .views import SponsorList, SponsorDetail
 from .views import ProgramList, ProgramDetail, ProgramUpdate
-from .views import ProposalCreate
+from .views import ProposalCreate, ProposalUpdate
 from .views import ProfileDetail, ProfileUpdate
 from .views import login, login_req, login_mailsent, logout
 
@@ -43,9 +45,11 @@ urlpatterns = [
         SpeakerUpdate.as_view(), name='speaker_edit'),
     url(r'^programs/schedule/$',
         schedule, name='schedule'),
-    url(r'^proposal/new/$',
-        ProposalCreate.as_view(), name='proposal_new'),
-    url(r'^profile/(?P<pk>\d+)$',
+    url(r'^cfp/propose/$',
+        login_required(ProposalCreate.as_view()), name='propose'),
+    url(r'^profile/proposal$',
+        ProposalUpdate.as_view(), name='proposal'),
+    url(r'^profile$',
         ProfileDetail.as_view(), name='profile'),
     url(r'^profile/(?P<pk>\d+)/edit$',
         ProfileUpdate.as_view(), name='profile_edit'),

@@ -40,5 +40,15 @@
             </tr>
         </table>
     {% endif %}
+    {% if request.user.proposal %}
+        <table class="table">
+            <tr>
+                <th>{% trans "Proposal" %}</th>
+                {% with p=request.user.proposal %}
+                <td><a href='{% url "proposal" %}'>{{ p.title }} - {{ p.get_difficulty_display }}-{{ p.get_duration_display }}-{{ p.get_language_display }}</a></td>
+                {% endwith %}
+            </tr>
+        </table>
+    {% endif %}
 </div>
 {% endblock %}

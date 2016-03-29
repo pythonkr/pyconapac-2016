@@ -51,6 +51,11 @@ def default(request):
         ('cfp', {
             'title': _('Call for proposals'),
             'icon': 'edit',
+            'submenu': OrderedDict([
+                ('cfp', {'title': _('Call for proposals')}),
+                ('howto', {'title': _('How to propose')}),
+                ('propose', {'title': _('Propose')}),
+            ]),
         }),
         ('registration', {
             'title': _('Registration'),
