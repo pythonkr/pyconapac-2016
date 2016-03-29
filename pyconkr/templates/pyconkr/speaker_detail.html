@@ -5,6 +5,7 @@
 {% block og-title %}{{ speaker.name }}{% endblock %}
 {% block og-image %}{{ speaker.get_image_url }}{% endblock %}
 {% block og-desc %}{{ speaker.desc|striptags }}{% endblock %}
+{% block nav %}{% include "nav.html" with title=speaker.name %}{% endblock %}
 
 {% block content %}
 {% include "badge/all.html" %}

@@ -2,6 +2,7 @@
 {% load i18n %}
 
 {% block head-title %}{{ block.super }} {% trans "Sponsor" %} | {{ sponsor.name }}{% endblock %}
+{% block nav %}{% include "nav.html" with title=sponsor.name %}{% endblock %}
 
 {% block content %}
 <div class="sponsor">
