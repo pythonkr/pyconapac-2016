@@ -6,7 +6,7 @@
 {% block content %}
 <div class="row">
     {% if request.user.proposal %}
-        <p><a href='{% url "proposal-update" %}'>edit proposal</a></p>
+        <p><a href="{% url 'proposal-update' %}" class="btn btn-primary btn-lg">Edit Proposal</a></p>
         <table class="table">
             <tr>
                 <th>{% trans "Title" %}</th>

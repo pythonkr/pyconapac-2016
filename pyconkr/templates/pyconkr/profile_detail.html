@@ -6,12 +6,7 @@
 {% block content %}
 <div class="row">
     {% if profile.name %}
-        <ul class="nav nav-pills">
-            <li role="presentation" class="active">
-                <a href="{% url 'profile_edit' %}">Edit Profile</a>
-            </li>
-            <li role="presentation"><a href="#">Buy ticket</a></li>
-        </ul>
+        <p><a href="{% url 'profile_edit' %}" class="btn btn-primary btn-lg">Edit Profile</a></p>
 
         <table class="table">
             <tr>
