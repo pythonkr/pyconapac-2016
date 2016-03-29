@@ -11,7 +11,7 @@ from .views import AnnouncementList, AnnouncementDetail
 from .views import SpeakerList, SpeakerDetail, SpeakerUpdate
 from .views import SponsorList, SponsorDetail
 from .views import ProgramList, ProgramDetail, ProgramUpdate
-from .views import ProposalCreate, ProposalUpdate
+from .views import ProposalCreate, ProposalUpdate, ProposalDetail
 from .views import ProfileDetail, ProfileUpdate
 from .views import login, login_req, login_mailsent, logout
 
@@ -47,8 +47,10 @@ urlpatterns = [
         schedule, name='schedule'),
     url(r'^cfp/propose/$',
         login_required(ProposalCreate.as_view()), name='propose'),
-    url(r'^profile/proposal$',
-        ProposalUpdate.as_view(), name='proposal'),
+    url(r'^profile/proposal/$',
+        ProposalDetail.as_view(), name='proposal'),
+    url(r'^profile/proposal/edit$',
+        ProposalUpdate.as_view(), name='proposal-update'),
     url(r'^profile$',
         ProfileDetail.as_view(), name='profile'),
     url(r'^profile/edit$',

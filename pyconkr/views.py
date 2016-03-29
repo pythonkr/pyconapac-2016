@@ -241,7 +241,6 @@ class ProfileDetail(DetailView):
         return context
 
 
-
 class ProfileUpdate(SuccessMessageMixin, UpdateView):
     model = Profile
     form_class = ProfileForm
@@ -260,6 +259,21 @@ class ProfileUpdate(SuccessMessageMixin, UpdateView):
         return context
 
 
+class ProposalDetail(DetailView):
+    def get_object(self, queryset=None):
+        return get_object_or_404(Proposal, pk=self.request.user.proposal.pk)
+
+    def dispatch(self, request, *args, **kwargs):
+        if not Proposal.objects.filter(user=request.user).exists():
+            return redirect('propose')
+        return super(ProposalDetail, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(ProposalDetail, self).get_context_data(**kwargs)
+        context['title'] = _("Proposal")
+        return context
+
+
 class ProposalUpdate(UpdateView):
     form_class = ProposalForm
 
@@ -272,7 +286,7 @@ class ProposalUpdate(UpdateView):
         return context
 
     def get_success_url(self):
-        return reverse('profile')
+        return reverse('proposal')
 
 
 class ProposalCreate(CreateView):
@@ -290,4 +304,4 @@ class ProposalCreate(CreateView):
         return super(ProposalCreate, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('profile')
+        return reverse('proposal')
