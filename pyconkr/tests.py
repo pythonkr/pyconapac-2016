@@ -43,6 +43,15 @@ class ProfileTest(TestCase):
         user = User.objects.create_user('test', 'test@email.com', 'password')
         self.assertNotEqual(user.profile, None)
 
+    def test_redirect_to_profile_edit_page_when_user_has_not_profile(self):
+        User.objects.create_user('test', 'test@email.com', 'password')
+        client = Client()
+        client.login(username='test', password='password')
+        response = client.get(reverse('profile'))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['location'], reverse('profile_edit'))
+
+
 class ProposeTest(TestCase):
     def test_redirect_to_profile_when_propose_without_profile(self):
         user = User.objects.create_user('test', 'test@email.com', 'password')
@@ -50,4 +59,3 @@ class ProposeTest(TestCase):
         client.login(username='test', password='password')
         response = client.get(reverse('propose'))
         self.assertIn('Please make your profile first', response.content)
-
