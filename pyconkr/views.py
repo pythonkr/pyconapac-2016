@@ -224,7 +224,7 @@ class ProfileDetail(DetailView):
 
     def dispatch(self, request, *args, **kwargs):
         if not self.request.user.profile.name:
-            return redirect('profile_edit', self.request.user.profile.id)
+            return redirect('profile_edit')
         return super(ProfileDetail, self).dispatch(request, *args, **kwargs)
 
     def get_object(self, queryset=None):

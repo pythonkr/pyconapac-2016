@@ -249,7 +249,7 @@ class Profile(models.Model):
             Profile.objects.create(user=instance)
 
     def get_absolute_url(self):
-        return reverse('profile', args=[self.id])
+        return reverse('profile')
 
     @property
     def is_empty(self):

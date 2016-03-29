@@ -51,7 +51,7 @@ urlpatterns = [
         ProposalUpdate.as_view(), name='proposal'),
     url(r'^profile$',
         ProfileDetail.as_view(), name='profile'),
-    url(r'^profile/(?P<pk>\d+)/edit$',
+    url(r'^profile/edit$',
         ProfileUpdate.as_view(), name='profile_edit'),
 
     url(r'^login/$', login, name='login'),
