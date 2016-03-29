@@ -87,6 +87,9 @@
 }
 
 @media (max-width: 480px) {
+    body {
+        padding-bottom: 22rem;
+    }
     .frontpage .sky {
         height: 280px;
     }
