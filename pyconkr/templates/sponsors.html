@@ -1,9 +1,9 @@
 {% load i18n %}
-<h3>{% trans "Sponsors" %}</h3>
+<hr>
+<h2>{% trans "Sponsors" %}</h2>
 <div class="sponsors">
   {% for lvl in levels %}
-  <hr>
-  <h4>{{ lvl.name }}</h4>
+  <h3>{{ lvl.name }}</h3>
   <ul>
     {% for sponsor in lvl.sponsor_set.all %}
     <li class="sponsor-{{ lvl.order }}">
