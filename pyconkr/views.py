@@ -274,8 +274,10 @@ class ProposalDetail(DetailView):
         return context
 
 
-class ProposalUpdate(UpdateView):
+class ProposalUpdate(SuccessMessageMixin, UpdateView):
+    model = Proposal
     form_class = ProposalForm
+    success_message = _("Proposal successfully updated.")
 
     def get_object(self, queryset=None):
         return get_object_or_404(Proposal, pk=self.request.user.proposal.pk)
@@ -289,9 +291,10 @@ class ProposalUpdate(UpdateView):
         return reverse('proposal')
 
 
-class ProposalCreate(CreateView):
+class ProposalCreate(SuccessMessageMixin, CreateView):
     form_class = ProposalForm
     template_name = "pyconkr/proposal_form.html"
+    success_message = _("Proposal successfully created.")
 
     def form_valid(self, form):
         form.instance.user = self.request.user

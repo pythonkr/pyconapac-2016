@@ -14,15 +14,15 @@
             </tr>
             <tr>
                 <th>{% trans "Brief" %}</th>
-                <td>{{ proposal.brief }}</td>
+                <td class="text-left">{{ proposal.brief|linebreaks }}</td>
             </tr>
             <tr>
                 <th>{% trans "Description" %}</th>
-                <td>{{ proposal.desc }}</td>
+                <td class="text-left">{{ proposal.desc|linebreaks }}</td>
             </tr>
             <tr>
                 <th>{% trans "Comment" %}</th>
-                <td>{{ proposal.comment }}</td>
+                <td class="text-left">{{ proposal.comment|linebreaks }}</td>
             </tr>
             <tr>
                 <th>{% trans "Difficulty" %}</th>

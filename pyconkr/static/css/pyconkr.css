@@ -222,6 +222,10 @@ input[type=file] {
     background: #eee;
 }
 
+.content .table td.text-left {
+    text-align: left;
+}
+
 .content .map {
     max-width: 100%;
     border: 1px solid #E7E7E7;
