@@ -5,7 +5,6 @@ from django.http import HttpResponse
 from django.template import Context
 from django.template.loader import render_to_string, get_template
 import json
-from .models import Product
 
 
 def sendEmailToken(request, token):
@@ -34,6 +33,7 @@ def render_template_json(template, context):
     return HttpResponse(render_to_string(template, context),
                         'application/javascript')
 
+
 def send_email_ticket_confirm(request, payment_info):
     """
     :param request Django request object
@@ -56,6 +56,7 @@ def send_email_ticket_confirm(request, payment_info):
         [payment_info.email])
     msg.attach_alternative(html, "text/html")
     msg.send(fail_silently=False)
+
 
 def render_io_error(reason):
     response = HttpResponse(reason)

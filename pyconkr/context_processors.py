@@ -3,7 +3,8 @@ from django.contrib.flatpages.models import FlatPage
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
 from collections import OrderedDict
-from .models import SponsorLevel, Speaker
+from datetime import datetime
+from .models import SponsorLevel, Speaker, Banner
 
 
 def default(request):
@@ -79,9 +80,13 @@ def default(request):
                     title = sv['title']
                     submenu = v['submenu']
 
+    now = datetime.now()
+    banners = Banner.objects.filter(begin__lte=now, end__gte=now)
+
     return {
         'menu': menu,
         'submenu': submenu,
+        'banners': banners,
         'title': title,
         'domain': settings.DOMAIN,
         'base_content': base_content.content if base_content else '',

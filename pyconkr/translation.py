@@ -5,7 +5,7 @@ from .models import (
     ProgramCategory, ProgramTime,
     Sponsor, SponsorLevel,
     Speaker, Program,
-    Announcement
+    Announcement, Banner
 )
 
 
@@ -52,3 +52,8 @@ translator.register(Program, ProgramTranslationOptions)
 class AnnouncementTranslationOptions(TranslationOptions):
     fields = ('title', 'desc',)
 translator.register(Announcement, AnnouncementTranslationOptions)
+
+
+class BannerTranslationOptions(TranslationOptions):
+    fields = ('desc',)
+translator.register(Banner, BannerTranslationOptions)

@@ -265,3 +265,12 @@ class Product(object):  # product is not django model now.
     def name(self):
         return 'PyCon Korea 2016'
 
+
+class Banner(models.Model):
+    name = models.CharField(max_length=100)
+    url = models.CharField(max_length=255, null=True, blank=True)
+    image = SorlImageField(upload_to='banner')
+    desc = models.TextField(null=True, blank=True)
+
+    begin = models.DateTimeField(null=True, blank=True)
+    end = models.DateTimeField(null=True, blank=True)

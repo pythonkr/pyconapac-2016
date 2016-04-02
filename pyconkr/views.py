@@ -17,7 +17,7 @@ from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from datetime import datetime, timedelta
 from uuid import uuid4
 from .forms import EmailLoginForm, SpeakerForm, ProgramForm, ProposalForm, ProfileForm
-from .helper import sendEmailToken, render_json, send_email_ticket_confirm, render_io_error
+from .helper import sendEmailToken, render_json, render_io_error
 from .models import (Room,
                      Program, ProgramDate, ProgramTime, ProgramCategory,
                      Speaker, Sponsor, Announcement,

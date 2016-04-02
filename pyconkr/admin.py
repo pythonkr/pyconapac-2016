@@ -9,7 +9,7 @@ from modeltranslation.admin import TranslationAdmin
 from sorl.thumbnail.admin import AdminImageMixin
 from .models import (Room, Program, ProgramTime, ProgramDate, ProgramCategory,
                      Speaker, Sponsor, SponsorLevel,
-                     Profile, Announcement, EmailToken, Proposal)
+                     Profile, Announcement, EmailToken, Proposal, Banner)
 
 
 class RoomAdmin(SummernoteModelAdmin, TranslationAdmin):
@@ -107,12 +107,21 @@ class ProfileInline(AdminImageMixin, admin.StackedInline):
     model = Profile
     can_delete = False
 
+
 class ProposalAdmin(admin.ModelAdmin):
     list_display = ('user', 'title', 'difficulty', 'duration', 'language')
 admin.site.register(Proposal, ProposalAdmin)
+
 
 class UserAdmin(BaseUserAdmin):
     inlines = (ProfileInline, )
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
+
+
+class BannerAdmin(SummernoteModelAdmin, TranslationAdmin):
+    list_display = ('id', 'name', 'url', 'begin', 'end')
+    ordering = ('id',)
+    search_fields = ('name', 'url')
+admin.site.register(Banner, BannerAdmin)
