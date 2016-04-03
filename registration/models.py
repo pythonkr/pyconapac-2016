@@ -9,6 +9,7 @@ class Option(models.Model):
     description = models.TextField()
     is_active = models.BooleanField(default=False)
     price = models.IntegerField()
+    has_additional_price = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
