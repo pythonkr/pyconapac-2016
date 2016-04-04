@@ -22,6 +22,7 @@ from .models import (Room,
                      Program, ProgramDate, ProgramTime, ProgramCategory,
                      Speaker, Sponsor, Announcement,
                      EmailToken, Profile, Proposal)
+from registration.models import Registration
 from iamporter import get_access_token, Iamporter, IamporterError
 
 logger = logging.getLogger(__name__)
@@ -308,3 +309,5 @@ class ProposalCreate(SuccessMessageMixin, CreateView):
 
     def get_success_url(self):
         return reverse('proposal')
+
+

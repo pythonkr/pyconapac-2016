@@ -62,10 +62,6 @@ urlpatterns = [
     url(r'^logout/$', logout, name='logout'),
 
     url(r'^registration/', include('registration.urls')),
-    #url(r'^registration/$', registration_info, name='registration_info'),
-    #url(r'^registration/payment/$', registration_payment, name='registration_payment'),
-    #url(r'^registration/status/$', registration_status, name='registration_status'),
-    #url(r'^registration/payment/callback/$', registration_payment_callback, name='registration_payment_callback'),
     url(r'^robots.txt$', robots, name='robots'),
     url(r'^summernote/', include('django_summernote.urls')),
     url(r'^admin/', include(admin.site.urls)),

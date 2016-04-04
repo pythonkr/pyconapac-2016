@@ -3,11 +3,12 @@ import logging
 import datetime
 from uuid import uuid4
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.views.generic import DetailView
 from constance import config
 
 from pyconkr.helper import send_email_ticket_confirm, render_io_error
@@ -46,12 +47,12 @@ def payment(request, option_id):
         return redirect('registration_info')
 
     product = Option.objects.get(id=option_id)
-    registered = Registration.objects.filter(
+    is_registered = Registration.objects.filter(
         user=request.user,
         payment_status__in=['paid', 'ready']
     ).exists()
 
-    if registered:
+    if is_registered:
         return redirect('registration_status')
 
     uid = str(uuid4()).replace('-', '')
@@ -154,3 +155,13 @@ def payment_process(request):
         return JsonResponse({
             'success': True,
         })
+
+
+class RegistrationReceiptDetail(DetailView):
+    def get_object(self, queryset=None):
+        return get_object_or_404(Registration, user_id=self.request.user.pk)
+
+    def get_context_data(self, **kwargs):
+        context = super(RegistrationReceiptDetail, self).get_context_data(**kwargs)
+        context['title'] = _("Registration Receipt")
+        return context
