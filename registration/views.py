@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from constance import config
 
 from pyconkr.helper import send_email_ticket_confirm, render_io_error
-from .forms import RegistrationForm
+from .forms import RegistrationForm, RegistrationAdditionalPriceForm
 from .models import Option, Registration
 from iamporter import get_access_token, Iamporter, IamporterError
 
@@ -40,14 +40,12 @@ def status(request):
     return render(request, 'registration/status.html', {'registration': registration})
 
 @login_required
-def payment(request, option_id=None):
-    form = RegistrationForm()
+def payment(request, option_id):
 
     if not _is_ticket_open():
         return redirect('registration_info')
 
     product = Option.objects.get(id=option_id)
-
     registered = Registration.objects.filter(
         user=request.user,
         payment_status__in=['paid', 'ready']
@@ -57,8 +55,14 @@ def payment(request, option_id=None):
         return redirect('registration_status')
 
     uid = str(uuid4()).replace('-', '')
-    form = RegistrationForm(initial={'email': request.user.email,
-                                     'option': product})
+    if product.has_additional_price:
+        form = RegistrationAdditionalPriceForm(initial={'email': request.user.email,
+                                                        'option': product,
+                                                        'base_price': product.price})
+    else:
+        form = RegistrationForm(initial={'email': request.user.email,
+                                         'option': product,
+                                         'base_price': product.price})
 
     return render(request, 'registration/payment.html', {
         'title': _('Registration'),
@@ -97,6 +101,7 @@ def payment_process(request):
     registration, _ = Registration.objects.get_or_create(user=request.user)
     registration.name = form.cleaned_data.get('name')
     registration.email = request.user.email
+    registration.additional_price = form.cleaned_data.get('additional_price', 0)
     registration.company = form.cleaned_data.get('company', '')
     registration.phone_number = form.cleaned_data.get('phone_number', '')
     registration.merchant_uid = request.POST.get('merchant_uid')
@@ -113,8 +118,7 @@ def payment_process(request):
             imp_client.onetime(
                 token=request.POST.get('token'),
                 merchant_uid=request.POST.get('merchant_uid'),
-                amount=product.price,
-                # vat=request.POST.get('vat'),
+                amount=product.price + registration.additional_price,
                 card_number=request.POST.get('card_number'),
                 expiry=request.POST.get('expiry'),
                 birth=request.POST.get('birth'),

@@ -57,7 +57,7 @@
                     IMP.SBCR.init('{{ config.IMP_USER_CODE }}');
                     IMP.SBCR.onetime({
                         merchant_uid: '{{ uid }}',
-                        amount: parseInt('{{ amount }}'),
+                        amount: parseInt('{{ amount }}') + parseInt($('#id_additional_price').val()),
                         vat: parseInt('{{ vat }}')
                     }, function(response) {
                         if(!response.token) {
