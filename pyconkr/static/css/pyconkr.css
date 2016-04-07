@@ -250,7 +250,7 @@ input[type=file] {
 }
 
 .submenu {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 
 .frontpage {
@@ -356,6 +356,24 @@ input[type=file] {
 }
 
 .sponsors .sponsor-2 {
+    width: 100%;
+    max-width: 400px;
+}
+
+.banners {
+    margin: 0 auto 15px auto;
+    padding: 0;
+    text-align: center;
+}
+
+.banners li {
+    list-style: none;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.banners li img {
     width: 100%;
     max-width: 400px;
 }

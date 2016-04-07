@@ -1,6 +1,6 @@
 @media (max-width: 768px) {
     body {
-        padding-bottom: 18rem;
+        padding-bottom: 24rem;
     }
     .navbar {
         top: 0px;
@@ -87,9 +87,6 @@
 }
 
 @media (max-width: 480px) {
-    body {
-        padding-bottom: 22rem;
-    }
     .frontpage .sky {
         height: 280px;
     }
