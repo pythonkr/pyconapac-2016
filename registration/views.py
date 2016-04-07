@@ -79,7 +79,7 @@ def payment_process(request):
         return redirect('registration_index')
 
     payment_logger.debug(request.POST)
-    form = RegistrationForm(request.POST)
+    form = RegistrationAdditionalPriceForm(request.POST)
 
     # TODO : more form validation
     # eg) merchant_uid
@@ -129,7 +129,7 @@ def payment_process(request):
 
         confirm = imp_client.find_by_merchant_uid(request.POST.get('merchant_uid'))
 
-        if confirm['amount'] != product.price:
+        if confirm['amount'] != product.price + registration.additional_price:
             # TODO : cancel
             return render_io_error("amount is not same as product.price. it will be canceled")
 
