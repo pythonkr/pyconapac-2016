@@ -20,37 +20,37 @@ def default(request):
             'title': _('About'),
             'icon': 'python',
             'submenu': OrderedDict([
-#                ('pyconkr', {'title': _('About PyCon APAC 2016')}),
+                ('pyconkr', {'title': _('About PyCon APAC 2016')}),
                 ('coc', {'title': _('Code of Conduct')}),
-#                ('announcements', {'title': _('Announcements')}),
-#                ('sponsors', {'title': _('Sponsors')}),
+                ('announcements', {'title': _('Announcements')}),
+                ('sponsors', {'title': _('Sponsors')}),
                 ('staff', {'title': _('Staff')}),
                 ('contact', {'title': _('Contact')}),
             ]),
         }),
-#        ('programs', {
-#            'title': _('Programs'),
-#            'icon': 'calendar',
-#            'submenu': OrderedDict([
-#                ('cfp', {'title': _('Call for proposals')}),
-#                ('schedule', {'title': _('Schedule')}),
-#                ('list', {'title': _('Program list')}),
-#                ('speakers', {'title': _('Speakers')}),
-#                ('ost', {'title': _('Open Spaces')}),
-#            ]),
-#        }),
-#        ('venue', {
-#            'title': _('Getting here'),
-#            'icon': 'map-marker',
-#            'submenu': OrderedDict([
-#                ('map', {'title': _('Venue Map')}),
-#                ('transportation', {'title': _('Transportation')}),
-#                ('hotels', {'title': _('Hotels')}),
-#                ('restaurants', {'title': _('Restaurants')}),
-#            ]),
-#        }),
+        ('programs', {
+            'title': _('Programs'),
+            'icon': 'calendar',
+            'submenu': OrderedDict([
+                ('schedule', {'title': _('Schedule')}),
+                ('list', {'title': _('Program list')}),
+                ('keynotes', {'title': _('Keynotes')}),
+                ('speakers', {'title': _('Speakers')}),
+                ('ost', {'title': _('Open Spaces')}),
+            ]),
+        }),
+        ('venue', {
+            'title': _('Venue'),
+            'icon': 'map-marker',
+            'submenu': OrderedDict([
+                ('map', {'title': _('Venue Map')}),
+                ('transportation', {'title': _('Transportation')}),
+                ('hotels', {'title': _('Hotels')}),
+                ('restaurants', {'title': _('Restaurants')}),
+            ]),
+        }),
         ('cfp', {
-            'title': _('Call for proposals'),
+            'title': _('Proposal'),
             'icon': 'edit',
             'submenu': OrderedDict([
                 ('cfp', {'title': _('Call for proposals')}),
@@ -61,6 +61,11 @@ def default(request):
         ('registration', {
             'title': _('Registration'),
             'icon': 'book',
+            'submenu': OrderedDict([
+                ('information', {'title': _('Information')}),
+                ('purchase', {'title': _('Purchase a ticket')}),
+                ('finacial-aid', {'title': _('Financial Aid')}),
+            ]),
         }),
     ])
 
