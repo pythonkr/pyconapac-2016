@@ -249,6 +249,10 @@ input[type=file] {
     position: relative;
 }
 
+.submenu {
+    margin-top: 0.5rem;
+}
+
 .frontpage {
     position: relative;
     padding: 0;
