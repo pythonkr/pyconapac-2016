@@ -17,7 +17,12 @@ def deploy(target='dev', sha1=None):
         sha1 = local('git rev-parse HEAD', capture=True)
     # server code reset to current working sha1
     home_dir = '/home/pyconkr/{target}.pycon.kr/pyconkr-2016'.format(target=target)
-    python_env = '/home/pyconkr/.pyenv/versions/pyconkr-2016'
+
+    if target == 'dev':
+        python_env = '/home/pyconkr/.pyenv/versions/pyconkr-2016-dev'
+    else:
+        python_env = '/home/pyconkr/.pyenv/versions/pyconkr-2016'
+
     with cd(home_dir):
         sudo('git fetch --all -p', user='pyconkr')
         sudo('git reset --hard ' + sha1, user='pyconkr')
@@ -27,7 +32,7 @@ def deploy(target='dev', sha1=None):
         sudo('%s/bin/python manage.py makemigrations' % python_env, user='pyconkr')
         sudo('%s/bin/python manage.py migrate' % python_env, user='pyconkr')
         sudo('%s/bin/python manage.py collectstatic --noinput' % python_env, user='pyconkr')
-        sudo('%s/bin/python manage.py loaddata pyconkr/fixtures/flatpages.json' % python_env, user='pyconkr')
+        # sudo('%s/bin/python manage.py loaddata pyconkr/fixtures/flatpages.json' % python_env, user='pyconkr')
     # worker reload
     with cd(home_dir):
         if target == 'dev':
