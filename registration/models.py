@@ -9,6 +9,7 @@ class Option(models.Model):
     description = models.TextField()
     is_active = models.BooleanField(default=False)
     price = models.IntegerField()
+    has_additional_price = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
@@ -23,6 +24,7 @@ class Registration(models.Model):
     company = models.CharField(max_length=100, blank=True)
     phone_number = models.CharField(max_length=20)
     transaction_code = models.CharField(max_length=36)
+    additional_price = models.IntegerField(default=0)
     payment_method = models.CharField(
         max_length=20,
         default='card',

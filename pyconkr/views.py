@@ -22,6 +22,7 @@ from .models import (Room,
                      Program, ProgramDate, ProgramTime, ProgramCategory,
                      Speaker, Sponsor, Announcement,
                      EmailToken, Profile, Proposal)
+from registration.models import Registration
 from iamporter import get_access_token, Iamporter, IamporterError
 
 logger = logging.getLogger(__name__)
@@ -236,7 +237,11 @@ class ProfileDetail(DetailView):
         if self.request.user.is_authenticated():
             if self.request.user == self.object.user:
                 context['editable'] = True
-
+        is_registered = Registration.objects.filter(
+            user=self.request.user,
+            payment_status__in=['paid', 'ready']
+        ).exists()
+        context['is_registered'] = is_registered
         context['title'] = _("Profile")
         return context
 
@@ -308,3 +313,5 @@ class ProposalCreate(SuccessMessageMixin, CreateView):
 
     def get_success_url(self):
         return reverse('proposal')
+
+
