@@ -363,7 +363,6 @@ input[type=file] {
 .banners {
     margin: 0 auto 15px auto;
     padding: 0;
-    text-align: center;
 }
 
 .banners li {
@@ -371,6 +370,7 @@ input[type=file] {
     display: inline-block;
     box-sizing: border-box;
     width: 100%;
+    margin-bottom: 1rem;
 }
 
 .banners li img {
