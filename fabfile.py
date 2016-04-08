@@ -29,8 +29,8 @@ def deploy(target='dev', sha1=None):
         sudo('bower install', user='pyconkr')
         sudo('%s/bin/pip install -r requirements.txt' % python_env, user='pyconkr')
         sudo('%s/bin/python manage.py compilemessages' % python_env, user='pyconkr')
-        sudo('%s/bin/python manage.py makemigrations' % python_env, user='pyconkr')
-        sudo('%s/bin/python manage.py migrate' % python_env, user='pyconkr')
+        # sudo('%s/bin/python manage.py makemigrations --settings=pyconkr.settings_prod' % python_env, user='pyconkr')
+        sudo('%s/bin/python manage.py migrate --settings=pyconkr.settings_prod' % python_env, user='pyconkr')
         sudo('%s/bin/python manage.py collectstatic --noinput' % python_env, user='pyconkr')
         # sudo('%s/bin/python manage.py loaddata pyconkr/fixtures/flatpages.json' % python_env, user='pyconkr')
     # worker reload
@@ -38,4 +38,4 @@ def deploy(target='dev', sha1=None):
         if target == 'dev':
             sudo('restart pyconkr-2016/uwsgi-%s' % target)
         else:
-            sudo('restart pyconkr-2016/uwsgi' % target)
+            sudo('restart pyconkr-2016/uwsgi')
