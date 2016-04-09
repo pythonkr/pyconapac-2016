@@ -7,7 +7,7 @@
 <div class="row">
     {% if request.user.proposal %}
         <p><a href="{% url 'proposal-update' %}" class="btn btn-primary btn-lg">Edit Proposal</a></p>
-        <table class="table">
+        <table class="table table-bordered">
             <tr>
                 <th>{% trans "Title" %}</th>
                 <td>{{ proposal.title }}</td>

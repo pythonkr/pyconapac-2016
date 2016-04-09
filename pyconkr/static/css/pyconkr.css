@@ -189,7 +189,6 @@ input[type=file] {
 }
 
 .content {
-    padding-bottom: 100px;
     min-height: 360px;
 }
 
@@ -324,6 +323,10 @@ input[type=file] {
 .content .sponsor img {
     border: 0;
     margin-bottom: 15px;
+}
+
+.sponsors {
+    padding-bottom: 100px;
 }
 
 .sponsors ul {

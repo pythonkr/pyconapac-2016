@@ -10,7 +10,7 @@
         {% if is_registered %}
         <p><a href="{% url 'registration_receipt' %}" class="btn btn-primary btn-lg">{% trans "Registration Receipt" %}</a></p>
         {% endif %}
-        <table class="table">
+        <table class="table table-bordered">
             <tr>
                 <th>{% trans "Name" %}</th>
                 <td>{{ profile.name }}</td>
