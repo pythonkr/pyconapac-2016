@@ -5,7 +5,11 @@
 
 {% block wrap %}
 <div class="content">
-  {{ base_content | safe }} 
+  {{ base_content | safe }}
+  {% if not narrow %}
+    <p>준비중 입니다.</p>
+  {% endif %}
+
   {% for d, d_ in narrow.items %}
   <div class="timetable timetable-narrow visible-xs">
     <h2>{{ d }}</h2>

@@ -2,6 +2,10 @@
 {% load i18n %}
 
 {% block content %}
+    {% if not object_list %}
+        <p>준비중 입니다.</p>
+    {% endif %}
+
 {% for obj in object_list %}
 <a href="#{{ obj.slug }}">
   <h3 id="{{ obj.slug }}">

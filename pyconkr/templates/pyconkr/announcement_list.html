@@ -2,6 +2,10 @@
 {% load i18n %}
 
 {% block content %}
+    {% if not object_list %}
+        <p>준비중 입니다.</p>
+    {% endif %}
+
 {% for announcement in object_list %}
 <dl class="announcements">
 <dt>

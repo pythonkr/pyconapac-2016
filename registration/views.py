@@ -35,10 +35,16 @@ def index(request):
                    'options': options,
                    'is_registered': is_registered})
 
+
 @login_required
 def status(request):
     registration = Registration.objects.get(user=request.user)
-    return render(request, 'registration/status.html', {'registration': registration})
+    context = {
+        'registration': registration,
+        'title': _("Registration Status")
+    }
+    return render(request, 'registration/status.html', context)
+
 
 @login_required
 def payment(request, option_id):
