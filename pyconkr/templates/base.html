@@ -52,6 +52,12 @@
     {% block wrap %}
     <div class="row wrap">
         <div class="col-md-9 content">
+            {% if title %}
+                <div class="titlebar">
+                    <h1>{{ title }}</h1>
+                </div>
+            {% endif %}
+
             {% if messages %}
             {% for message in messages %}
             <div class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %}" role="alert">

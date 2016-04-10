@@ -5,9 +5,7 @@
 
 {% block content %}
 <div class="row proposal-detail">
-    <h2>{% trans 'Proposal' %}</h2>
     {% if request.user.proposal %}
-
         <h3>
             {{ proposal.title }}
             <a href="{% url 'proposal-update' %}"><i class="fa fa-pencil-square-o"></i></a>

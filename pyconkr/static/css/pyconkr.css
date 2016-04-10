@@ -246,11 +246,10 @@ input[type=file] {
 }
 
 .titlebar h1 {
-    padding: 1rem;
+    padding: 1rem 1rem 1rem 0;
     margin: 1% 0;
     font-size: 3rem;
     line-height: 120%;
-    color: white;
 }
 
 .titlebar .container {
@@ -258,7 +257,7 @@ input[type=file] {
 }
 
 .submenu {
-    margin-top: 1rem;
+    margin-top: 3rem;
 }
 
 .frontpage {
