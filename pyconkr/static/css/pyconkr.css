@@ -198,7 +198,7 @@ input[type=file] {
 
 .content > p:first-child,
 .content > div:first-child {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .content img {
@@ -244,10 +244,10 @@ input[type=file] {
 }
 
 .titlebar h1 {
-    padding: 1rem 1rem 1rem 0;
+    padding: 0;
     margin: 1% 0;
     font-size: 3rem;
-    line-height: 120%;
+    line-height: 100%;
 }
 
 .titlebar .container {
@@ -255,7 +255,7 @@ input[type=file] {
 }
 
 .submenu {
-    margin-top: 3rem;
+    margin-top: 1rem;
 }
 
 .frontpage {
