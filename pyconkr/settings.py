@@ -207,9 +207,9 @@ SUMMERNOTE_CONFIG = {
         ['insert', ['link']],
         ['misc', ['codeview']],
     ],
-    'internal_css': (
-        static_url('django_summernote/summernote.css'),
+    'css': (
         static_url('css/pyconkr.css'),
+        static_url('css/pyconkr-summernote.css'),
     ),
 }
 
