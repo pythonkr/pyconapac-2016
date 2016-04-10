@@ -231,6 +231,15 @@ input[type=file] {
     border-radius: 10px;
 }
 
+.content .profile-detail img {
+    border-radius: 50%;
+}
+
+.content .proposal-detail table th,
+.content .proposal-detail table td {
+    text-align: left;
+}
+
 .titlebar {
     position: relative;
     overflow: hidden;

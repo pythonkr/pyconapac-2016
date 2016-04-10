@@ -2,40 +2,39 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load crispy_forms_tags %}
+{% load staticfiles %}
 
 {% block content %}
-<div class="row">
+<div class="row profile-detail">
+    <h2>
+        {% trans 'Profile' %}
+
+    </h2>
     {% if profile.name %}
-    <p><a href="{% url 'profile_edit' %}" class="btn btn-primary btn-lg">{% trans "Edit Profile" %}</a></p>
+        <div class="row">
+            <div class="col-md-5">
+                {% if profile.image %}
+                    <img src="/media/{{ profile.image }}" width="300">
+                {% else %}
+                    <img src="{% static 'image/pycon_profile.png' %}" width="300">
+                {% endif %}
+            </div>
+            <div class="col-md-7">
+                <h3>
+                    {{ profile.name }}
+                    <a href="{% url 'profile_edit' %}"><i class="fa fa-pencil-square-o"></i></a>
+                </h3>
+
+                <h4>{{ profile.organization }}</h4>
+                <p>{{ profile.phone }}</p>
+                <div>{{ profile.bio|safe }}</div>
+            </div>
+        </div>
+
+        <br>
         {% if is_registered %}
         <p><a href="{% url 'registration_receipt' %}" class="btn btn-primary btn-lg">{% trans "Registration Receipt" %}</a></p>
         {% endif %}
-        <table class="table table-bordered">
-            <tr>
-                <th>{% trans "Name" %}</th>
-                <td>{{ profile.name }}</td>
-            </tr>
-            <tr>
-                <th>{% trans "Phone" %}</th>
-                <td>{{ profile.phone }}</td>
-            </tr>
-            <tr>
-                <th>{% trans "Organization" %}</th>
-                <td>{{ profile.organization }}</td>
-            </tr>
-            <tr>
-                <th>{% trans "Image" %}</th>
-                <td>
-                    {% if profile.image %}
-                        <img src="/media/{{ profile.image }}" width="300">
-                    {% endif %}
-                </td>
-            </tr>
-            <tr>
-                <th>{% trans "Bio" %}</th>
-                <td>{{ profile.bio|safe }}</td>
-            </tr>
-        </table>
     {% endif %}
 </div>
 {% endblock %}
