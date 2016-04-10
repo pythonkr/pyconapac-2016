@@ -37,10 +37,18 @@ env.pycon_host = '123.456.789.012'
 env.pycon_port = '1234'
 ```
 
-fabric
+### fabric app deployment
 
 ``` shell
-$ fab deploy --set=target=dev
+$ fab deploy:dev
 # or
-$ fab deploy --set=target=www
+$ fab deploy:www
+```
+
+### fabric flatpages migration
+
+``` shell
+$ fab flatpages_mig  # dev 의 데이터를 www로 덮어씀
+# or
+$ fab flatpages_mig:dev  # www 의 데이터를 dev 로 덮어씀
 ```
