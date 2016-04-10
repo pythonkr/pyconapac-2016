@@ -40,9 +40,9 @@
 
             <h4>Proposal</h4>
             {% if has_proposal %}
-                <p>발표 신청을 해주셔서 감사합니다. <a href="{% url 'proposal' %}">Proposal 보러 가기</a></p>
+                <p>발표 신청을 해주셔서 감사합니다. <a href="{% url 'proposal' %}">Proposal 확인하기</a></p>
             {% else %}
-                <p>파이콘에서 발표하길 원하시나요? <a href="{% url 'proposal-update' %}">Proposal 작성하기</a></p>
+                <p>파이콘에서 발표하길 원하시나요? <a href="{% url 'propose' %}">Proposal 작성하기</a></p>
             {% endif %}
         </div>
     {% endif %}
