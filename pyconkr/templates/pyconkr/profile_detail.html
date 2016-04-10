@@ -6,10 +6,7 @@
 
 {% block content %}
 <div class="row profile-detail">
-    <h2>
-        {% trans 'Profile' %}
-
-    </h2>
+    <h2>{% trans 'Profile' %}</h2>
     {% if profile.name %}
         <div class="row">
             <div class="col-md-5">
@@ -31,10 +28,23 @@
             </div>
         </div>
 
-        <br>
-        {% if is_registered %}
-        <p><a href="{% url 'registration_receipt' %}" class="btn btn-primary btn-lg">{% trans "Registration Receipt" %}</a></p>
-        {% endif %}
+        <hr>
+        <h2>{% trans 'Registration' %}</h2>
+        <div>
+            <h4>Ticket</h4>
+            {% if is_registered %}
+                <p>티켓을 구입해주셔서 감사합니다. <a href="{% url 'registration_receipt' %}">{% trans "Registration Receipt" %}</a></p>
+            {% else %}
+                <p>아직 파이콘 티켓을 구입하지 않으셨네요. <a href="{% url 'registration_index' %}">티켓 구입하기</a></p>
+            {% endif %}
+
+            <h4>Proposal</h4>
+            {% if has_proposal %}
+                <p>발표 신청을 해주셔서 감사합니다. <a href="{% url 'proposal' %}">Proposal 보러 가기</a></p>
+            {% else %}
+                <p>파이콘에서 발표하길 원하시나요? <a href="{% url 'proposal-update' %}">Proposal 작성하기</a></p>
+            {% endif %}
+        </div>
     {% endif %}
 </div>
 {% endblock %}

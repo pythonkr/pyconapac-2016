@@ -241,7 +241,9 @@ class ProfileDetail(DetailView):
             user=self.request.user,
             payment_status__in=['paid', 'ready']
         ).exists()
+        has_proposal = Proposal.objects.filter(user=self.request.user).exists()
         context['is_registered'] = is_registered
+        context['has_proposal'] = has_proposal
         context['title'] = _("Profile")
         return context
 
