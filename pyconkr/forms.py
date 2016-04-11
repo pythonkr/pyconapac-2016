@@ -111,12 +111,14 @@ class ProposalForm(forms.ModelForm):
         fields = ('title', 'brief', 'desc', 'comment', 'difficulty', 'duration', 'language',)
 
         labels = {
-            'subject_eng': _('Subject in English (required)'),
-            'summary_eng': _('Summary in English (required)'),
-            'bio_eng': _('Biography in English (required)'),
+            'title': _('Proposal title (required)'),
+            'brief': _('Brief (required)'),
+            'desc': _('Detailed description (required)'),
+            'comment': _('Comment to reviewers (optional)'),
 
             'difficulty': _('Session difficulty'),
             'duration': _('Session duration'),
+            'language': _('Language'),
         }
 
 

@@ -8,116 +8,253 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-29 14:42+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2016-04-11 16:41+0000\n"
+"PO-Revision-Date: 2016-04-11 16:48+0000\n"
+"Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"X-Translated-Using: django-rosetta 0.7.8\n"
 
-#: context_processors.py:18
+#: context_processors.py:20
 msgid "About"
-msgstr ""
+msgstr "About"
 
-#: context_processors.py:22
+#: context_processors.py:23
+msgid "About PyCon APAC 2016"
+msgstr "About PyCon APAC 2016"
+
+#: context_processors.py:24
 msgid "Code of Conduct"
-msgstr ""
+msgstr "Code of Conduct"
 
 #: context_processors.py:25
-msgid "Staff"
-msgstr ""
+msgid "Announcements"
+msgstr "Announcements"
 
 #: context_processors.py:26
+msgid "Sponsors"
+msgstr "Sponsors"
+
+#: context_processors.py:27
+msgid "Staff"
+msgstr "Staff"
+
+#: context_processors.py:28
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
-#: context_processors.py:51
+#: context_processors.py:32 templates/nav.html.py:61
+msgid "Programs"
+msgstr "Programs"
+
+#: context_processors.py:35
+msgid "Schedule"
+msgstr "Schedule"
+
+#: context_processors.py:36
+msgid "Program list"
+msgstr "Program list"
+
+#: context_processors.py:37
+msgid "Keynotes"
+msgstr "Keynotes"
+
+#: context_processors.py:38
+msgid "Speakers"
+msgstr "Speakers"
+
+#: context_processors.py:39
+msgid "Open Spaces"
+msgstr "Open Spaces"
+
+#: context_processors.py:43
+msgid "Venue"
+msgstr "Venue"
+
+#: context_processors.py:46
+msgid "Venue Map"
+msgstr "Venue Map"
+
+#: context_processors.py:47
+msgid "Transportation"
+msgstr "Transportation"
+
+#: context_processors.py:48
+msgid "Hotels"
+msgstr "Hotels"
+
+#: context_processors.py:49
+msgid "Restaurants"
+msgstr "Restaurants"
+
+#: context_processors.py:53 views.py:280 views.py:294
+msgid "Proposal"
+msgstr "Proposal"
+
+#: context_processors.py:56
 msgid "Call for proposals"
-msgstr ""
+msgstr "Call for proposals"
 
-#: context_processors.py:55 templates/pyconkr/registration/payment.html.py:6
-#: views.py:239 views.py:266
+#: context_processors.py:57
+msgid "How to propose"
+msgstr "How to propose"
+
+#: context_processors.py:58
+msgid "Propose"
+msgstr "Propose"
+
+#: context_processors.py:62 templates/pyconkr/profile_detail.html.py:31
 msgid "Registration"
-msgstr ""
+msgstr "Registration"
 
-#: forms.py:26 templates/login_notvalidtoken.html.py:7 templates/nav.html.py:67
-#: views.py:174
+#: context_processors.py:65
+msgid "Information"
+msgstr "Information"
+
+#: context_processors.py:66 templates/pyconkr/profile_detail.html.py:37
+msgid "Purchase a ticket"
+msgstr "Purchase a ticket"
+
+#: context_processors.py:67
+msgid "Financial Aid"
+msgstr "Financial Aid"
+
+#: forms.py:26 templates/login_notvalidtoken.html.py:7
+#: templates/nav.html.py:73 views.py:179
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
-#: forms.py:38 forms.py:84
+#: forms.py:38 forms.py:84 forms.py:107 forms.py:131
 msgid "Submit"
-msgstr ""
+msgstr "Submit"
 
-#: forms.py:39 forms.py:62
+#: forms.py:39 forms.py:62 forms.py:132 forms.py:153
 #, python-format
 msgid "Maximum size is %d MB"
-msgstr ""
+msgstr "Maximum size is %d MB"
 
-#: forms.py:41 forms.py:72
+#: forms.py:41 forms.py:72 forms.py:134 forms.py:163
 #, python-format
 msgid "Minimum dimension is %d x %d"
-msgstr ""
+msgstr "Minimum dimension is %d x %d"
 
-#: forms.py:51
+#: forms.py:51 forms.py:144
 msgid "Photo"
-msgstr ""
+msgstr "Photo"
 
-#: forms.py:52 templates/nav.html.py:49 templates/nav.html.py:61
-#: templates/pyconkr/speaker_detail.html:19
+#: forms.py:52 templates/nav.html.py:55 templates/nav.html.py:67
+#: templates/pyconkr/speaker_detail.html:16 views.py:247
 msgid "Profile"
-msgstr ""
+msgstr "Profile"
 
 #: forms.py:53
 msgid "Additional information"
-msgstr ""
+msgstr "Additional information"
 
 #: forms.py:93
 msgid "Title"
-msgstr ""
+msgstr "Title"
 
 #: forms.py:94
 msgid "Slide URL"
-msgstr ""
+msgstr "Presentation slides URL"
 
 #: forms.py:95
 msgid "Video URL"
-msgstr ""
+msgstr "Presentation video URL"
 
-#: forms.py:96 templates/pyconkr/program_detail.html.py:47
+#: forms.py:96 templates/pyconkr/program_detail.html.py:44
 msgid "Photography and recording is allowed"
-msgstr ""
+msgstr "Photography and recording is allowed"
 
-#: forms.py:97 templates/pyconkr/program_detail.html.py:66
+#: forms.py:97 templates/pyconkr/program_detail.html.py:63
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
-#: models.py:91
+#: forms.py:114
+msgid "Proposal title (required)"
+msgstr "Proposal title (required)"
+
+#: forms.py:115
+msgid "Brief (required)"
+msgstr "Brief (required)"
+
+#: forms.py:116
+msgid "Detailed description (required)"
+msgstr "Detailed description (required)"
+
+#: forms.py:117
+msgid "Comment to reviewers (optional)"
+msgstr "Comment to reviewers (optional)"
+
+#: forms.py:119
+msgid "Session difficulty"
+msgstr "Session difficulty"
+
+#: forms.py:120
+msgid "Session duration"
+msgstr "Session duration"
+
+#: forms.py:121 templates/nav.html.py:80
+msgid "Language"
+msgstr "Language"
+
+#: models.py:94
 msgid "help-text-for-speaker-info"
 msgstr ""
+"\"<p>Add your personal pages in JSON format.</p>\\n\"\n"
+"\"<pre>\\n\"\n"
+"\"# Example\\n\"\n"
+"\"{\\n\"\n"
+"\"  \\\"twitter\\\": \\\"https://twitter.com/ev\\\",\\n\"\n"
+"\"  \\\"github\\\": \\\"https://github.com/defunkt\\\"\\n\"\n"
+"\"}\\n\"\n"
+"\"</pre>\\n\"\n"
+"\"<p>Supported pages are listed in <a href=\\\"http://lipis.github.io/bootstrap-social/\\\" target=\\\"_blank\\\">http://lipis.github.io/bootstrap-social/</a></p>\""
 
-#: models.py:172
+#: models.py:175
 msgid "Not arranged yet"
-msgstr ""
+msgstr "Not arranged yet"
 
-#: settings.py:137
-msgid "Korean"
-msgstr ""
+#: models.py:219
+msgid "Beginner"
+msgstr "Beginner"
 
-#: settings.py:138
+#: models.py:220
+msgid "Intermediate"
+msgstr "Intermediate"
+
+#: models.py:221
+msgid "Experienced"
+msgstr "Experienced"
+
+#: models.py:226
+msgid "25 mins"
+msgstr "25 mins"
+
+#: models.py:227
+msgid "40 mins"
+msgstr "40 mins"
+
+#: models.py:232 settings.py:144
 msgid "English"
-msgstr ""
+msgstr "English"
 
-#: settings.py:181
+#: models.py:233 settings.py:143
+msgid "Korean"
+msgstr "Korean"
+
+#: settings.py:188
 msgid "PyCon APAC 2016 one-time login token"
-msgstr ""
+msgstr "PyCon APAC 2016 one-time login token"
 
-#: settings.py:182 templates/base.html.py:7 templates/base.html.py:13
+#: settings.py:189 templates/base.html.py:7 templates/base.html.py:13
 #: templates/base.html:14 templates/mail/token_html.html.py:2
 msgid "PyCon APAC 2016"
-msgstr ""
+msgstr "PyCon APAC 2016"
 
 #: templates/base.html:17
 msgid "PyCon Korea Opengraph Description"
@@ -125,47 +262,49 @@ msgstr "PyCon APAC 2016"
 
 #: templates/disqus.html:2
 msgid "Comments"
-msgstr ""
+msgstr "Comments"
 
 #: templates/footer.html:11
 msgid "Respect, Diversity at PyCon APAC 2016"
-msgstr ""
+msgstr "Respect, Diversity at PyCon APAC 2016"
 
 #: templates/footer.html:14
 msgid "PyCon APAC 2016 is a product of PyCon Korea Organizing Team"
-msgstr ""
+msgstr "PyCon APAC 2016 is a product of PyCon Korea Organizing Team"
 
 #: templates/footer.html:17
 msgid "Powered by Django"
-msgstr ""
+msgstr "Powered by Django"
 
 #: templates/footer.html:21
 msgid "Stay connected"
-msgstr ""
+msgstr "Stay connected"
 
-#: templates/index.html:18
+#: templates/index.html:17
 msgid "Respect, Diversity"
-msgstr ""
+msgstr "Respect, Diversity"
 
 #: templates/login.html:7
 msgid "Login via mail"
-msgstr ""
+msgstr "Login via mail"
 
 #: templates/login.html:9
 msgid ""
 "We store your mail address only. Never store password or any personal "
 "information."
 msgstr ""
+"We store your mail address only. Never store password or any personal "
+"information."
 
-#: templates/login.html:13
+#: templates/login.html:14
 msgid "Login via Social accounts"
 msgstr ""
 
-#: templates/login.html:16
+#: templates/login.html:17
 msgid "Sign in with GitHub"
 msgstr ""
 
-#: templates/login.html:18
+#: templates/login.html:19
 msgid "Sign in with Twitter"
 msgstr ""
 
@@ -173,22 +312,23 @@ msgstr ""
 msgid ""
 "One-time login token url was sent to your mail. Please check your mailbox."
 msgstr ""
+"One-time login token url was sent to your mail. Please check your mailbox."
 
 #: templates/login_mailsent.html:6
 msgid "Login token valid for only 1 hour."
-msgstr ""
+msgstr "Login token valid for only 1 hour."
 
 #: templates/login_mailsent.html:6 templates/login_notvalidtoken.html.py:6
 msgid "If you lost token mail or be lated, please login again."
-msgstr ""
+msgstr "If you lost token mail or be lated, please login again."
 
 #: templates/login_mailsent.html:7
 msgid "Back to home"
-msgstr ""
+msgstr "Back to home"
 
 #: templates/login_notvalidtoken.html:5
 msgid "Requested token is not found or invalid."
-msgstr ""
+msgstr "Requested token is not found or invalid."
 
 #: templates/mail/ticket_registered_html.html:2
 #: templates/mail/ticket_registered_text.html:2
@@ -205,97 +345,133 @@ msgstr ""
 
 #: templates/mail/token_html.html:4
 msgid "Link"
-msgstr ""
+msgstr "Link"
 
 #: templates/nav.html:8
 msgid "Toggle navigation"
-msgstr ""
+msgstr "Toggle navigation"
 
-#: templates/nav.html:50
+#: templates/nav.html:56
 msgid "My Profile"
-msgstr ""
+msgstr "My Profile"
 
-#: templates/nav.html:51
+#: templates/nav.html:57
 msgid "Edit Profile"
-msgstr ""
+msgstr "Edit Profile"
 
-#: templates/nav.html:55
-msgid "Programs"
-msgstr ""
-
-#: templates/nav.html:62
+#: templates/nav.html:68
 msgid "Logout"
-msgstr ""
+msgstr "Logout"
 
-#: templates/nav.html:74
-msgid "Language"
-msgstr ""
-
-#: templates/pyconkr/announcement_detail.html:16
+#: templates/pyconkr/announcement_detail.html:13
 msgid "Back to list"
-msgstr ""
+msgstr "Back to list"
 
-#: templates/pyconkr/announcement_list.html:16
+#: templates/pyconkr/announcement_list.html:20
 msgid "Read more"
-msgstr ""
+msgstr "Read more"
+
+#: templates/pyconkr/profile_detail.html:35
+msgid "Thank you for registration."
+msgstr "Thank you for registration."
+
+#: templates/pyconkr/profile_detail.html:35
+msgid "Registration receipt"
+msgstr "Registration receipt"
+
+#: templates/pyconkr/profile_detail.html:37
+msgid "You didn't have a ticket."
+msgstr "You didn't have a ticket."
+
+#: templates/pyconkr/profile_detail.html:42
+msgid "Thank you for submitting."
+msgstr "Thank you for submitting."
+
+#: templates/pyconkr/profile_detail.html:42
+msgid "Check my proposal"
+msgstr "Check my proposal"
+
+#: templates/pyconkr/profile_detail.html:44
+msgid "Please be a session speaker at PyCon."
+msgstr "Please be a session speaker at PyCon."
+
+#: templates/pyconkr/profile_detail.html:44
+msgid "Submit a new proposal"
+msgstr "Submit a new proposal"
 
 #: templates/pyconkr/program_detail.html:4
-#: templates/pyconkr/speaker_detail.html:24
+#: templates/pyconkr/speaker_detail.html:21
 msgid "Program"
-msgstr ""
+msgstr "Program"
 
-#: templates/pyconkr/program_detail.html:49
+#: templates/pyconkr/program_detail.html:46
 msgid "Photography and recording is not allowed"
-msgstr ""
+msgstr "Photography and recording is not allowed"
 
-#: templates/pyconkr/program_detail.html:54
+#: templates/pyconkr/program_detail.html:51
 msgid "Slide"
-msgstr ""
+msgstr "Slides"
 
-#: templates/pyconkr/program_detail.html:58
+#: templates/pyconkr/program_detail.html:55
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
-#: templates/pyconkr/program_detail.html:62
+#: templates/pyconkr/program_detail.html:59
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
-#: templates/pyconkr/program_detail.html:71
-#: templates/pyconkr/speaker_detail.html:33
+#: templates/pyconkr/program_detail.html:68
+#: templates/pyconkr/speaker_detail.html:30
 msgid "Edit"
-msgstr ""
+msgstr "Edit"
 
-#: templates/pyconkr/program_list.html:16 templates/schedule.html.py:22
-#: templates/schedule.html:39 templates/schedule.html.py:90
+#: templates/pyconkr/program_list.html:20 templates/schedule.html.py:26
+#: templates/schedule.html:43 templates/schedule.html.py:94
 msgid "Slides link"
-msgstr ""
+msgstr "Presentation slides URL"
 
-#: templates/pyconkr/program_list.html:19 templates/schedule.html.py:25
-#: templates/schedule.html:42 templates/schedule.html.py:93
+#: templates/pyconkr/program_list.html:23 templates/schedule.html.py:29
+#: templates/schedule.html:46 templates/schedule.html.py:97
 msgid "Video link"
-msgstr ""
+msgstr "Presentation video URL"
 
-#: templates/pyconkr/program_list.html:22 templates/schedule.html.py:28
-#: templates/schedule.html:45 templates/schedule.html.py:96
+#: templates/pyconkr/program_list.html:26 templates/schedule.html.py:32
+#: templates/schedule.html:49 templates/schedule.html.py:100
 msgid "PDF link"
-msgstr ""
+msgstr "PDF"
+
+#: templates/pyconkr/proposal_form.html:10
+msgid "Please make your profile first"
+msgstr "Please make your profile first"
 
 #: templates/pyconkr/speaker_detail.html:4
 msgid "Speaker"
-msgstr ""
+msgstr "Speaker"
 
 #: templates/pyconkr/sponsor_detail.html:4
 msgid "Sponsor"
-msgstr ""
+msgstr "Sponsor"
 
-#: templates/sponsors.html:2
-msgid "Sponsors"
-msgstr ""
-
-#: views.py:187
+#: views.py:192
 msgid "Not valid token"
-msgstr ""
+msgstr "Not valid token"
 
-#: views.py:209
+#: views.py:214
 msgid "Mail sent"
-msgstr ""
+msgstr "Mail sent"
+
+#: views.py:254
+msgid "Profile successfully updated."
+msgstr "Profile successfully updated."
+
+#: views.py:265
+msgid "Update profile"
+msgstr "Update profile"
+
+#: views.py:287
+msgid "Proposal successfully updated."
+msgstr "Proposal successfully updated."
+
+#: views.py:304
+msgid "Proposal successfully created."
+msgstr "Proposal successfully created."
