@@ -32,16 +32,16 @@
         <div>
             <h4>Ticket</h4>
             {% if is_registered %}
-                <p>티켓을 구입해주셔서 감사합니다. <a href="{% url 'registration_receipt' %}">{% trans "Registration Receipt" %}</a></p>
+            <p>{% trans "Thank you for registration." %} <a href="{% url 'registration_receipt' %}">{% trans "Registration receipt" %}</a></p>
             {% else %}
-                <p>아직 파이콘 티켓을 구입하지 않으셨네요. <a href="{% url 'registration_index' %}">티켓 구입하기</a></p>
+            <p>{% trans "You didn't have a ticket." %} <a href="{% url 'registration_index' %}">{% trans "Purchase a ticket" %}</a></p>
             {% endif %}
 
             <h4>Proposal</h4>
             {% if has_proposal %}
-                <p>발표 신청을 해주셔서 감사합니다. <a href="{% url 'proposal' %}">Proposal 확인하기</a></p>
+            <p>{% trans "Thank you for submitting." %} <a href="{% url 'proposal' %}">{% trans "Check my proposal" %}</a></p>
             {% else %}
-                <p>파이콘에서 발표하길 원하시나요? <a href="{% url 'propose' %}">Proposal 작성하기</a></p>
+            <p>{% trans "Please be a session speaker at PyCon." %} <a href="{% url 'propose' %}">{% trans "Submit a new proposal" %}</a></p>
             {% endif %}
         </div>
     {% endif %}

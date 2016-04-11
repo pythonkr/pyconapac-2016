@@ -184,6 +184,11 @@ input[type=file] {
     background-color: white;
 }
 
+.navbar .profile-thumb {
+    border-radius: 50%;
+    margin-right: 0.2rem;
+}
+
 .wrap {
     padding: 5px 0;
 }
