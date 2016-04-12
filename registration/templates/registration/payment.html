@@ -31,14 +31,13 @@
 
                 $.ajax({
                     method: 'POST',
-                    url: '{% url 'registration_payment' %}',
+                    url: '{% url "registration_payment" %}',
                     data: response,
                     dataType: 'json'
                 }).done(function(result) {
                     if(!result.success) {
                         alert('결제에 실패했습니다. ' + result.code + ' ' + result.message);
-                        this.close();
-                        return;
+                        window.location.reload();
                     }
 
                     alert('결제가 완료되었습니다.');
@@ -47,24 +46,26 @@
                     window.location.href = '{% url 'registration_status' %}';
                 }.bind(this)).fail(function(xhr, status, error) {
                     alert('결제에 실패했습니다. 다시 시도해 주세요.' + error);
+                    window.location.reload();
                     // TODO :
                 }.bind(this));
             }
 
             $('#registration-form').submit(function(e) {
                 e.preventDefault();
+                var additional_price = parseInt($('#id_additional_price').val()) ? parseInt($('#id_additional_price').val()) : 0;
 
                 var paymentMethod = $('#id_payment_method').val();
                 if(paymentMethod === 'card') {
                     IMP.SBCR.init('{{ config.IMP_USER_CODE }}');
                     IMP.SBCR.onetime({
                         merchant_uid: '{{ uid }}',
-                        amount: parseInt('{{ amount }}') + parseInt($('#id_additional_price').val()),
+                        amount: parseInt('{{ amount }}') + additional_price,
                         vat: parseInt('{{ vat }}')
                     }, function(response) {
                         if(!response.token) {
                             alert(response.message);
-                            return;
+                            return false;
                         }
                         handleResponse(response);
                     }.bind(this));

@@ -69,9 +69,15 @@ class Iamporter(object):
     def onetime(self, **params):
         url = 'https://api.iamport.kr/subscribe/payments/onetime/'
         keys = ['token', 'merchant_uid', 'amount', 'vat', 'card_number', 'expiry', 'birth', 'pwd_2digit',
-                'remember_me', 'customer_uid', 'buyer_name', 'buyer_email', ]
+                'name', 'remember_me', 'customer_uid', 'buyer_name', 'buyer_email', ]
         data = {k: v for k, v in params.items() if k in keys}
+        return self._post(url, data)
 
+    def foreign(self, **params):
+        url = 'https://api.iamport.kr/subscribe/payments/foreign/'
+        keys = ['token', 'merchant_uid', 'amount', 'vat', 'card_number', 'expiry',
+                'name', 'buyer_name', 'buyer_email', ]
+        data = {k: v for k, v in params.items() if k in keys}
         return self._post(url, data)
 
     def find_by_merchant_uid(self, merchant_uid):

@@ -105,15 +105,16 @@ def payment_process(request):
             'message': u'티켓이 매진 되었습니다',
         })
 
-    registration, _ = Registration.objects.get_or_create(user=request.user)
-    registration.name = form.cleaned_data.get('name')
-    registration.email = request.user.email
-    registration.additional_price = form.cleaned_data.get('additional_price', 0)
-    registration.company = form.cleaned_data.get('company', '')
-    registration.phone_number = form.cleaned_data.get('phone_number', '')
-    registration.merchant_uid = request.POST.get('merchant_uid')
-    registration.option = form.cleaned_data.get('option')
-    registration.save()  # TODO : use form.save()
+    registration = Registration(
+            user=request.user,
+            name = form.cleaned_data.get('name'),
+            email = request.user.email,
+            additional_price = form.cleaned_data.get('additional_price', 0),
+            company = form.cleaned_data.get('company', ''),
+            phone_number = form.cleaned_data.get('phone_number', ''),
+            merchant_uid = request.POST.get('merchant_uid'),
+            option = form.cleaned_data.get('option')
+        )
 
     try:
         product = registration.option
@@ -122,7 +123,7 @@ def payment_process(request):
 
         if request.POST.get('payment_method') == 'card':
             # TODO : use validated and cleaned data
-            imp_client.onetime(
+            imp_params = dict(
                 token=request.POST.get('token'),
                 merchant_uid=request.POST.get('merchant_uid'),
                 amount=product.price + registration.additional_price,
@@ -131,7 +132,14 @@ def payment_process(request):
                 birth=request.POST.get('birth'),
                 pwd_2digit=request.POST.get('pwd_2digit'),
                 customer_uid=form.cleaned_data.get('email'),
+                name=product.name
             )
+            if request.POST.get('birth') == '':
+                # foreign payment
+                imp_client.foreign(**imp_params)
+            else:
+                imp_client.foreign(**imp_params)
+                # imp_client.onetime(**imp_params)
 
         confirm = imp_client.find_by_merchant_uid(request.POST.get('merchant_uid'))
 
@@ -139,6 +147,7 @@ def payment_process(request):
             # TODO : cancel
             return render_io_error("amount is not same as product.price. it will be canceled")
 
+        registration.transaction_code = confirm.get('pg_tid')
         registration.payment_method = confirm.get('pay_method')
         registration.payment_status = confirm.get('status')
         registration.payment_message = confirm.get('fail_reason')
