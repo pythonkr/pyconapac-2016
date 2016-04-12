@@ -118,6 +118,16 @@ def payment_process(request):
             merchant_uid = request.POST.get('merchant_uid'),
             option = form.cleaned_data.get('option')
         )
+    
+    remain_ticket_count = (registraion.option.total - Registration.objects.filter(
+                                                        option=registration.option,
+                                                        payment_status__in=['paid', 'ready']).count())
+    # sold out
+    if remain_ticket_count <= 0:
+        return JsonResponse({
+            'success': False,
+            'message': u'{name} 티켓이 매진 되었습니다'.format(name=registration.option.name),
+        })
 
     try:
         product = registration.option

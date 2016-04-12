@@ -10,6 +10,7 @@ class Option(models.Model):
     is_active = models.BooleanField(default=False)
     price = models.IntegerField()
     has_additional_price = models.BooleanField(default=False)
+    total = models.IntegerField(default=500)
 
     def __unicode__(self):
         return self.name
