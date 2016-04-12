@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
@@ -109,7 +110,18 @@ class ProfileInline(AdminImageMixin, admin.StackedInline):
     can_delete = False
 
 
+class ProposalAdminForm(forms.ModelForm):
+    class Meta:
+        model = Proposal
+        fields = '__all__'
+        widgets = {
+            'desc': SummernoteWidgetWithCustomToolbar(),
+            'comment': SummernoteWidgetWithCustomToolbar(),
+        }
+
+
 class ProposalAdmin(admin.ModelAdmin):
+    form = ProposalAdminForm
     list_display = ('user', 'title', 'difficulty', 'duration', 'language')
 admin.site.register(Proposal, ProposalAdmin)
 
