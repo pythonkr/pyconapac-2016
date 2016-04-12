@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 import datetime
 
+from django.utils import timezone
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -148,7 +150,7 @@ MODELTRANSLATION_FALLBACK_LANGUAGES = {
     'default': ('ko', 'en'),
 }
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -219,8 +221,10 @@ SPEAKER_IMAGE_MINIMUM_DIMENSION = (500, 500)
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
 CONSTANCE_CONFIG = {
+        'REGISTRATION_OPEN_TIME': (datetime.time(12,0), 'Registration opening time'),
         'REGISTRATION_OPEN': (datetime.date(2016, 3, 23), 'Registration opening date'),
-        'REGISTRATION_CLOSE': (datetime.date(2016, 9, 1), 'Registration closing date'),
+        'REGISTRATION_CLOSE_TIME': (datetime.time(12,0), 'Registration opening time'),
+        'REGISTRATION_CLOSE': (datetime.date(2016,9,1), 'Registration closing date'),
         'TOTAL_TICKET': (1500, 'How many ticket to sold'),
         'IMP_USER_CODE': ('', 'iamport user code'),
         'IMP_API_KEY': ('', 'iamport api key'),

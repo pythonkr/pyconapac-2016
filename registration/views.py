@@ -19,7 +19,10 @@ from iamporter import get_access_token, Iamporter, IamporterError
 logger = logging.getLogger(__name__)
 payment_logger = logging.getLogger('payment')
 
-_is_ticket_open = lambda : True if config.REGISTRATION_OPEN <= datetime.date.today() <= config.REGISTRATION_CLOSE else False
+def _is_ticket_open():
+    open_datetime = datetime.datetime.combine(config.REGISTRATION_OPEN, config.REGISTRATION_OPEN_TIME)
+    close_datetime = datetime.datetime.combine(config.REGISTRATION_CLOSE, config.REGISTRATION_CLOSE_TIME)
+    return True if open_datetime <= datetime.datetime.now() <= close_datetime else False
 
 def index(request):
     if request.user.is_authenticated():
