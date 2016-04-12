@@ -18,13 +18,13 @@
         <div>{{ proposal.brief|linebreaks }}</div>
         <hr>
         <div>
-            <h4>description</h4>
-            {{ proposal.desc|linebreaks }}
+            <h4>{% trans "Detailed description" %}</h4>
+            {{ proposal.desc|safe }}
         </div>
         <hr>
         <div>
-            <h4>comment</h4>
-            {{ proposal.comment|linebreaks }}
+            <h4>{% trans "Comment to reviewers" %}</h4>
+            {{ proposal.comment|safe }}
         </div>
 
     {% endif %}
