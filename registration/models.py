@@ -30,7 +30,8 @@ class Registration(models.Model):
         max_length=20,
         default='card',
         choices=(
-            ('card', u'신용카드'),
+            ('card', u'Credit Card'),
+            ('bank', u'Bank Transfer'),
         )
     )
     payment_status = models.CharField(max_length=10)

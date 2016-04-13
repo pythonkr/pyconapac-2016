@@ -83,6 +83,7 @@ def payment(request, option_id):
         'vat': 0,
     })
 
+@login_required
 def payment_process(request):
     if request.method == 'GET':
         return redirect('registration_index')
@@ -116,10 +117,11 @@ def payment_process(request):
             company = form.cleaned_data.get('company', ''),
             phone_number = form.cleaned_data.get('phone_number', ''),
             merchant_uid = request.POST.get('merchant_uid'),
-            option = form.cleaned_data.get('option')
+            option = form.cleaned_data.get('option'),
+            payment_method = form.cleaned_data.get('payment_method')
         )
     
-    remain_ticket_count = (registraion.option.total - Registration.objects.filter(
+    remain_ticket_count = (registration.option.total - Registration.objects.filter(
                                                         option=registration.option,
                                                         payment_status__in=['paid', 'ready']).count())
     # sold out
@@ -134,7 +136,7 @@ def payment_process(request):
         access_token = get_access_token(config.IMP_API_KEY, config.IMP_API_SECRET)
         imp_client = Iamporter(access_token)
 
-        if request.POST.get('payment_method') == 'card':
+        if registration.payment_method == 'card':
             # TODO : use validated and cleaned data
             imp_params = dict(
                 token=request.POST.get('token'),
@@ -153,22 +155,26 @@ def payment_process(request):
             else:
                 imp_client.foreign(**imp_params)
                 # imp_client.onetime(**imp_params)
+            confirm = imp_client.find_by_merchant_uid(request.POST.get('merchant_uid'))
 
-        confirm = imp_client.find_by_merchant_uid(request.POST.get('merchant_uid'))
+            if confirm['amount'] != product.price + registration.additional_price:
+                # TODO : cancel
+                return render_io_error("amount is not same as product.price. it will be canceled")
 
-        if confirm['amount'] != product.price + registration.additional_price:
-            # TODO : cancel
-            return render_io_error("amount is not same as product.price. it will be canceled")
-
-        registration.transaction_code = confirm.get('pg_tid')
-        registration.payment_method = confirm.get('pay_method')
-        registration.payment_status = confirm.get('status')
-        registration.payment_message = confirm.get('fail_reason')
-        registration.vbank_name = confirm.get('vbank_name', None)
-        registration.vbank_num = confirm.get('vbank_num', None)
-        registration.vbank_date = confirm.get('vbank_date', None)
-        registration.vbank_holder = confirm.get('vbank_holder', None)
-        registration.save()
+            registration.transaction_code = confirm.get('pg_tid')
+            registration.payment_method = confirm.get('pay_method')
+            registration.payment_status = confirm.get('status')
+            registration.payment_message = confirm.get('fail_reason')
+            registration.vbank_name = confirm.get('vbank_name', None)
+            registration.vbank_num = confirm.get('vbank_num', None)
+            registration.vbank_date = confirm.get('vbank_date', None)
+            registration.vbank_holder = confirm.get('vbank_holder', None)
+            registration.save()
+        elif registration.payment_method == 'bank':
+            registration.payment_status = 'ready'
+            registration.save()
+        else:
+            raise Exception('Unknown payment method')
 
         if not settings.DEBUG:
             send_email_ticket_confirm(request, registration)

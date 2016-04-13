@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 from .models import Registration
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Div
 
 
 class RegistrationForm(forms.ModelForm):
-    base_price = forms.IntegerField(label=u'기본금액')
+    base_price = forms.IntegerField(label=_('Base price'))
     def __init__(self, *args, **kwargs):
 
         super(RegistrationForm, self).__init__(*args, **kwargs)

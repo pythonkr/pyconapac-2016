@@ -19,7 +19,6 @@
         $(document).ready(function() {
             function handleResponse(response) {
                 response['csrfmiddlewaretoken'] = '{{ csrf_token }}';
-                // TODO : validation
                 response['name'] = $('#id_name').val();
                 response['email'] = $('#id_email').val();
                 response['base_price'] = parseInt('{{ amount }}'),
@@ -39,15 +38,12 @@
                         alert('결제에 실패했습니다. ' + result.code + ' ' + result.message);
                         window.location.reload();
                     }
-
                     alert('결제가 완료되었습니다.');
                     this.close();
-
                     window.location.href = '{% url 'registration_status' %}';
                 }.bind(this)).fail(function(xhr, status, error) {
                     alert('결제에 실패했습니다. 다시 시도해 주세요.' + error);
                     window.location.reload();
-                    // TODO :
                 }.bind(this));
             }
 
@@ -69,18 +65,8 @@
                         }
                         handleResponse(response);
                     }.bind(this));
-                } else if(paymentMethod === 'vbank') {
-                    IMP.init('{{ config.IMP_USER_CODE }}');
-                    IMP.request_pay({
-                        pay_method : 'vbank',
-                        merchant_uid: '{{ uid }}',
-                        amount: parseInt('{{ amount }}'),
-                        name: '{{  product_name }}',
-                        buyer_name: $('#id_name').val(),
-                        buyer_email: $('#id_email').val()
-                    }, function(response) {
-                        handleResponse(response);
-                    }.bind(this));
+                } else if(paymentMethod === 'bank') {
+                    handleResponse({merchant_uid: '{{ uid }}'});
                 } else {
                     // ?????
                 }
