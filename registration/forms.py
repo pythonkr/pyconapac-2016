@@ -7,7 +7,7 @@ from crispy_forms.layout import Submit, Div
 
 
 class RegistrationForm(forms.ModelForm):
-    base_price = forms.IntegerField(label=_('Base price'))
+    base_price = forms.IntegerField(label=_('Base Price KRW'))
     def __init__(self, *args, **kwargs):
 
         super(RegistrationForm, self).__init__(*args, **kwargs)
@@ -17,18 +17,18 @@ class RegistrationForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_id = 'registration-form'
         self.helper.form_method = 'post'
-        self.helper.add_input(Submit('submit', u'결제하기', disabled='disabled'))
+        self.helper.add_input(Submit('submit', _('Submit'), disabled='disabled'))
 
     class Meta:
         model = Registration
         fields = ('email', 'option', 'base_price', 'name', 'company', 'phone_number', 'payment_method')
         labels = {
-            'name': u'이름',
-            'option': u'옵션',
-            'email': u'이메일',
-            'company': u'소속',
-            'phone_number':  u'전화번호',
-            'payment_method': u'결제수단',
+            'name': _('Name'),
+            'option': _('Option'),
+            'email': _('E-Mail'),
+            'company': _('Company or Organization'),
+            'phone_number':  _('Phone Number'),
+            'payment_method': _('Payment Method'),
         }
 
 
@@ -38,11 +38,11 @@ class RegistrationAdditionalPriceForm(RegistrationForm):
         model = Registration
         fields = ('email', 'option', 'base_price', 'additional_price', 'name', 'company', 'phone_number', 'payment_method')
         labels = {
-            'name': u'이름',
-            'option': u'옵션',
-            'additional_price': u'추가후원금액 KRW',
-            'email': u'이메일',
-            'company': u'소속',
-            'phone_number':  u'전화번호',
-            'payment_method': u'결제수단'
+            'name': _('Name'),
+            'option': _('Option'),
+            'additional_price': _('Additional Funding KRW'),
+            'email': _('E-Mail'),
+            'company': _('Company or Organization'),
+            'phone_number':  _('Phone Number'),
+            'payment_method': _('Payment Method') 
         }
