@@ -37,6 +37,7 @@
                     if(!result.success) {
                         alert('결제에 실패했습니다. ' + result.code + ' ' + result.message);
                         window.location.reload();
+                        return;
                     }
                     alert('결제가 완료되었습니다.');
                     this.close();
