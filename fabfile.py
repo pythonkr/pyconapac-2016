@@ -31,11 +31,8 @@ def deploy(target='dev', sha1=None):
         sudo('%s/bin/python manage.py compilemessages' % python_env, user='pyconkr')
         sudo('%s/bin/python manage.py migrate' % python_env, user='pyconkr')
         sudo('%s/bin/python manage.py collectstatic --noinput' % python_env, user='pyconkr')
-    # worker reload
-        if target == 'dev':
-            sudo('restart pyconkr-2016/uwsgi-%s' % target)
-        else:
-            sudo('restart pyconkr-2016/uwsgi')
+        # worker reload
+        run('echo r > /var/run/pyconkr-2016-%s.fifo' % target)
 
 def flatpages_mig(direction='www'):
     dev_env = '/home/pyconkr/.pyenv/versions/pyconkr-2016-dev/bin/python'
