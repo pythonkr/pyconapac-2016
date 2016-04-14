@@ -190,7 +190,7 @@ def payment_process(request):
 
 class RegistrationReceiptDetail(DetailView):
     def get_object(self, queryset=None):
-        return get_object_or_404(Registration, user_id=self.request.user.pk)
+        return get_object_or_404(Registration, payment_status='paid', user_id=self.request.user.pk)
 
     def get_context_data(self, **kwargs):
         context = super(RegistrationReceiptDetail, self).get_context_data(**kwargs)

@@ -43,6 +43,8 @@
                     <td>{{ registration.modified }}</td>
                 </tr>
             </table>
+
+            <p><a href="{% url 'registration_receipt' %}">{% trans "Check Registration Receipt" %}</a></p>
         {% elif registration.payment_status == 'ready' %}
             <div>
                 <h3>결제정보</h3>
