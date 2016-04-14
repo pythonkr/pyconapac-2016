@@ -12,6 +12,10 @@ class Option(models.Model):
     has_additional_price = models.BooleanField(default=False)
     total = models.IntegerField(default=500)
 
+    @property
+    def is_soldout(self):
+        return self.total <= Registration.objects.filter(option=self, payment_status__in=['paid', 'ready']).count()
+
     def __unicode__(self):
         return self.name
 

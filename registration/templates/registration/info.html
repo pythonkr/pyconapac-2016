@@ -24,9 +24,15 @@
                         <p>{{ option.description }}</p>
                         <p>Price: {{ option.price|intcomma }} KRW</p>
                         <p>
+                        {% if option.is_soldout %}
+                            <div class="btn btn-info">
+                                {{ option.name }}-SOLD OUT
+                            </div>
+                        {% else %}
                             <a href='{% url 'registration_payment' option.id %}' class="btn btn-primary">
                                 {{ option.name }}
                             </a>
+                        {% endif %}
                         </p>
                     </div>
                 {% endfor %}

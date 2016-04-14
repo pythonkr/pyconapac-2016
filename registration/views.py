@@ -121,11 +121,8 @@ def payment_process(request):
             payment_method = form.cleaned_data.get('payment_method')
         )
     
-    remain_ticket_count = (registration.option.total - Registration.objects.filter(
-                                                        option=registration.option,
-                                                        payment_status__in=['paid', 'ready']).count())
     # sold out
-    if remain_ticket_count <= 0:
+    if registration.option.is_soldout:
         return JsonResponse({
             'success': False,
             'message': u'{name} 티켓이 매진 되었습니다'.format(name=registration.option.name),
