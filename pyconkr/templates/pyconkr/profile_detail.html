@@ -32,7 +32,7 @@
         <div>
             <h4>Ticket</h4>
             {% if is_registered %}
-            <p>{% trans "Thank you for registration." %} <a href="{% url 'registration_receipt' %}">{% trans "Registration receipt" %}</a></p>
+            <p>{% trans "Thank you for registration." %} <a href="{% url 'registration_status' %}">{% trans "Check Registration Status" %}</a></p>
             {% else %}
             <p>{% trans "You didn't have a ticket." %} <a href="{% url 'registration_index' %}">{% trans "Purchase a ticket" %}</a></p>
             {% endif %}
