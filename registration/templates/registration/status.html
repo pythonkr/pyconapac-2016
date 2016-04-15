@@ -34,6 +34,12 @@
                     <th>금액</th>
                     <td>{{ registration.option.price|intcomma }} KRW</td>
                 </tr>
+                {% if registration.additional_price != 0 %}
+                    <tr>
+                        <th>추가 후원 금액</th>
+                        <td>{{ registration.additional_price|intcomma }} KRW</td>
+                    </tr>
+                {% endif %}
                 <tr>
                     <th>거래번호</th>
                     <td>{{ registration.merchant_uid }}</td>
