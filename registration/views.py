@@ -41,7 +41,9 @@ def index(request):
 
 @login_required
 def status(request):
-    registration = Registration.objects.get(user=request.user)
+    registration = Registration.objects.filter(user=request.user)
+    if registration:
+        registration = registration[0]
     context = {
         'registration': registration,
         'title': _("Registration Status")
