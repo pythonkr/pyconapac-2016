@@ -90,6 +90,10 @@ def payment_process(request):
     if request.method == 'GET':
         return redirect('registration_index')
 
+    # alreay registered
+    if Registration.objects.filter(user=request.user, payment_status__in=['paid','ready']).exists():
+        return redirect('registration_status')
+
     payment_logger.debug(request.POST)
     form = RegistrationAdditionalPriceForm(request.POST)
 
