@@ -34,6 +34,8 @@ class RegistrationForm(forms.ModelForm):
 
 class RegistrationAdditionalPriceForm(RegistrationForm):
 
+    additional_price = forms.IntegerField(min_value=0)
+
     class Meta:
         model = Registration
         fields = ('email', 'option', 'base_price', 'additional_price', 'name', 'company', 'phone_number', 'payment_method')

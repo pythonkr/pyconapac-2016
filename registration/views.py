@@ -115,6 +115,12 @@ def payment_process(request):
             'message': u'티켓이 매진 되었습니다',
         })
 
+    if form.cleaned_data.get('additional_price', 0) < 0:
+        return JsonResponse({
+            'success': False,
+            'message': u'후원 금액은 0원 이상이어야 합니다.',
+        })
+
     registration = Registration(
             user=request.user,
             name = form.cleaned_data.get('name'),
@@ -126,7 +132,7 @@ def payment_process(request):
             option = form.cleaned_data.get('option'),
             payment_method = form.cleaned_data.get('payment_method')
         )
-    
+
     # sold out
     if registration.option.is_soldout:
         return JsonResponse({
