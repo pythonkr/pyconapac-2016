@@ -16,5 +16,6 @@ class RegistrationAdmin(admin.ModelAdmin):
     list_display = ('user', 'option', 'name', 'email', 'payment_method', 'payment_status')
     list_editable = ('payment_status',)
     list_filter = ('option', 'payment_method', 'payment_status')
+    search_fields= ('name')
     ordering = ('id',)
 admin.site.register(Registration, RegistrationAdmin)
