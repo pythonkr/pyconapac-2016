@@ -46,3 +46,5 @@ class Registration(models.Model):
     vbank_holder = models.CharField(max_length=20, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    confirmed = models.DateTimeField(null=True, blank=True)
+    canceled = models.DateTimeField(null=True, blank=True)
