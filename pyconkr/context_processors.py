@@ -24,6 +24,7 @@ def default(request):
                 ('coc', {'title': _('Code of Conduct')}),
                 ('announcements', {'title': _('Announcements')}),
                 ('sponsors', {'title': _('Sponsors')}),
+                ('sponsorship', {'title': _('Sponsorship')}),
                 ('staff', {'title': _('Staff')}),
                 ('contact', {'title': _('Contact')}),
             ]),
