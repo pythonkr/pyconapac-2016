@@ -39,7 +39,7 @@ class Registration(models.Model):
         )
     )
     payment_status = models.CharField(max_length=10)
-    payment_message = models.CharField(max_length=255, null=True)
+    payment_message = models.CharField(max_length=255, null=True, blank=True)
     vbank_num = models.CharField(max_length=255, null=True, blank=True)
     vbank_name = models.CharField(max_length=20, null=True, blank=True)
     vbank_date = models.CharField(max_length=50, null=True, blank=True)
