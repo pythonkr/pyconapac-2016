@@ -8,4 +8,5 @@ django-rosetta
 django-summernote
 django-constance
 django-picklefield
+django-dynamic-fixture
 sorl-thumbnail

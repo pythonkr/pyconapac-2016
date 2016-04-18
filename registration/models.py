@@ -28,7 +28,7 @@ class Registration(models.Model):
     email = models.EmailField(max_length=255)
     company = models.CharField(max_length=100, blank=True)
     phone_number = models.CharField(max_length=20)
-    transaction_code = models.CharField(max_length=36)
+    transaction_code = models.CharField(max_length=36, blank=True)
     additional_price = models.IntegerField(default=0)
     payment_method = models.CharField(
         max_length=20,
@@ -38,7 +38,15 @@ class Registration(models.Model):
             ('bank', u'Bank Transfer'),
         )
     )
-    payment_status = models.CharField(max_length=10)
+    payment_status = models.CharField(
+        max_length=10,
+        default='ready',
+        choices=(
+            ('ready', u'Ready'),
+            ('paid', u'Paid'),
+            ('deleted', u'Deleted'),
+        )
+    )
     payment_message = models.CharField(max_length=255, null=True, blank=True)
     vbank_num = models.CharField(max_length=255, null=True, blank=True)
     vbank_name = models.CharField(max_length=20, null=True, blank=True)
