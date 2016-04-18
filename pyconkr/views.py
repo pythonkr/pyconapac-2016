@@ -311,6 +311,8 @@ class ProposalCreate(SuccessMessageMixin, CreateView):
     def dispatch(self, request, *args, **kwargs):
         if Proposal.objects.filter(user=request.user).exists():
             return redirect('proposal')
+        if request.user.profile.name == '':
+            return redirect('profile_edit')
         return super(ProposalCreate, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):

@@ -58,4 +58,5 @@ class ProposeTest(TestCase):
         client = Client()
         client.login(username='test', password='password')
         response = client.get(reverse('propose'))
-        self.assertIn('Please make your profile first', response.content)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['location'], reverse('profile_edit'))
