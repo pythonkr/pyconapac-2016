@@ -15,10 +15,11 @@ def send_bankpayment_alert_email(modeladmin, request, queryset):
     입금시한은 구매로부터 일주일입니다.
     감사합니다.
     """
-    from_email = "support@pycon.kr"
+    from_email = "pycon@pycon.kr"
     for obj in queryset:
         email = obj.email
         message = (subject, body, from_email, [email])
+        messages.append(message)
     send_mass_mail(messages, fail_silently=False)
 
 send_bankpayment_alert_email.short_description = "Send Bank Payment Email"
