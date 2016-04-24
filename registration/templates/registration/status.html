@@ -3,49 +3,49 @@
 
 {% block content %}
     <div>
-        <h3>등록확인</h3>
+        <h3>{% trans "Registration status" %}</h3>
         {% if registration.payment_status == 'paid' %}
-            <div>등록 완료</div>
+            <div>{% trans "Registration is completed" %}</div>
             <div>
-                <p>정상적으로 등록이 완료되었습니다.</p>
+                <p>{% trans "Your registration is completed without any problems" %}</p>
             </div>
             <table class="table table-striped table-bordered">
                 <tr>
-                    <th>이름</th>
+                    <th>{% trans "Name" %}</th>
                     <td>{{ registration.name }}</td>
                 </tr>
                 <tr>
-                    <th>이메일</th>
+                    <th>{% trans "E-mail" %}</th>
                     <td>{{ registration.email }}</td>
                 </tr>
                 <tr>
-                    <th>소속</th>
+                    <th>{% trans "Company or Organization" %}</th>
                     <td>{{ registration.company }}</td>
                 </tr>
                 <tr>
-                    <th>전화번호</th>
+                    <th>{% trans "Phone number" %}</th>
                     <td>{{ registration.phone_number }}</td>
                 </tr>
                 <tr>
-                    <th>옵션</th>
+                    <th>{% trans "Option" %}</th>
                     <td>{{ registration.option }}</td>
                 </tr>
                 <tr>
-                    <th>금액</th>
+                    <th>{% trans "Price" %}</th>
                     <td>{{ registration.option.price|intcomma }} KRW</td>
                 </tr>
                 {% if registration.additional_price != 0 %}
                     <tr>
-                        <th>추가 후원 금액</th>
+                        <th>{% trans "Additional Funding" %}</th>
                         <td>{{ registration.additional_price|intcomma }} KRW</td>
                     </tr>
                 {% endif %}
                 <tr>
-                    <th>거래번호</th>
+                    <th>{% trans "Transaction ID" %}</th>
                     <td>{{ registration.merchant_uid }}</td>
                 </tr>
                 <tr>
-                    <th>등록완료일</th>
+                    <th>{% trans "Registration datetime" %}</th>
                     <td>{{ registration.modified }}</td>
                 </tr>
             </table>
@@ -53,53 +53,53 @@
             <p><a href="{% url 'registration_receipt' %}">{% trans "Check Registration Receipt" %}</a></p>
         {% elif registration.payment_status == 'ready' %}
             <div>
-                <h3>결제정보</h3>
+                <h3>{% trans "Payment Information" %}</h3>
                 <table class="table table-striped table-bordered">
                     <tr>
-                        <th>이름</th>
+                        <th>{% trans "Name" %}</th>
                         <td>{{ registration.name }}</td>
                     </tr>
                     <tr>
-                        <th>이메일</th>
+                        <th>{% trans "E-mail" %}</th>
                         <td>{{ registration.email }}</td>
                     </tr>
                     <tr>
-                        <th>가격</th>
+                        <th>{% trans "Price" %}</th>
                         <td>{{ registration.option.price|intcomma }} KRW</td>
                     </tr>
                     <tr>
-                        <th>거래번호</th>
+                        <th>{% trans "Transaction ID" %}</th>
                         <td>{{ registration.merchant_uid }}</td>
                     </tr>
                     <tr>
-                        <th>입금하실 은행</th>
-                        <td>국민은행</td>
+                        <th>{% trans "Bank to transfer" %}</th>
+                        <td>KB Kookmin Bank 국민은행</td>
                     </tr>
                     <tr>
-                        <th>입금하실 계좌번호</th>
+                        <th>{% trans "Account number to transafer" %}</th>
                         <td>637437-01-007318</td>
                     </tr>
                     <tr>
-                        <th>입금기한</th>
-                        <td>1 week</td>
+                        <th>{% trans "Payment deadline" %}</th>
+                        <td>1 Week</td>
                     </tr>
                     <tr>
-                        <th>입금확인</th>
+                        <th>{% trans "Payment check" %}</th>
                         <td>
                             {% if registration.payment_status == 'ready' %}
-                                입금확인중
+                                {% trans "Not checked yet" %}
                             {% elif registration.payment_status == 'paid' %}
-                                입금확인완료
+                                {% trans "Payment checked" %}
                             {% endif %}
                         </td>
                     </tr>
                 </table>
             </div>
         {% else %}
-            <div>등록 내역이 없습니다.</div>
+            <div>{% trans "There is no registration record" %}</div>
             <div>
                 <p></p>
-                <a href="{% url 'registration_payment' %}">등록하기</a>
+                <a href="{% url 'registration_payment' %}">{% trans "Registration" %}</a>
             </div>
         {% endif %}
     </div>
