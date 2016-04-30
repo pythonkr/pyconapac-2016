@@ -142,10 +142,10 @@ def payment_process(request):
 
     try:
         product = registration.option
-        access_token = get_access_token(config.IMP_API_KEY, config.IMP_API_SECRET)
-        imp_client = Iamporter(access_token)
 
         if registration.payment_method == 'card':
+            access_token = get_access_token(config.IMP_API_KEY, config.IMP_API_SECRET)
+            imp_client = Iamporter(access_token)
             # TODO : use validated and cleaned data
             imp_params = dict(
                 token=request.POST.get('token'),
@@ -156,7 +156,11 @@ def payment_process(request):
                 birth=request.POST.get('birth'),
                 pwd_2digit=request.POST.get('pwd_2digit'),
                 customer_uid=form.cleaned_data.get('email'),
-                name=product.name
+                name=product.name,
+                buyer_name=request.POST.get('name'),
+                buyer_email=request.POST.get('email'),
+                buyer_tel=request.POST.get('phone_number')
+
             )
             if request.POST.get('birth') == '':
                 # foreign payment
@@ -180,7 +184,14 @@ def payment_process(request):
             registration.vbank_holder = confirm.get('vbank_holder', None)
             registration.save()
         elif registration.payment_method == 'bank':
-            registration.payment_status = 'ready'
+            registration.transaction_code = request.POST.get('pg_tid')
+            registration.payment_method = request.POST.get('pay_method')
+            registration.payment_status = request.POST.get('status')
+            registration.payment_message = request.POST.get('fail_reason')
+            registration.vbank_name = request.POST.get('vbank_name', None)
+            registration.vbank_num = request.POST.get('vbank_num', None)
+            registration.vbank_date = request.POST.get('vbank_date', None)
+            registration.vbank_holder = request.POST.get('vbank_holder', None)
             registration.save()
         else:
             raise Exception('Unknown payment method')
