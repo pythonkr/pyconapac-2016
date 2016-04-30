@@ -73,15 +73,19 @@
                     </tr>
                     <tr>
                         <th>{% trans "Bank to transfer" %}</th>
-                        <td>KB Kookmin Bank 국민은행</td>
+                        <td>{{ registration.vbank_name }}</td>
                     </tr>
                     <tr>
                         <th>{% trans "Account number to transafer" %}</th>
-                        <td>637437-01-007318</td>
+                        <td>{{ registration.vbank_num }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "Account owner name" %}</th>
+                        <td>주식회사시옷</td>
                     </tr>
                     <tr>
                         <th>{% trans "Payment deadline" %}</th>
-                        <td>1 Week</td>
+                        <td>{{ registration.vbank_date }}</td>
                     </tr>
                     <tr>
                         <th>{% trans "Payment check" %}</th>
