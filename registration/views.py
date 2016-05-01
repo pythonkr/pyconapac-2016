@@ -213,7 +213,6 @@ def payment_process(request):
 
 def payment_callback(request):
     merchant_uid = request.POST.get('merchant_uid')
-    payment_status = request.POST.get('status')
     registration = Registration.objects.filter(merchant_uid=merchant_uid)
     if not registration.exists():
         return HttpResponse(status_code=404)
@@ -221,6 +220,10 @@ def payment_callback(request):
     imp_client = Iamporter(access_token)
     result = imp_client.find_by_merchant_uid(merchant_uid)
     registration = registration.first()
+    if result['status'] == 'paid':
+        registration.confirmed = datetime.datetime.now()
+    elif result['status'] == 'cancelled':
+        registration.canceled = datetime.datetime.now()
     registration.payment_status = result['status']
     registration.save()
     return HttpResponse()

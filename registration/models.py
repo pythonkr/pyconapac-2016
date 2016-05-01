@@ -45,6 +45,7 @@ class Registration(models.Model):
             ('ready', u'Ready'),
             ('paid', u'Paid'),
             ('deleted', u'Deleted'),
+            ('cancelled', u'Cancelled'),
         )
     )
     payment_message = models.CharField(max_length=255, null=True, blank=True)
