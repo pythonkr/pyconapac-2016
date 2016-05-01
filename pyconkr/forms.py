@@ -140,7 +140,7 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('name', 'phone', 'organization', 'image', 'bio')
+        fields = ('name', 'phone', 'organization', 'nationality', 'image', 'bio')
         widgets = {
             'bio': SummernoteInplaceWidget(),
         }

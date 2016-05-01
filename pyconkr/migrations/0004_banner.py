@@ -8,8 +8,6 @@ import sorl.thumbnail.fields
 
 class Migration(migrations.Migration):
 
-    replaces = [(b'pyconkr', '0004_banner'), (b'pyconkr', '0005_auto_20160402_0137')]
-
     dependencies = [
         ('pyconkr', '0003_auto_20160328_1611'),
     ]

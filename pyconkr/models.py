@@ -240,6 +240,7 @@ class Profile(models.Model):
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=100, null=True, blank=True)
     organization = models.CharField(max_length=100, null=True, blank=True)
+    nationality = models.CharField(max_length=100, null=True, blank=True)
     image = SorlImageField(upload_to='profile', null=True, blank=True)
     bio = models.TextField(max_length=4000, null=True, blank=True)
 
