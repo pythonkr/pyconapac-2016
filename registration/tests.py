@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 
+import mock
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
@@ -25,17 +26,27 @@ class RegistrationTest(TestCase):
         registration = G(Registration, transaction_code='')
         self.assertNotEqual(registration.id, None)
 
-    def test_vbank_status_update_via_iamport_callback(self):
+    @mock.patch('registration.views.get_access_token')
+    @mock.patch('registration.views.Iamporter')
+    def test_vbank_status_update_via_iamport_callback(self, Iamporter, get_access_token):
+        get_access_token.return_value = 'test token'
+        iamporter = Iamporter.return_value
         # make registration object for test
         registration = G(Registration, payment_method='vbank', payment_status='ready')
+        iamporter.find_by_merchant_uid.return_value = dict(
+                merchant_uid=registration.merchant_uid,
+                status='paid' # yes i wanna make status to paid
+                )
         # WOW it's so easy. I love ddf.
         # let's make a callback parameter
         callback_param = dict(
                 merchant_uid=registration.merchant_uid,
                 imp_uid='whatever... we dont care.',
-                status='paid' # yes i wanna make status to paid
+                status='ready' # acctually i wanna make status to paid
         )
 
-        response = self.client.post(reverse('registration_callback', callback_param))
+        response = self.client.post(reverse('registration_callback'), callback_param)
         self.assertEqual(response.status_code, 200)
+        registration = Registration.objects.get(id=registration.id)
+        self.assertEqual(registration.payment_status, 'paid') 
 
