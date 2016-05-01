@@ -68,8 +68,8 @@
                 } else if(paymentMethod === 'bank') {
                     IMP.init('{{ config.IMP_USER_CODE }}');
                     IMP.request_pay({
-                        pg : 'nice', // version 1.1.0부터 지원.
-                        pay_method : 'vbank', // 'card' : 신용카드 | 'trans' : 실시간계좌이체 | 'vbank' : 가상계좌 | 'phone' : 휴대폰소액결제
+                        pg : 'nice',
+                        pay_method : 'vbank',
                         merchant_uid : '{{ uid }}',
                         name : $('#id_option').val(),
                         amount : parseInt('{{ amount }}') + additional_price,
