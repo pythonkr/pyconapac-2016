@@ -24,3 +24,18 @@ class RegistrationTest(TestCase):
     def test_transaction_id_is_not_required(self):
         registration = G(Registration, transaction_code='')
         self.assertNotEqual(registration.id, None)
+
+    def test_vbank_status_update_via_iamport_callback(self):
+        # make registration object for test
+        registration = G(Registration, payment_method='vbank', payment_status='ready')
+        # WOW it's so easy. I love ddf.
+        # let's make a callback parameter
+        callback_param = dict(
+                merchant_uid=registration.merchant_uid,
+                imp_uid='whatever... we dont care.',
+                status='paid' # yes i wanna make status to paid
+        )
+
+        response = self.client.post(reverse('registration_callback', callback_param))
+        self.assertEqual(response.status_code, 200)
+
