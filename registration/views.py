@@ -9,6 +9,7 @@ from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
+from django.views.decorators.csrf import csrf_exempt
 from constance import config
 
 from pyconkr.helper import send_email_ticket_confirm, render_io_error
@@ -55,7 +56,7 @@ def status(request):
 def payment(request, option_id):
 
     if not _is_ticket_open():
-        return redirect('registration_info')
+        return redirect('registration_index')
 
     product = Option.objects.get(id=option_id)
     is_registered = Registration.objects.filter(
@@ -210,7 +211,7 @@ def payment_process(request):
             'success': True,
         })
 
-
+@csrf_exempt
 def payment_callback(request):
     merchant_uid = request.POST.get('merchant_uid')
     registration = Registration.objects.filter(merchant_uid=merchant_uid)
