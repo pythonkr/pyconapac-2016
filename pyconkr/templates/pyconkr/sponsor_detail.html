@@ -6,6 +6,7 @@
 
 {% block content %}
 <div class="sponsor">
+    <h1>{{ sponsor.name }}</h1>
     {% if sponsor.slug != "info" %}
     <img src="{{ sponsor.image.url }}" alt="{{ sponsor.name }}">
     <ul class="list-group">

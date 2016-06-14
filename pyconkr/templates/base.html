@@ -74,12 +74,15 @@
         </div>
     </div>
     {% endblock %}
+    {% block sponsors %}
+    <hr>
     <div class="row wrap">
         <div class="col-md-12 sponsors">
-        <hr>
-            {% include "sponsors.html" %}
+        <h2>{% trans "Sponsors" %}</h2>
+        {% include "sponsors.html" %}
         </div>
     </div>
+    {% endblock %}
 </div>
 {% endblock %}
 
