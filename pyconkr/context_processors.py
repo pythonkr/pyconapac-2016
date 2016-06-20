@@ -37,6 +37,7 @@ def default(request):
                 ('list', {'title': _('Program list')}),
                 ('keynotes', {'title': _('Keynotes')}),
                 ('speakers', {'title': _('Speakers')}),
+                ('lightning_talk', {'title': _('Lightning talk')}),
                 ('ost', {'title': _('Open Spaces')}),
             ]),
         }),
