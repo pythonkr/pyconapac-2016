@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-11 16:41+0000\n"
-"PO-Revision-Date: 2016-04-11 16:58+0000\n"
-"Last-Translator:   <>\n"
+"POT-Creation-Date: 2016-06-20 21:34+0900\n"
+"PO-Revision-Date: 2016-06-20 21:34+0900\n"
+"Last-Translator:   <ez.amiryo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +24,6 @@ msgid "About"
 msgstr "파이콘 APAC"
 
 #: context_processors.py:23
-#| msgid "PyCon APAC 2016"
 msgid "About PyCon APAC 2016"
 msgstr "파이콘 APAC 2016"
 
@@ -36,121 +35,130 @@ msgstr "파이콘 성명서"
 msgid "Announcements"
 msgstr "알림"
 
-#: context_processors.py:26
+#: context_processors.py:26 templates/base.html.py:76
+#: templates/pyconkr/sponsor_list.html:4
 msgid "Sponsors"
 msgstr "후원사 목록"
 
 #: context_processors.py:27
+#| msgid "Sponsors"
+msgid "Sponsorship"
+msgstr "후원 안내"
+
+#: context_processors.py:28
 msgid "Staff"
 msgstr "준비위원회 및 자원봉사자"
 
-#: context_processors.py:28
+#: context_processors.py:29
 msgid "Contact"
 msgstr "연락처"
 
-#: context_processors.py:32 templates/nav.html.py:61
+#: context_processors.py:33 templates/nav.html.py:61
 msgid "Programs"
 msgstr "프로그램"
 
-#: context_processors.py:35
+#: context_processors.py:36
 msgid "Schedule"
 msgstr "세부 일정"
 
-#: context_processors.py:36
+#: context_processors.py:37
 msgid "Program list"
 msgstr "프로그램 목록"
 
-#: context_processors.py:37
+#: context_processors.py:38
 msgid "Keynotes"
 msgstr "키노트"
 
-#: context_processors.py:38
-#| msgid "Speaker"
+#: context_processors.py:39
 msgid "Speakers"
 msgstr "발표자"
 
-#: context_processors.py:39
+#: context_processors.py:40
+msgid "Lightning talk"
+msgstr "라이트닝 토크"
+
+#: context_processors.py:41
 msgid "Open Spaces"
 msgstr "열린 공간"
 
-#: context_processors.py:43
+#: context_processors.py:45
 msgid "Venue"
 msgstr "장소"
 
-#: context_processors.py:46
+#: context_processors.py:48
 msgid "Venue Map"
 msgstr "지도"
 
-#: context_processors.py:47
+#: context_processors.py:49
 msgid "Transportation"
 msgstr "교통 수단"
 
-#: context_processors.py:48
+#: context_processors.py:50
 msgid "Hotels"
 msgstr "숙박 안내"
 
-#: context_processors.py:49
+#: context_processors.py:51
 msgid "Restaurants"
 msgstr "식당 정보"
 
-#: context_processors.py:53 views.py:280 views.py:294
+#: context_processors.py:55 views.py:281 views.py:295
 msgid "Proposal"
 msgstr "발표안"
 
-#: context_processors.py:56
+#: context_processors.py:58
 msgid "Call for proposals"
 msgstr "발표자 모집"
 
-#: context_processors.py:57
+#: context_processors.py:59
 msgid "How to propose"
 msgstr "발표안 제안하기"
 
-#: context_processors.py:58
+#: context_processors.py:60
 msgid "Propose"
 msgstr "제출하기"
 
-#: context_processors.py:62 templates/pyconkr/profile_detail.html.py:31
+#: context_processors.py:64 templates/pyconkr/profile_detail.html.py:31
 msgid "Registration"
 msgstr "등록"
 
-#: context_processors.py:65
-#| msgid "Additional information"
+#: context_processors.py:67
 msgid "Information"
 msgstr "정보"
 
-#: context_processors.py:66 templates/pyconkr/profile_detail.html.py:37
+#: context_processors.py:68 templates/pyconkr/profile_detail.html.py:37
 msgid "Purchase a ticket"
 msgstr "티켓 구입"
 
-#: context_processors.py:67
+#: context_processors.py:69
 msgid "Financial Aid"
 msgstr "자금 지원"
 
 #: forms.py:26 templates/login_notvalidtoken.html.py:7
-#: templates/nav.html.py:73 views.py:179
+#: templates/nav.html.py:73 views.py:180
 msgid "Login"
 msgstr "로그인"
 
-#: forms.py:38 forms.py:84 forms.py:107 forms.py:131
+#: forms.py:38 forms.py:84 forms.py:107 forms.py:135
 msgid "Submit"
 msgstr "제출"
 
-#: forms.py:39 forms.py:62 forms.py:132 forms.py:153
+#: forms.py:39 forms.py:62 forms.py:136 forms.py:157
 #, python-format
 msgid "Maximum size is %d MB"
 msgstr "최대 크기 %d MB"
 
-#: forms.py:41 forms.py:72 forms.py:134 forms.py:163
+#: forms.py:41 forms.py:72 forms.py:138 forms.py:167
 #, python-format
 msgid "Minimum dimension is %d x %d"
 msgstr "최소 해상도 %d x %d"
 
-#: forms.py:51 forms.py:144
+#: forms.py:51 forms.py:148
 msgid "Photo"
 msgstr "사진"
 
 #: forms.py:52 templates/nav.html.py:55 templates/nav.html.py:67
-#: templates/pyconkr/speaker_detail.html:16 views.py:247
+#: templates/pyconkr/profile_form.html:5
+#: templates/pyconkr/speaker_detail.html:17 views.py:248
 msgid "Profile"
 msgstr "프로필"
 
@@ -170,43 +178,43 @@ msgstr "슬라이드 URL"
 msgid "Video URL"
 msgstr "동영상 URL"
 
-#: forms.py:96 templates/pyconkr/program_detail.html.py:44
+#: forms.py:96 templates/pyconkr/program_detail.html.py:45
 msgid "Photography and recording is allowed"
 msgstr "촬영, 녹화가 가능합니다."
 
-#: forms.py:97 templates/pyconkr/program_detail.html.py:63
+#: forms.py:97 templates/pyconkr/program_detail.html.py:64
 msgid "Description"
 msgstr "설명"
 
-#: forms.py:114
+#: forms.py:118
 msgid "Proposal title (required)"
 msgstr "세션 제목 (필수)"
 
-#: forms.py:115
+#: forms.py:119
 msgid "Brief (required)"
 msgstr "간략한 설명 (필수)"
 
-#: forms.py:116
+#: forms.py:120
 msgid "Detailed description (required)"
 msgstr "자세한 설명 (필수)"
 
-#: forms.py:117
+#: forms.py:121
 msgid "Comment to reviewers (optional)"
 msgstr "검토자에게 알리고 싶은 말 (선택)"
 
-#: forms.py:119
+#: forms.py:123
 msgid "Session difficulty"
 msgstr "세션 난이도"
 
-#: forms.py:120
+#: forms.py:124
 msgid "Session duration"
 msgstr "세션 길이"
 
-#: forms.py:121 templates/nav.html.py:80
+#: forms.py:125 templates/nav.html.py:80
 msgid "Language"
 msgstr "언어"
 
-#: models.py:94
+#: models.py:95
 msgid "help-text-for-speaker-info"
 msgstr ""
 "<p>개인 페이지들을 JSON 형식으로 추가해주세요.</p>\n"
@@ -219,43 +227,43 @@ msgstr ""
 "</pre>\n"
 "<p>지원되는 페이지 목록은 <a href=\"http://lipis.github.io/bootstrap-social/\" target=\"_blank\">http://lipis.github.io/bootstrap-social/</a>에서 확인하실 수 있습니다.</p>\""
 
-#: models.py:175
-msgid "Not arranged yet"
-msgstr "아직 결정되지 않았습니다"
-
-#: models.py:219
+#: models.py:143 models.py:236
 msgid "Beginner"
 msgstr "초급"
 
-#: models.py:220
+#: models.py:144 models.py:237
 msgid "Intermediate"
 msgstr "중급"
 
-#: models.py:221
+#: models.py:145 models.py:238
 msgid "Experienced"
 msgstr "상급"
 
-#: models.py:226
+#: models.py:150 models.py:243
 msgid "25 mins"
 msgstr "25분"
 
-#: models.py:227
+#: models.py:151 models.py:244
 msgid "40 mins"
 msgstr "40분"
 
-#: models.py:232 settings.py:144
+#: models.py:156 models.py:249 settings.py:146
 msgid "English"
 msgstr "영어"
 
-#: models.py:233 settings.py:143
+#: models.py:157 models.py:250 settings.py:145
 msgid "Korean"
 msgstr "한국어"
 
-#: settings.py:188
+#: models.py:192
+msgid "Not arranged yet"
+msgstr "아직 결정되지 않았습니다"
+
+#: settings.py:190
 msgid "PyCon APAC 2016 one-time login token"
 msgstr "파이콘 APAC 2016 일회용 로그인 토큰"
 
-#: settings.py:189 templates/base.html.py:7 templates/base.html.py:13
+#: settings.py:191 templates/base.html.py:7 templates/base.html.py:13
 #: templates/base.html:14 templates/mail/token_html.html.py:2
 msgid "PyCon APAC 2016"
 msgstr "파이콘 APAC 2016"
@@ -379,8 +387,8 @@ msgstr "등록해주셔서 감사합니다."
 
 #: templates/pyconkr/profile_detail.html:35
 #| msgid "Registration"
-msgid "Registration receipt"
-msgstr "등록 영수증"
+msgid "Check Registration Status"
+msgstr "등록 확인"
 
 #: templates/pyconkr/profile_detail.html:37
 msgid "You didn't have a ticket."
@@ -391,7 +399,6 @@ msgid "Thank you for submitting."
 msgstr "제출해주셔서 감사합니다."
 
 #: templates/pyconkr/profile_detail.html:42
-#| msgid "Call for proposals"
 msgid "Check my proposal"
 msgstr "내 발표안 확인하기"
 
@@ -404,28 +411,28 @@ msgid "Submit a new proposal"
 msgstr "발표안 제출하기"
 
 #: templates/pyconkr/program_detail.html:4
-#: templates/pyconkr/speaker_detail.html:21
+#: templates/pyconkr/speaker_detail.html:22
 msgid "Program"
 msgstr "프로그램"
 
-#: templates/pyconkr/program_detail.html:46
+#: templates/pyconkr/program_detail.html:47
 msgid "Photography and recording is not allowed"
 msgstr "촬영, 녹화가 금지되어 있습니다."
 
-#: templates/pyconkr/program_detail.html:51
+#: templates/pyconkr/program_detail.html:52
 msgid "Slide"
 msgstr "슬라이드"
 
-#: templates/pyconkr/program_detail.html:55
+#: templates/pyconkr/program_detail.html:56
 msgid "Video"
 msgstr "발표 동영상"
 
-#: templates/pyconkr/program_detail.html:59
+#: templates/pyconkr/program_detail.html:60
 msgid "PDF"
 msgstr "PDF"
 
-#: templates/pyconkr/program_detail.html:68
-#: templates/pyconkr/speaker_detail.html:30
+#: templates/pyconkr/program_detail.html:69
+#: templates/pyconkr/speaker_detail.html:31
 msgid "Edit"
 msgstr "수정"
 
@@ -444,6 +451,16 @@ msgstr "동영상"
 msgid "PDF link"
 msgstr "PDF"
 
+#: templates/pyconkr/proposal_detail.html:21
+#| msgid "Detailed description (required)"
+msgid "Detailed description"
+msgstr "자세한 설명 (필수)"
+
+#: templates/pyconkr/proposal_detail.html:26
+#| msgid "Comment to reviewers (optional)"
+msgid "Comment to reviewers"
+msgstr "검토자에게 알리고 싶은 말 (선택)"
+
 #: templates/pyconkr/proposal_form.html:10
 msgid "Please make your profile first"
 msgstr "프로필을 먼저 만들어주세요"
@@ -456,29 +473,32 @@ msgstr "발표자"
 msgid "Sponsor"
 msgstr "후원사"
 
-#: views.py:192
+#: views.py:193
 msgid "Not valid token"
 msgstr "유효한 토큰 아님"
 
-#: views.py:214
+#: views.py:215
 msgid "Mail sent"
 msgstr "메일 발송 완료"
 
-#: views.py:254
+#: views.py:255
 msgid "Profile successfully updated."
 msgstr "프로필을 수정하였습니다."
 
-#: views.py:265
+#: views.py:266
 msgid "Update profile"
 msgstr ""
 
-#: views.py:287
+#: views.py:288
 msgid "Proposal successfully updated."
 msgstr "발표안이 수정되었습니다."
 
-#: views.py:304
+#: views.py:305
 msgid "Proposal successfully created."
 msgstr "발표안을 제출하였습니다."
+
+#~ msgid "Registration receipt"
+#~ msgstr "등록 영수증"
 
 #~ msgid "PyCon APAC"
 #~ msgstr "파이콘 APAC"
