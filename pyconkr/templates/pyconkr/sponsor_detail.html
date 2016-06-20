@@ -3,10 +3,10 @@
 
 {% block head-title %}{{ block.super }} {% trans "Sponsor" %} | {{ sponsor.name }}{% endblock %}
 {% block nav %}{% include "nav.html" with title=sponsor.name %}{% endblock %}
+{% block title %}{{ sponsor.name }}{% endblock %}
 
 {% block content %}
 <div class="sponsor">
-    <h1>{{ sponsor.name }}</h1>
     {% if sponsor.slug != "info" %}
     <img src="{{ sponsor.image.url }}" alt="{{ sponsor.name }}">
     <ul class="list-group">
