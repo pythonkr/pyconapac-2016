@@ -87,6 +87,7 @@ class Sponsor(models.Model):
 class Speaker(models.Model):
     slug = models.SlugField(max_length=100, unique=True)
     name = models.CharField(max_length=100, db_index=True)
+    organization = models.CharField(max_length=100, null=True, blank=True)
     email = models.EmailField(max_length=255, db_index=True,
                               null=True, blank=True)
     image = models.ImageField(upload_to='speaker', null=True, blank=True)
@@ -130,15 +131,31 @@ class Speaker(models.Model):
 
 
 class Program(models.Model):
-    name = models.CharField(max_length=100, db_index=True)
+    name = models.CharField(max_length=255, db_index=True)
+    brief = models.TextField(null=True, blank=True)
     desc = models.TextField(null=True, blank=True)
     slide_url = models.CharField(max_length=255, null=True, blank=True)
     pdf_url = models.CharField(max_length=255, null=True, blank=True)
     video_url = models.CharField(max_length=255, null=True, blank=True)
     speakers = models.ManyToManyField(Speaker, blank=True)
-    language = models.CharField(max_length=2,
-                                choices=settings.LANGUAGES,
-                                default='ko')
+    difficulty = models.CharField(max_length=1,
+                                  choices=(
+                                      ('B', _('Beginner')),
+                                      ('I', _('Intermediate')),
+                                      ('E', _('Experienced')),
+                                  ), default='B')
+
+    duration = models.CharField(max_length=1,
+                                choices=(
+                                    ('S', _('25 mins')),
+                                    ('L', _('40 mins')),
+                                ), default='S')
+
+    language = models.CharField(max_length=1,
+                                choices=(
+                                    ('E', _('English')),
+                                    ('K', _('Korean')),
+                                ), default='E')
 
     date = models.ForeignKey(ProgramDate, null=True, blank=True)
     rooms = models.ManyToManyField(Room, blank=True)

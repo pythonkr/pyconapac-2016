@@ -11,6 +11,7 @@ from sorl.thumbnail.admin import AdminImageMixin
 from .models import (Room, Program, ProgramTime, ProgramDate, ProgramCategory,
                      Speaker, Sponsor, SponsorLevel,
                      Profile, Announcement, EmailToken, Proposal, Banner)
+from .actions import convert_proposal_to_program
 
 
 class RoomAdmin(SummernoteModelAdmin, TranslationAdmin):
@@ -123,6 +124,7 @@ class ProposalAdminForm(forms.ModelForm):
 class ProposalAdmin(admin.ModelAdmin):
     form = ProposalAdminForm
     list_display = ('user', 'title', 'difficulty', 'duration', 'language')
+    actions = [convert_proposal_to_program]
 admin.site.register(Proposal, ProposalAdmin)
 
 
