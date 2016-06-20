@@ -8,7 +8,7 @@
         <span class="sr-only">{% trans "Toggle navigation" %}</span>
         <span class="glyphicon glyphicon-python"></span>
       </button>
-      {% if title %}
+      {% if not index %}
       <a class="navbar-logo" href="{% url "index" %}">
         <img src="{% static "image/pyconkr-logo-small.png" %}" alt="PyCon Korea">
       </a>
@@ -102,7 +102,7 @@ $(function() {
       form.submit();
   });
 
-  {% if title %}
+  {% if not index %}
   var d = new Date();
   $(".navbar").css("background", getSkyColorAt(d.getHours(), d.getMinutes()));
   {% endif %}

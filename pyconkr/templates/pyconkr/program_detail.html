@@ -5,6 +5,7 @@
 {% block og-title %}{{ program.name }}{% endblock %}
 {% block og-desc %}{{ program.desc|striptags|safe }}{% endblock %}
 {% block nav %}{% include "nav.html" with title=program.name %}{% endblock %}
+{% block title %}{{ program.name }}{% endblock %}
 
 {% block content %}
 {% include "badge/all.html" %}
