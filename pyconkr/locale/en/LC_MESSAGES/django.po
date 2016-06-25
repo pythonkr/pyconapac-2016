@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-25 17:33+0900\n"
-"PO-Revision-Date: 2016-06-25 17:35+0900\n"
+"POT-Creation-Date: 2016-06-25 17:44+0900\n"
+"PO-Revision-Date: 2016-06-25 17:46+0900\n"
 "Last-Translator:   <ez.amiryo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,6 @@ msgid "Sponsors"
 msgstr "Sponsors"
 
 #: context_processors.py:27
-#| msgid "Sponsors"
 msgid "Sponsorship"
 msgstr "Sponsorship"
 
@@ -120,102 +119,111 @@ msgstr "How to propose"
 msgid "Propose"
 msgstr "Propose"
 
-#: context_processors.py:65 templates/pyconkr/profile_detail.html.py:31
+#: context_processors.py:62
+#| msgid "Propose"
+msgid "Tutorial Propose"
+msgstr "Tutorial Propose"
+
+#: context_processors.py:66 templates/pyconkr/profile_detail.html.py:31
 msgid "Registration"
 msgstr "Registration"
 
-#: context_processors.py:68
+#: context_processors.py:69
 msgid "Information"
 msgstr "Information"
 
-#: context_processors.py:69 templates/pyconkr/profile_detail.html.py:37
+#: context_processors.py:70 templates/pyconkr/profile_detail.html.py:37
 msgid "Purchase a ticket"
 msgstr "Purchase a ticket"
 
-#: context_processors.py:70
+#: context_processors.py:71
 msgid "Financial Aid"
 msgstr "Financial Aid"
 
-#: forms.py:26 templates/login_notvalidtoken.html.py:7
+#: forms.py:27 templates/login_notvalidtoken.html.py:7
 #: templates/nav.html.py:73 views.py:210
 msgid "Login"
 msgstr "Login"
 
-#: forms.py:38 forms.py:84 forms.py:107 forms.py:135
+#: forms.py:39 forms.py:85 forms.py:108 forms.py:135 forms.py:163
 msgid "Submit"
 msgstr "Submit"
 
-#: forms.py:39 forms.py:62 forms.py:136 forms.py:157
+#: forms.py:40 forms.py:63 forms.py:164 forms.py:185
 #, python-format
 msgid "Maximum size is %d MB"
 msgstr "Maximum size is %d MB"
 
-#: forms.py:41 forms.py:72 forms.py:138 forms.py:167
+#: forms.py:42 forms.py:73 forms.py:166 forms.py:195
 #, python-format
 msgid "Minimum dimension is %d x %d"
 msgstr "Minimum dimension is %d x %d"
 
-#: forms.py:51 forms.py:148
+#: forms.py:52 forms.py:176
 msgid "Photo"
 msgstr "Photo"
 
-#: forms.py:52 templates/nav.html.py:55 templates/nav.html.py:67
+#: forms.py:53 templates/nav.html.py:55 templates/nav.html.py:67
 #: templates/pyconkr/profile_form.html:5
 #: templates/pyconkr/speaker_detail.html:17 views.py:278
 msgid "Profile"
 msgstr "Profile"
 
-#: forms.py:53
+#: forms.py:54
 msgid "Additional information"
 msgstr "Additional information"
 
-#: forms.py:93
+#: forms.py:94
 msgid "Title"
 msgstr "Title"
 
-#: forms.py:94
+#: forms.py:95
 msgid "Slide URL"
 msgstr "Presentation slides URL"
 
-#: forms.py:95
+#: forms.py:96
 msgid "Video URL"
 msgstr "Presentation video URL"
 
-#: forms.py:96 templates/pyconkr/program_detail.html.py:45
+#: forms.py:97 templates/pyconkr/program_detail.html.py:45
 msgid "Photography and recording is allowed"
 msgstr "Photography and recording is allowed"
 
-#: forms.py:97 templates/pyconkr/program_detail.html.py:64
+#: forms.py:98 templates/pyconkr/program_detail.html.py:64
 msgid "Description"
 msgstr "Description"
 
-#: forms.py:118
+#: forms.py:119 forms.py:146
 msgid "Proposal title (required)"
 msgstr "Proposal title (required)"
 
-#: forms.py:119
+#: forms.py:120 forms.py:147
 msgid "Brief (required)"
 msgstr "Brief (required)"
 
-#: forms.py:120
+#: forms.py:121 forms.py:148
 msgid "Detailed description (required)"
 msgstr "Detailed description (required)"
 
-#: forms.py:121
+#: forms.py:122 forms.py:149
 msgid "Comment to reviewers (optional)"
 msgstr "Comment to reviewers (optional)"
 
-#: forms.py:123
+#: forms.py:124 forms.py:151
 msgid "Session difficulty"
 msgstr "Session difficulty"
 
-#: forms.py:124
+#: forms.py:125 forms.py:152
 msgid "Session duration"
 msgstr "Session duration"
 
-#: forms.py:125 templates/nav.html.py:80
+#: forms.py:126 forms.py:153 templates/nav.html.py:80
 msgid "Language"
 msgstr "Language"
+
+#: forms.py:154
+msgid "Capacity"
+msgstr "Capacity"
 
 #: models.py:95
 msgid "help-text-for-speaker-info"
@@ -230,15 +238,15 @@ msgstr ""
 "</pre>\n"
 "<p>Supported pages are listed in <a href=\"http://lipis.github.io/bootstrap-social/\" target=\"_blank\">http://lipis.github.io/bootstrap-social/</a></p>\""
 
-#: models.py:143 models.py:236
+#: models.py:143 models.py:236 models.py:265
 msgid "Beginner"
 msgstr "Beginner"
 
-#: models.py:144 models.py:237
+#: models.py:144 models.py:237 models.py:266
 msgid "Intermediate"
 msgstr "Intermediate"
 
-#: models.py:145 models.py:238
+#: models.py:145 models.py:238 models.py:267
 msgid "Experienced"
 msgstr "Experienced"
 
@@ -250,17 +258,41 @@ msgstr "25 mins"
 msgid "40 mins"
 msgstr "40 mins"
 
-#: models.py:156 models.py:249 settings.py:146
+#: models.py:156 models.py:249 models.py:279 settings.py:146
 msgid "English"
 msgstr "English"
 
-#: models.py:157 models.py:250 settings.py:145
+#: models.py:157 models.py:250 models.py:280 settings.py:145
 msgid "Korean"
 msgstr "Korean"
 
 #: models.py:192
 msgid "Not arranged yet"
 msgstr "Not arranged yet"
+
+#: models.py:272
+msgid "1 hour"
+msgstr "1 hour"
+
+#: models.py:273
+msgid "2 hours"
+msgstr "2 hours"
+
+#: models.py:274
+msgid "4 hours"
+msgstr "4 hours"
+
+#: models.py:286
+msgid "10 people"
+msgstr "10 people"
+
+#: models.py:287
+msgid "45 people"
+msgstr "45 people"
+
+#: models.py:288
+msgid "100 people"
+msgstr "100 people"
 
 #: settings.py:190
 msgid "PyCon APAC 2016 one-time login token"
@@ -391,7 +423,6 @@ msgid "Thank you for registration."
 msgstr "Thank you for registration."
 
 #: templates/pyconkr/profile_detail.html:35
-#| msgid "Registration"
 msgid "Check Registration Status"
 msgstr "Check Registration Status"
 
@@ -465,12 +496,12 @@ msgid "Up to 5 items can be selected."
 msgstr "Up to 5 items can be selected."
 
 #: templates/pyconkr/proposal_detail.html:21
-#| msgid "Detailed description (required)"
+#: templates/pyconkr/tutorialproposal_detail.html:22
 msgid "Detailed description"
 msgstr "Detailed description (required)"
 
 #: templates/pyconkr/proposal_detail.html:26
-#| msgid "Comment to reviewers (optional)"
+#: templates/pyconkr/tutorialproposal_detail.html:27
 msgid "Comment to reviewers"
 msgstr "Comment to reviewers (optional)"
 
@@ -487,7 +518,6 @@ msgid "Sponsor"
 msgstr "Sponsor"
 
 #: views.py:156
-#| msgid "Profile successfully updated."
 msgid "Preferences are successfully updated."
 msgstr "Preferences are successfully updated."
 
@@ -514,6 +544,21 @@ msgstr "Proposal successfully updated."
 #: views.py:335
 msgid "Proposal successfully created."
 msgstr "Proposal successfully created."
+
+#: views.py:356
+#| msgid "Proposal successfully created."
+msgid "Tutorial proposal successfully created."
+msgstr "Tutorial proposal successfully created."
+
+#: views.py:387 views.py:402
+#| msgid "Proposal"
+msgid "Tutorial Proposal"
+msgstr "Tutorial Proposal"
+
+#: views.py:395
+#| msgid "Proposal successfully updated."
+msgid "Tutorial proposal successfully updated."
+msgstr "Tutorial proposal successfully updated."
 
 #~ msgid "Registration receipt"
 #~ msgstr "Registration receipt"
