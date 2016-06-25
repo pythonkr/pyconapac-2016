@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
-from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth import login as user_login, logout as user_logout
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.messages.views import SuccessMessageMixin
@@ -12,18 +11,16 @@ from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
-from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from datetime import datetime, timedelta
-from uuid import uuid4
+import random
 from .forms import EmailLoginForm, SpeakerForm, ProgramForm, ProposalForm, ProfileForm
-from .helper import sendEmailToken, render_json, render_io_error
+from .helper import sendEmailToken
 from .models import (Room,
                      Program, ProgramDate, ProgramTime, ProgramCategory,
-                     Speaker, Sponsor, Announcement,
+                     Speaker, Sponsor, Announcement, Preference,
                      EmailToken, Profile, Proposal)
 from registration.models import Registration
-from iamporter import get_access_token, Iamporter, IamporterError
 
 logger = logging.getLogger(__name__)
 payment_logger = logging.getLogger('payment')
@@ -136,6 +133,39 @@ class ProgramUpdate(UpdateView):
     def get_queryset(self):
         queryset = super(ProgramUpdate, self).get_queryset()
         return queryset.filter(speakers__email=self.request.user.email)
+
+
+class PreferenceList(SuccessMessageMixin, ListView):
+    model = Preference
+    template_name = "pyconkr/program_preference.html"
+
+    def get_queryset(self):
+        queryset = super(PreferenceList, self).get_queryset()
+        return queryset.filter(user=self.request.user).values_list('program', flat=True)
+
+    def post(self, request, **kwargs):
+        Preference.objects.filter(user=request.user).delete()
+
+        preferences = []
+        for program_id in request.POST.getlist('program[]')[:5]:
+            preferences.append(Preference(
+                user=request.user,
+                program=Program.objects.get(id=program_id)))
+
+        Preference.objects.bulk_create(preferences)
+        messages.success(self.request, _("Preferences are successfully updated."))
+        return super(PreferenceList, self).get(request, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(PreferenceList, self).get_context_data(**kwargs)
+
+        # Shuffle programs by user id
+        programs = list(Program.objects.all())
+        random.seed(self.request.user.id)
+        random.shuffle(programs)
+
+        context['programs'] = programs
+        return context
 
 
 class AnnouncementList(ListView):
@@ -318,5 +348,3 @@ class ProposalCreate(SuccessMessageMixin, CreateView):
 
     def get_success_url(self):
         return reverse('proposal')
-
-

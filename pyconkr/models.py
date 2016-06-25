@@ -292,3 +292,11 @@ class Banner(models.Model):
 
     begin = models.DateTimeField(null=True, blank=True)
     end = models.DateTimeField(null=True, blank=True)
+
+
+class Preference(models.Model):
+    user = models.ForeignKey(User)
+    program = models.ForeignKey(Program)
+
+    class Meta:
+        unique_together = ('user', 'program')

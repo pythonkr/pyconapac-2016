@@ -35,6 +35,7 @@ def default(request):
             'submenu': OrderedDict([
                 ('schedule', {'title': _('Schedule')}),
                 ('list', {'title': _('Program list')}),
+                ('preference', {'title': _('Preference survey')}),
                 ('keynotes', {'title': _('Keynotes')}),
                 ('speakers', {'title': _('Speakers')}),
                 ('lightning_talk', {'title': _('Lightning talk')}),
