@@ -58,6 +58,7 @@ def default(request):
                 ('cfp', {'title': _('Call for proposals')}),
                 ('howto', {'title': _('How to propose')}),
                 ('propose', {'title': _('Propose')}),
+                ('tutorial-propose', {'title': _('Tutorial Propose')}),
             ]),
         }),
         ('registration', {

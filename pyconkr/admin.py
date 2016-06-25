@@ -7,6 +7,7 @@ from django.db import models
 from django_summernote.admin import SummernoteModelAdmin
 from django_summernote.widgets import SummernoteWidget
 from modeltranslation.admin import TranslationAdmin
+from pyconkr.models import TutorialProposal
 from sorl.thumbnail.admin import AdminImageMixin
 from .models import (Room, Program, ProgramTime, ProgramDate, ProgramCategory,
                      Speaker, Sponsor, SponsorLevel,
@@ -126,6 +127,23 @@ class ProposalAdmin(admin.ModelAdmin):
     list_display = ('user', 'title', 'difficulty', 'duration', 'language')
     actions = [convert_proposal_to_program]
 admin.site.register(Proposal, ProposalAdmin)
+
+
+class TutorialProposalAdminForm(forms.ModelForm):
+    class Meta:
+        model = TutorialProposal
+        fields = '__all__'
+        widgets = {
+            'desc': SummernoteWidgetWithCustomToolbar(),
+            'comment': SummernoteWidgetWithCustomToolbar(),
+        }
+
+
+class TutorialProposalAdmin(admin.ModelAdmin):
+    form = TutorialProposalAdminForm
+    list_display = ('user', 'title', 'difficulty', 'duration', 'language', 'capacity')
+    actions = [convert_proposal_to_program]
+admin.site.register(TutorialProposal, TutorialProposalAdmin)
 
 
 class UserAdmin(BaseUserAdmin):

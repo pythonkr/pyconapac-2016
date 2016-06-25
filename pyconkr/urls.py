@@ -4,6 +4,8 @@ from django.conf.urls.static import static
 from django.contrib.flatpages import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth.decorators import login_required
+from pyconkr.views import TutorialProposalCreate, TutorialProposalDetail, \
+    TutorialProposalUpdate
 
 from .views import index, schedule, robots
 from .views import RoomDetail
@@ -47,10 +49,16 @@ urlpatterns = [
         schedule, name='schedule'),
     url(r'^cfp/propose/$',
         login_required(ProposalCreate.as_view()), name='propose'),
+    url(r'^cfp/tutorial-propose/$',
+        login_required(TutorialProposalCreate.as_view()), name='tutorial-propose'),
     url(r'^profile/proposal/$',
         login_required(ProposalDetail.as_view()), name='proposal'),
     url(r'^profile/proposal/edit$',
         login_required(ProposalUpdate.as_view()), name='proposal-update'),
+    url(r'^profile/tutorial-proposal/$',
+        login_required(TutorialProposalDetail.as_view()), name='tutorial-proposal'),
+    url(r'^profile/tutorial-proposal/edit$',
+        login_required(TutorialProposalUpdate.as_view()), name='tutorial-proposal-update'),
     url(r'^profile$',
         login_required(ProfileDetail.as_view()), name='profile'),
     url(r'^profile/edit$',
