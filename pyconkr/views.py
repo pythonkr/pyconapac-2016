@@ -14,11 +14,11 @@ from django.views.decorators.cache import never_cache
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from datetime import datetime, timedelta
 import random
-from .forms import EmailLoginForm, SpeakerForm, ProgramForm, ProposalForm, ProfileForm
+from .forms import (EmailLoginForm, SpeakerForm, ProgramForm,
+                    ProposalForm, ProfileForm, TutorialProposalForm)
 from .helper import sendEmailToken
-from .models import (Room,
-                     Program, ProgramDate, ProgramTime, ProgramCategory,
-                     Speaker, Sponsor, Announcement, Preference,
+from .models import (Room, Program, ProgramDate, ProgramTime, ProgramCategory,
+                     Speaker, Sponsor, Announcement, Preference, TutorialProposal,
                      EmailToken, Profile, Proposal)
 from registration.models import Registration
 
@@ -348,3 +348,59 @@ class ProposalCreate(SuccessMessageMixin, CreateView):
 
     def get_success_url(self):
         return reverse('proposal')
+
+
+class TutorialProposalCreate(SuccessMessageMixin, CreateView):
+    form_class = TutorialProposalForm
+    template_name = "pyconkr/proposal_form.html"
+    success_message = _("Tutorial proposal successfully created.")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.save()
+        return super(TutorialProposalCreate, self).form_valid(form)
+
+    def dispatch(self, request, *args, **kwargs):
+        if TutorialProposal.objects.filter(user=request.user).exists():
+            return redirect('tutorial-proposal')
+        if request.user.profile.name == '':
+            return redirect('profile_edit')
+        return super(TutorialProposalCreate, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('tutorial-proposal')
+
+
+class TutorialProposalDetail(DetailView):
+    context_object_name = 'proposal'
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(TutorialProposal, pk=self.request.user.tutorialproposal.pk)
+
+    def dispatch(self, request, *args, **kwargs):
+        if not TutorialProposal.objects.filter(user=request.user).exists():
+            return redirect('tutorial-propose')
+        return super(TutorialProposalDetail, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(TutorialProposalDetail, self).get_context_data(**kwargs)
+        context['title'] = _("Tutorial Proposal")
+        return context
+
+
+class TutorialProposalUpdate(SuccessMessageMixin, UpdateView):
+    model = TutorialProposal
+    form_class = TutorialProposalForm
+    template_name = "pyconkr/proposal_form.html"
+    success_message = _("Tutorial proposal successfully updated.")
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(TutorialProposal, pk=self.request.user.tutorialproposal.pk)
+
+    def get_context_data(self, **kwargs):
+        context = super(TutorialProposalUpdate, self).get_context_data(**kwargs)
+        context['title'] = _("Tutorial Proposal")
+        return context
+
+    def get_success_url(self):
+        return reverse('tutorial-proposal')

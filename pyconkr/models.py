@@ -252,6 +252,43 @@ class Proposal(models.Model):
                                 default='E')
 
 
+class TutorialProposal(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    title = models.CharField(max_length=255)
+    brief = models.TextField(max_length=1000)
+    desc = models.TextField(max_length=4000)
+    comment = models.TextField(max_length=4000, null=True, blank=True)
+
+    difficulty = models.CharField(max_length=1,
+                                  choices=(
+                                      ('B', _('Beginner')),
+                                      ('I', _('Intermediate')),
+                                      ('E', _('Experienced')),
+                                  ))
+
+    duration = models.CharField(max_length=1,
+                                choices=(
+                                    ('S', _('1 hour')),
+                                    ('M', _('2 hours')),
+                                    ('L', _('4 hours')),
+                                ))
+
+    language = models.CharField(max_length=1,
+                                choices=(
+                                    ('E', _('English')),
+                                    ('K', _('Korean')),
+                                ),
+                                default='E')
+
+    capacity = models.CharField(max_length=1,
+                                choices=(
+                                    ('S', _('10 people')),
+                                    ('M', _('45 people')),
+                                    ('L', _('100 people')),
+                                ))
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
