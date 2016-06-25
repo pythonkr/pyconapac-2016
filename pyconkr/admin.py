@@ -10,7 +10,7 @@ from modeltranslation.admin import TranslationAdmin
 from pyconkr.models import TutorialProposal
 from sorl.thumbnail.admin import AdminImageMixin
 from .models import (Room, Program, ProgramTime, ProgramDate, ProgramCategory,
-                     Speaker, Sponsor, SponsorLevel,
+                     Speaker, Sponsor, SponsorLevel, Preference,
                      Profile, Announcement, EmailToken, Proposal, Banner)
 from .actions import convert_proposal_to_program
 
@@ -158,3 +158,8 @@ class BannerAdmin(SummernoteModelAdmin, TranslationAdmin):
     ordering = ('id',)
     search_fields = ('name', 'url')
 admin.site.register(Banner, BannerAdmin)
+
+
+class PreferenceAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'program',)
+admin.site.register(Preference, PreferenceAdmin)

@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib.flatpages import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -12,7 +12,7 @@ from .views import RoomDetail
 from .views import AnnouncementList, AnnouncementDetail
 from .views import SpeakerList, SpeakerDetail, SpeakerUpdate
 from .views import SponsorList, SponsorDetail
-from .views import ProgramList, ProgramDetail, ProgramUpdate
+from .views import ProgramList, ProgramDetail, ProgramUpdate, PreferenceList
 from .views import ProposalCreate, ProposalUpdate, ProposalDetail
 from .views import ProfileDetail, ProfileUpdate
 from .views import login, login_req, login_mailsent, logout
@@ -35,6 +35,8 @@ urlpatterns = [
         SponsorDetail.as_view(), name='sponsor'),
     url(r'^programs/list/$',
         ProgramList.as_view(), name='programs'),
+    url(r'^programs/preference/$',
+        login_required(PreferenceList.as_view()), name='program_preference'),
     url(r'^program/(?P<pk>\d+)$',
         ProgramDetail.as_view(), name='program'),
     url(r'^program/(?P<pk>\d+)/edit$',
