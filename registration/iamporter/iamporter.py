@@ -80,6 +80,12 @@ class Iamporter(object):
         data = {k: v for k, v in params.items() if k in keys}
         return self._post(url, data)
 
+    def cancel(self, **params):
+        url = 'https://api.iamport.kr/payments/cancel/'
+        keys = ['merchant_uid', 'reason', ]
+        data = {k: v for k, v in params.items() if k in keys}
+        return self._post(url, data)
+
     def find_by_merchant_uid(self, merchant_uid):
         url = 'https://api.iamport.kr/payments/find/{merchant_uid}'.format(merchant_uid=merchant_uid)
 

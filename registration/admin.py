@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from django.core.mail import send_mail, send_mass_mail
-from modeltranslation.admin import TranslationAdmin
+from django.core.mail import send_mass_mail
+from django.shortcuts import render
+from constance import config
+from datetime import datetime
+from iamporter import get_access_token, Iamporter, IamporterError
 
 from .models import Registration, Option
+
 
 def send_bankpayment_alert_email(modeladmin, request, queryset):
     messages = []
@@ -24,6 +28,53 @@ def send_bankpayment_alert_email(modeladmin, request, queryset):
 
 send_bankpayment_alert_email.short_description = "Send Bank Payment Email"
 
+
+def cancel_registration(modeladmin, request, queryset):
+    results = []
+    now = datetime.now()
+    access_token = get_access_token(config.IMP_API_KEY, config.IMP_API_SECRET)
+    print access_token
+    imp_client = Iamporter(access_token)
+
+    for obj in queryset:
+        if obj.payment_method != 'card':
+            obj.cancel_reason = u'카드 결제만 취소 가능'
+            results.append(obj)
+            continue
+
+        if obj.payment_status != 'paid':
+            obj.cancel_reason = u'결제 완료만 취소 가능'
+            results.append(obj)
+            continue
+
+        try:
+            imp_params = dict(
+                merchant_uid=obj.merchant_uid,
+                reason=u'Cancel by admin',
+            )
+            imp_client.cancel(**imp_params)
+        except IOError:
+            obj.cancel_status = 'IOError'
+            results.append(obj)
+            continue
+        except IamporterError as e:
+            obj.cancel_status = e.code
+            obj.cancel_reason = e.message
+            results.append(obj)
+            continue
+
+        obj.canceled = now
+        obj.payment_status = 'cancelled'
+        obj.save(update_fields=['payment_status', 'canceled'])
+
+        obj.cancel_status = 'CANCELLED'
+        results.append(obj)
+
+    return render(request, 'registration/cancellation_result.html', {'results': results})
+
+cancel_registration.short_description = "Cancel registration"
+
+
 class OptionAdmin(admin.ModelAdmin):
     list_display = ('name', 'is_active', 'price')
     list_editable = ('is_active',)
@@ -39,5 +90,5 @@ class RegistrationAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email')
     readonly_fields = ('created', )
     ordering = ('id',)
-    actions = (send_bankpayment_alert_email,)
+    actions = (send_bankpayment_alert_email, cancel_registration)
 admin.site.register(Registration, RegistrationAdmin)
