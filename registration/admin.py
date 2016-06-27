@@ -36,7 +36,7 @@ class RegistrationAdmin(admin.ModelAdmin):
                     'payment_status', 'created', 'confirmed', 'canceled')
     list_editable = ('payment_status',)
     list_filter = ('option', 'payment_method', 'payment_status')
-    search_fields = ('name', )
+    search_fields = ('name', 'email')
     readonly_fields = ('created', )
     ordering = ('id',)
     actions = (send_bankpayment_alert_email,)
