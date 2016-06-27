@@ -30,10 +30,22 @@ send_bankpayment_alert_email.short_description = "Send Bank Payment Email"
 
 
 def cancel_registration(modeladmin, request, queryset):
+    messages = []
+    subject = u"PyCon APAC 2016 결제 취소 알림"
+    body = u"""
+안녕하세요. PyCon APAC 준비위원회입니다.
+
+결제가 취소되었음을 알려드립니다.
+결제 대행사 사정에 따라 다소 늦게 카드 취소가 이뤄질 수 있습니다.
+
+다른 문의 사항은 support@pycon.kr 로 메일 부탁드립니다.
+감사합니다.
+    """
+    from_email = "pycon@pycon.kr"
+
     results = []
     now = datetime.now()
     access_token = get_access_token(config.IMP_API_KEY, config.IMP_API_SECRET)
-    print access_token
     imp_client = Iamporter(access_token)
 
     for obj in queryset:
@@ -70,6 +82,10 @@ def cancel_registration(modeladmin, request, queryset):
         obj.cancel_status = 'CANCELLED'
         results.append(obj)
 
+        message = (subject, body, from_email, [obj.email])
+        messages.append(message)
+
+    send_mass_mail(messages, fail_silently=False)
     return render(request, 'registration/cancellation_result.html', {'results': results})
 
 cancel_registration.short_description = "Cancel registration"
