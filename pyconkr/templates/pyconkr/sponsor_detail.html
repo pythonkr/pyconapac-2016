@@ -2,6 +2,7 @@
 {% load i18n %}
 
 {% block head-title %}{{ block.super }} {% trans "Sponsor" %} | {{ sponsor.name }}{% endblock %}
+{% block og-title %}{{ block.super }} {% trans "Sponsor" %} | {{ sponsor.name }}{% endblock %}
 {% block nav %}{% include "nav.html" with title=sponsor.name %}{% endblock %}
 {% block title %}{{ sponsor.name }}{% endblock %}
 
