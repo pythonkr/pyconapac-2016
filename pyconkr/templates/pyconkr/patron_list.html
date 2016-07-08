@@ -3,6 +3,8 @@
 {% load thumbnail %}
 {% load i18n %}
 
+{% block title %}{% trans "Patrons" %}{% endblock %}
+
 {% block content %}
 <ul class="patrons media-list">
 {% for obj in object_list %}
@@ -17,10 +19,15 @@
     <div class="media-body">
       <h4 class="media-heading">
         {{ obj.name }}
+        {% if obj.company %}
+        / {{ obj.company }}
+        {% endif %}
       </h4>
-      <span class="desc">
-        {{ obj.user.profile.bio|striptags|truncatechars:100|safe }}
-      </span>
+      {% if obj.user.profile.bio %}
+      <div class="bio">
+        {{ obj.user.profile.bio|safe }}
+      </div>
+      {% endif %}
     </div>
   </li>
 {% endfor %}
