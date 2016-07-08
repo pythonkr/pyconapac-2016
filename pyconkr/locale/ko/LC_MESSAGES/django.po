@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-08 21:12+0900\n"
-"PO-Revision-Date: 2016-07-08 21:13+0900\n"
+"POT-Creation-Date: 2016-07-08 21:35+0900\n"
+"PO-Revision-Date: 2016-07-08 21:37+0900\n"
 "Last-Translator:   <ez.amiryo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr "알림"
 msgid "Sponsors"
 msgstr "후원사 목록"
 
-#: context_processors.py:27
+#: context_processors.py:27 templates/pyconkr/patron_list.html.py:6
 msgid "Patrons"
 msgstr "후원자"
 
@@ -329,6 +329,10 @@ msgstr ""
 "파이썬 웹 프레임워크 <a href='https://www.djangoproject.com/'>Django</a>로 만들었습니다."
 
 #: templates/footer.html:21
+msgid "Hosted on Naver D2"
+msgstr "홈페이지 호스팅은 <a href=\"http://d2.naver.com/\">Naver D2</a>의 지원을 받고 있습니다."
+
+#: templates/footer.html:27
 msgid "Stay connected"
 msgstr "더 알아보기"
 

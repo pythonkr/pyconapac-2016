@@ -585,6 +585,12 @@ input[type=file] {
     line-height: 44px;
 }
 
+.footer .hosting {
+    width: 64px;
+    height: auto;
+    display: block;
+}
+
 .social-badges {
     display: inline-block;
     overflow: hidden;

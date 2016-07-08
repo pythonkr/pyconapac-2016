@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-08 21:12+0900\n"
-"PO-Revision-Date: 2016-07-08 21:13+0900\n"
+"POT-Creation-Date: 2016-07-08 21:35+0900\n"
+"PO-Revision-Date: 2016-07-08 21:36+0900\n"
 "Last-Translator:   <ez.amiryo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "Announcements"
 msgid "Sponsors"
 msgstr "Sponsors"
 
-#: context_processors.py:27
+#: context_processors.py:27 templates/pyconkr/patron_list.html.py:6
 msgid "Patrons"
 msgstr "Patrons"
 
@@ -327,6 +327,10 @@ msgid "Powered by Django"
 msgstr "Powered by Django"
 
 #: templates/footer.html:21
+msgid "Hosted on Naver D2"
+msgstr "Hosted on <a href=\"http://d2.naver.com/\">Naver D2</a>"
+
+#: templates/footer.html:27
 msgid "Stay connected"
 msgstr "Stay connected"
 
