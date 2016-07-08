@@ -23,21 +23,22 @@ def default(request):
                 ('pyconkr', {'title': _('About PyCon APAC 2016')}),
                 ('coc', {'title': _('Code of Conduct')}),
                 ('announcements', {'title': _('Announcements')}),
-                ('sponsors', {'title': _('Sponsors')}),
+                ('sponsor', {'title': _('Sponsors')}),
+                ('patron', {'title': _('Patrons')}),
                 ('sponsorship', {'title': _('Sponsorship')}),
                 ('staff', {'title': _('Staff')}),
                 ('contact', {'title': _('Contact')}),
             ]),
         }),
-        ('programs', {
+        ('program', {
             'title': _('Programs'),
             'icon': 'calendar',
             'submenu': OrderedDict([
                 ('schedule', {'title': _('Schedule')}),
                 ('list', {'title': _('Program list')}),
                 ('preference', {'title': _('Preference survey')}),
-                ('keynotes', {'title': _('Keynotes')}),
-                ('speakers', {'title': _('Speakers')}),
+                ('keynote', {'title': _('Keynotes')}),
+                ('speaker', {'title': _('Speakers')}),
                 ('lightning_talk', {'title': _('Lightning talk')}),
                 ('ost', {'title': _('Open Spaces')}),
             ]),
@@ -76,18 +77,19 @@ def default(request):
     for k, v in menu.iteritems():
         path = '/{}/'.format(k)
 
-        if request.path.endswith(path):
+        if request.path.startswith(path):
             v['active'] = True
             title = v['title']
 
-        if 'submenu' in v:
-            for sk, sv in v['submenu'].iteritems():
-                subpath = '{}{}/'.format(path, sk)
+            if 'submenu' in v:
+                for sk, sv in v['submenu'].iteritems():
+                    subpath = '{}{}/'.format(path, sk)
 
-                if request.path.endswith(subpath):
-                    sv['active'] = True
-                    title = sv['title']
-                    submenu = v['submenu']
+                    if request.path.startswith(subpath):
+                        print 'got second one'
+                        sv['active'] = True
+                        title = sv['title']
+                        submenu = v['submenu']
 
     now = datetime.now()
     banners = Banner.objects.filter(begin__lte=now, end__gte=now)

@@ -63,7 +63,7 @@
       <colgroup>
         <col width="*">
         {% for r in rooms %}
-        <col width="33%">
+        <col width="{{ width }}%">
         {% endfor %}
       </colgroup>
       <thead>
@@ -78,7 +78,7 @@
         <th nowrap>{{ t.begin|date:"H:i" }}</th>
         {% for r, s in t_.items %}
         {% if s %}
-        <td class="cell"
+        <td class="cell {% if s.rooms.all.count > 1 %}cell-span{% endif %}"
           colspan="{{ s.rooms.all|length }}"
           rowspan="{{ s.times.all|length }}">
           <div class="program">

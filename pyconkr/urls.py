@@ -11,7 +11,7 @@ from .views import index, schedule, robots
 from .views import RoomDetail
 from .views import AnnouncementList, AnnouncementDetail
 from .views import SpeakerList, SpeakerDetail, SpeakerUpdate
-from .views import SponsorList, SponsorDetail
+from .views import SponsorList, SponsorDetail, PatronList
 from .views import ProgramList, ProgramDetail, ProgramUpdate, PreferenceList
 from .views import ProposalCreate, ProposalUpdate, ProposalDetail
 from .views import ProfileDetail, ProfileUpdate
@@ -29,25 +29,27 @@ urlpatterns = [
         AnnouncementList.as_view(), name='announcements'),
     url(r'^about/announcement/(?P<pk>\d+)$',
         AnnouncementDetail.as_view(), name='announcement'),
-    url(r'^about/sponsors/$',
+    url(r'^about/sponsor/$',
         SponsorList.as_view(), name='sponsors'),
+    url(r'^about/patron/$',
+        PatronList.as_view(), name='patrons'),
     url(r'^about/sponsor/(?P<slug>\w+)$',
         SponsorDetail.as_view(), name='sponsor'),
-    url(r'^programs/list/$',
+    url(r'^programs?/list/$',
         ProgramList.as_view(), name='programs'),
-    url(r'^programs/preference/$',
+    url(r'^programs?/preference/$',
         login_required(PreferenceList.as_view()), name='program_preference'),
     url(r'^program/(?P<pk>\d+)$',
         ProgramDetail.as_view(), name='program'),
     url(r'^program/(?P<pk>\d+)/edit$',
         ProgramUpdate.as_view(), name='program_edit'),
-    url(r'^programs/speakers/$',
+    url(r'^programs?/speakers?/$',
         SpeakerList.as_view(), name='speakers'),
-    url(r'^programs/speaker/(?P<slug>\w+)$',
+    url(r'^programs?/speakers?/(?P<slug>\w+)$',
         SpeakerDetail.as_view(), name='speaker'),
-    url(r'^programs/speaker/(?P<slug>\w+)/edit$',
+    url(r'^programs?/speakers?/(?P<slug>\w+)/edit$',
         SpeakerUpdate.as_view(), name='speaker_edit'),
-    url(r'^programs/schedule/$',
+    url(r'^programs?/schedule/$',
         schedule, name='schedule'),
     url(r'^cfp/propose/$',
         login_required(ProposalCreate.as_view()), name='propose'),

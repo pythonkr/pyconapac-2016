@@ -45,6 +45,9 @@ class ProgramCategory(models.Model):
     name = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=100, unique=True)
 
+    show_in_mobile = models.BooleanField(default=True)
+    show_in_list = models.BooleanField(default=True)
+
     def __unicode__(self):
         return self.name
 

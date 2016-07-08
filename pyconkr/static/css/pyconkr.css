@@ -475,6 +475,10 @@ input[type=file] {
     text-align: left;
 }
 
+.timetable .table .cell-span {
+    text-align: center;
+}
+
 .timetable .title {
     font-size: 1.1rem;
 }
@@ -517,6 +521,17 @@ input[type=file] {
 
 .speakers h4 .badges {
     margin-left: 10px;
+}
+
+.patrons img {
+    width: 64px;
+    height: 64px;
+    border: 1px solid #E7E7E7;
+    border-radius: 100px;
+}
+
+.patrons span {
+    font-size: 0.9rem;
 }
 
 .clear {

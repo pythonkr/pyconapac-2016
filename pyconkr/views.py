@@ -20,7 +20,7 @@ from .helper import sendEmailToken
 from .models import (Room, Program, ProgramDate, ProgramTime, ProgramCategory,
                      Speaker, Sponsor, Announcement, Preference, TutorialProposal,
                      EmailToken, Profile, Proposal)
-from registration.models import Registration
+from registration.models import Registration, Option
 
 logger = logging.getLogger(__name__)
 payment_logger = logging.getLogger('payment')
@@ -65,6 +65,7 @@ def schedule(request):
         'wide': wide,
         'narrow': narrow,
         'rooms': rooms,
+        'width': 100.0 / len(rooms),
     }
     return render(request, 'schedule.html', contexts)
 
@@ -83,6 +84,21 @@ class SponsorDetail(DetailView):
 
 class SpeakerList(ListView):
     model = Speaker
+
+
+class PatronList(ListView):
+    model = Registration
+    template_name = "pyconkr/patron_list.html"
+
+    def get_queryset(self):
+        queryset = super(PatronList, self).get_queryset()
+        patron_option = Option.objects.filter(name='Patron')
+
+        if patron_option:
+            patron_option = patron_option.first()
+            return queryset.filter(option=patron_option)
+
+        return None
 
 
 class SpeakerDetail(DetailView):
