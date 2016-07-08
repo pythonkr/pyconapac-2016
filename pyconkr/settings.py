@@ -158,7 +158,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-FORCE_SCRIPT_NAME = '/'
+FORCE_SCRIPT_NAME = ''
 
 
 # Static files (CSS, JavaScript, Images)
