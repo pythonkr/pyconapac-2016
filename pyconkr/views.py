@@ -65,7 +65,7 @@ def schedule(request):
         'wide': wide,
         'narrow': narrow,
         'rooms': rooms,
-        'width': 100.0 / len(rooms),
+        'width': 100.0 / max(len(rooms), 1),
     }
     return render(request, 'schedule.html', contexts)
 
