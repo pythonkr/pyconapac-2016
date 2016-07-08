@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-25 17:44+0900\n"
-"PO-Revision-Date: 2016-06-25 17:46+0900\n"
+"POT-Creation-Date: 2016-07-08 21:12+0900\n"
+"PO-Revision-Date: 2016-07-08 21:13+0900\n"
 "Last-Translator:   <ez.amiryo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -41,108 +41,111 @@ msgid "Sponsors"
 msgstr "후원사 목록"
 
 #: context_processors.py:27
+msgid "Patrons"
+msgstr "후원자"
+
+#: context_processors.py:28
 msgid "Sponsorship"
 msgstr "후원 안내"
 
-#: context_processors.py:28
+#: context_processors.py:29
 msgid "Staff"
 msgstr "준비위원회 및 자원봉사자"
 
-#: context_processors.py:29
+#: context_processors.py:30
 msgid "Contact"
 msgstr "연락처"
 
-#: context_processors.py:33 templates/nav.html.py:61
+#: context_processors.py:34 templates/nav.html.py:61
 msgid "Programs"
 msgstr "프로그램"
 
-#: context_processors.py:36
+#: context_processors.py:37
 msgid "Schedule"
 msgstr "세부 일정"
 
-#: context_processors.py:37
+#: context_processors.py:38
 msgid "Program list"
 msgstr "프로그램 목록"
 
-#: context_processors.py:38
+#: context_processors.py:39
 msgid "Preference survey"
 msgstr "선호도 조사"
 
-#: context_processors.py:39
+#: context_processors.py:40
 msgid "Keynotes"
 msgstr "키노트"
 
-#: context_processors.py:40
+#: context_processors.py:41
 msgid "Speakers"
 msgstr "발표자"
 
-#: context_processors.py:41
+#: context_processors.py:42
 msgid "Lightning talk"
 msgstr "라이트닝 토크"
 
-#: context_processors.py:42
+#: context_processors.py:43
 msgid "Open Spaces"
 msgstr "열린 공간"
 
-#: context_processors.py:46
+#: context_processors.py:47
 msgid "Venue"
 msgstr "장소"
 
-#: context_processors.py:49
+#: context_processors.py:50
 msgid "Venue Map"
 msgstr "지도"
 
-#: context_processors.py:50
+#: context_processors.py:51
 msgid "Transportation"
 msgstr "교통 수단"
 
-#: context_processors.py:51
+#: context_processors.py:52
 msgid "Hotels"
 msgstr "숙박 안내"
 
-#: context_processors.py:52
+#: context_processors.py:53
 msgid "Restaurants"
 msgstr "식당 정보"
 
-#: context_processors.py:56 views.py:311 views.py:325
+#: context_processors.py:57 views.py:327 views.py:341
 msgid "Proposal"
 msgstr "발표안"
 
-#: context_processors.py:59
+#: context_processors.py:60
 msgid "Call for proposals"
 msgstr "발표자 모집"
 
-#: context_processors.py:60
+#: context_processors.py:61
 msgid "How to propose"
 msgstr "발표안 제안하기"
 
-#: context_processors.py:61
+#: context_processors.py:62
 msgid "Propose"
 msgstr "제출하기"
 
-#: context_processors.py:62
-#| msgid "Propose"
+#: context_processors.py:63
 msgid "Tutorial Propose"
 msgstr "튜토리얼 제안하기"
 
-#: context_processors.py:66 templates/pyconkr/profile_detail.html.py:31
+#: context_processors.py:67 templates/pyconkr/profile_detail.html.py:31
 msgid "Registration"
 msgstr "등록"
 
-#: context_processors.py:69
+#: context_processors.py:70
 msgid "Information"
 msgstr "정보"
 
-#: context_processors.py:70 templates/pyconkr/profile_detail.html.py:37
+#: context_processors.py:71 templates/pyconkr/profile_detail.html.py:37
 msgid "Purchase a ticket"
 msgstr "티켓 구입"
 
-#: context_processors.py:71
+#: context_processors.py:72
 msgid "Financial Aid"
 msgstr "자금 지원"
 
 #: forms.py:27 templates/login_notvalidtoken.html.py:7
-#: templates/nav.html.py:73 views.py:210
+#: templates/nav.html.py:73 views.py:226
 msgid "Login"
 msgstr "로그인"
 
@@ -166,7 +169,7 @@ msgstr "사진"
 
 #: forms.py:53 templates/nav.html.py:55 templates/nav.html.py:67
 #: templates/pyconkr/profile_form.html:5
-#: templates/pyconkr/speaker_detail.html:17 views.py:278
+#: templates/pyconkr/speaker_detail.html:17 views.py:294
 msgid "Profile"
 msgstr "프로필"
 
@@ -226,7 +229,7 @@ msgstr "언어"
 msgid "Capacity"
 msgstr "수용 인원"
 
-#: models.py:95
+#: models.py:98
 msgid "help-text-for-speaker-info"
 msgstr ""
 "<p>개인 페이지들을 JSON 형식으로 추가해주세요.</p>\n"
@@ -239,59 +242,59 @@ msgstr ""
 "</pre>\n"
 "<p>지원되는 페이지 목록은 <a href=\"http://lipis.github.io/bootstrap-social/\" target=\"_blank\">http://lipis.github.io/bootstrap-social/</a>에서 확인하실 수 있습니다.</p>\""
 
-#: models.py:143 models.py:236 models.py:265
+#: models.py:146 models.py:239 models.py:268
 msgid "Beginner"
 msgstr "초급"
 
-#: models.py:144 models.py:237 models.py:266
+#: models.py:147 models.py:240 models.py:269
 msgid "Intermediate"
 msgstr "중급"
 
-#: models.py:145 models.py:238 models.py:267
+#: models.py:148 models.py:241 models.py:270
 msgid "Experienced"
 msgstr "상급"
 
-#: models.py:150 models.py:243
+#: models.py:153 models.py:246
 msgid "25 mins"
 msgstr "25분"
 
-#: models.py:151 models.py:244
+#: models.py:154 models.py:247
 msgid "40 mins"
 msgstr "40분"
 
-#: models.py:156 models.py:249 models.py:279 settings.py:146
+#: models.py:159 models.py:252 models.py:282 settings.py:146
 msgid "English"
 msgstr "영어"
 
-#: models.py:157 models.py:250 models.py:280 settings.py:145
+#: models.py:160 models.py:253 models.py:283 settings.py:145
 msgid "Korean"
 msgstr "한국어"
 
-#: models.py:192
+#: models.py:195
 msgid "Not arranged yet"
 msgstr "아직 결정되지 않았습니다"
 
-#: models.py:272
+#: models.py:275
 msgid "1 hour"
 msgstr "1 시간"
 
-#: models.py:273
+#: models.py:276
 msgid "2 hours"
 msgstr "2 시간"
 
-#: models.py:274
+#: models.py:277
 msgid "4 hours"
 msgstr "4 시간"
 
-#: models.py:286
+#: models.py:289
 msgid "10 people"
 msgstr "10 명"
 
-#: models.py:287
+#: models.py:290
 msgid "45 people"
 msgstr "45 명"
 
-#: models.py:288
+#: models.py:291
 msgid "100 people"
 msgstr "100 명"
 
@@ -513,49 +516,47 @@ msgid "Speaker"
 msgstr "발표자"
 
 #: templates/pyconkr/sponsor_detail.html:4
+#: templates/pyconkr/sponsor_detail.html:5
 msgid "Sponsor"
 msgstr "후원사"
 
-#: views.py:156
+#: views.py:172
 msgid "Preferences are successfully updated."
 msgstr "선호도 등록이 완료되었습니다."
 
-#: views.py:223
+#: views.py:239
 msgid "Not valid token"
 msgstr "유효한 토큰 아님"
 
-#: views.py:245
+#: views.py:261
 msgid "Mail sent"
 msgstr "메일 발송 완료"
 
-#: views.py:285
+#: views.py:301
 msgid "Profile successfully updated."
 msgstr "프로필을 수정하였습니다."
 
-#: views.py:296
+#: views.py:312
 msgid "Update profile"
 msgstr "프로필 갱신"
 
-#: views.py:318
+#: views.py:334
 msgid "Proposal successfully updated."
 msgstr "발표안이 수정되었습니다."
 
-#: views.py:335
+#: views.py:351
 msgid "Proposal successfully created."
 msgstr "발표안을 제출하였습니다."
 
-#: views.py:356
-#| msgid "Proposal successfully created."
+#: views.py:372
 msgid "Tutorial proposal successfully created."
 msgstr "튜토리얼 제안을 제출하였습니다."
 
-#: views.py:387 views.py:402
-#| msgid "Proposal"
+#: views.py:403 views.py:418
 msgid "Tutorial Proposal"
 msgstr "튜토리얼 제안서"
 
-#: views.py:395
-#| msgid "Proposal successfully updated."
+#: views.py:411
 msgid "Tutorial proposal successfully updated."
 msgstr "튜토리얼 제안서가 수정되었습니다."
 
