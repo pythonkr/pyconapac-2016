@@ -42,7 +42,7 @@ msgstr "후원사 목록"
 
 #: context_processors.py:27 templates/pyconkr/patron_list.html.py:6
 msgid "Patrons"
-msgstr "후원자"
+msgstr "개인 후원자"
 
 #: context_processors.py:28
 msgid "Sponsorship"

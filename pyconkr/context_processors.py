@@ -77,7 +77,7 @@ def default(request):
     rp = request.path[len(settings.FORCE_SCRIPT_NAME):]
 
     for k, v in menu.iteritems():
-        path = '{}/'.format(k)
+        path = '/{}/'.format(k)
 
         if rp.startswith(path):
             v['active'] = True
@@ -88,7 +88,6 @@ def default(request):
                     subpath = '{}{}/'.format(path, sk)
 
                     if rp.startswith(subpath):
-                        print 'got second one'
                         sv['active'] = True
                         title = sv['title']
                         submenu = v['submenu']
