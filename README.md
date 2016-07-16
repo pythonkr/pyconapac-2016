@@ -3,6 +3,8 @@ A git repository for PyCon APAC/Korea 2016
 
 ## requirements
 
+[![Join the chat at https://gitter.im/pythonkr/pyconapac-2016](https://badges.gitter.im/pythonkr/pyconapac-2016.svg)](https://gitter.im/pythonkr/pyconapac-2016?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 - Python 2.7.9
 
 
