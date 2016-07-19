@@ -6,20 +6,31 @@
 {% block title %}
 <h1>
     {{ tutorial.title }}
-{% if tutorial.user == request.user %}
-    <a href="{% url 'tutorial-proposal-update' %}"><i class="fa fa-pencil-square-o"></i></a>
-{% endif %}
+    {% if tutorial.user == request.user %}
+    <a href="{% url 'tutorial-proposal-update' %}" class="btn btn-primary">
+        <i class="fa fa-pencil-square-o"></i> {% trans "Edit" %}
+    </a>
+    {% endif %}
 </h1>
 {% endblock %}
 {% block content %}
 <div class="row proposal-detail">
     <p>
+        <span class="label label-info">{{ tutorial.get_type_display }}</span>
         <span class="label label-info">{{ tutorial.get_difficulty_display }}</span>
         <span class="label label-info">{{ tutorial.get_duration_display }}</span>
         <span class="label label-info">{{ tutorial.get_language_display }}</span>
         <span class="label label-info">{{ tutorial.get_capacity_display }}</span>
     </p>
-    <div>{{ tutorial.brief|linebreaks }}</div>
+    <h3>{{ tutorial.user.profile.name }} <small>{{ tutorial.user.profile.organization }}</small></h3>
+    <div>
+        {{ tutorial.user.profile.bio|safe }}
+    </div>
+    <hr>
+    <div>
+        <h4>{% trans "Brief" %}</h4>
+        <div>{{ tutorial.brief|linebreaks }}</div>
+    </div>
     <hr>
     <div>
         <h4>{% trans "Detailed description" %}</h4>

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-08 21:35+0900\n"
-"PO-Revision-Date: 2016-07-08 21:36+0900\n"
+"POT-Creation-Date: 2016-07-19 21:57+0900\n"
+"PO-Revision-Date: 2016-07-19 21:59+0900\n"
 "Last-Translator:   <ez.amiryo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -80,52 +80,52 @@ msgid "Speakers"
 msgstr "Speakers"
 
 #: context_processors.py:42
+msgid "Sprint and Tutorial"
+msgstr "Sprint and Tutorial"
+
+#: context_processors.py:43
 msgid "Lightning talk"
 msgstr "Lightning talk"
 
-#: context_processors.py:43
+#: context_processors.py:44
 msgid "Open Spaces"
 msgstr "Open Spaces"
 
-#: context_processors.py:47
+#: context_processors.py:48
 msgid "Venue"
 msgstr "Venue"
 
-#: context_processors.py:50
+#: context_processors.py:51
 msgid "Venue Map"
 msgstr "Venue Map"
 
-#: context_processors.py:51
+#: context_processors.py:52
 msgid "Transportation"
 msgstr "Transportation"
 
-#: context_processors.py:52
+#: context_processors.py:53
 msgid "Hotels"
 msgstr "Hotels"
 
-#: context_processors.py:53
+#: context_processors.py:54
 msgid "Restaurants"
 msgstr "Restaurants"
 
-#: context_processors.py:57 views.py:327 views.py:341
+#: context_processors.py:58 views.py:327 views.py:341
 msgid "Proposal"
 msgstr "Proposal"
 
-#: context_processors.py:60
+#: context_processors.py:61
 msgid "Call for proposals"
 msgstr "Call for proposals"
 
-#: context_processors.py:61
+#: context_processors.py:62
 msgid "How to propose"
 msgstr "How to propose"
 
-#: context_processors.py:62
+#: context_processors.py:63
 msgid "Propose"
 msgstr "Propose"
-
-#: context_processors.py:63
-msgid "Tutorial Propose"
-msgstr "Tutorial Propose"
 
 #: context_processors.py:67 templates/pyconkr/profile_detail.html.py:31
 msgid "Registration"
@@ -176,7 +176,7 @@ msgstr "Profile"
 msgid "Additional information"
 msgstr "Additional information"
 
-#: forms.py:94
+#: forms.py:94 forms.py:146
 msgid "Title"
 msgstr "Title"
 
@@ -196,19 +196,19 @@ msgstr "Photography and recording is allowed"
 msgid "Description"
 msgstr "Description"
 
-#: forms.py:119 forms.py:146
+#: forms.py:119
 msgid "Proposal title (required)"
 msgstr "Proposal title (required)"
 
-#: forms.py:120 forms.py:147
+#: forms.py:120
 msgid "Brief (required)"
 msgstr "Brief (required)"
 
-#: forms.py:121 forms.py:148
+#: forms.py:121
 msgid "Detailed description (required)"
 msgstr "Detailed description (required)"
 
-#: forms.py:122 forms.py:149
+#: forms.py:122
 msgid "Comment to reviewers (optional)"
 msgstr "Comment to reviewers (optional)"
 
@@ -224,11 +224,24 @@ msgstr "Session duration"
 msgid "Language"
 msgstr "Language"
 
+#: forms.py:147
+msgid "Type"
+msgstr "Type"
+
+#: forms.py:148
+msgid "Brief"
+msgstr "Brief"
+
+#: forms.py:149 templates/pyconkr/proposal_detail.html.py:21
+#: templates/pyconkr/tutorialproposal_detail.html:25
+msgid "Detailed description"
+msgstr "Detailed description (required)"
+
 #: forms.py:154
 msgid "Capacity"
 msgstr "Capacity"
 
-#: models.py:98
+#: models.py:97
 msgid "help-text-for-speaker-info"
 msgstr ""
 "<p>Add your personal pages in JSON format.</p>\n"
@@ -241,67 +254,76 @@ msgstr ""
 "</pre>\n"
 "<p>Supported pages are listed in <a href=\"http://lipis.github.io/bootstrap-social/\" target=\"_blank\">http://lipis.github.io/bootstrap-social/</a></p>\""
 
-#: models.py:146 models.py:239 models.py:268
+#: models.py:145 models.py:238 models.py:277
 msgid "Beginner"
 msgstr "Beginner"
 
-#: models.py:147 models.py:240 models.py:269
+#: models.py:146 models.py:239 models.py:278
 msgid "Intermediate"
 msgstr "Intermediate"
 
-#: models.py:148 models.py:241 models.py:270
+#: models.py:147 models.py:240 models.py:279
 msgid "Experienced"
 msgstr "Experienced"
 
-#: models.py:153 models.py:246
+#: models.py:152 models.py:245
 msgid "25 mins"
 msgstr "25 mins"
 
-#: models.py:154 models.py:247
+#: models.py:153 models.py:246
 msgid "40 mins"
 msgstr "40 mins"
 
-#: models.py:159 models.py:252 models.py:282 settings.py:146
+#: models.py:158 models.py:251 models.py:291 settings.py:146
 msgid "English"
 msgstr "English"
 
-#: models.py:160 models.py:253 models.py:283 settings.py:145
+#: models.py:159 models.py:252 models.py:292 settings.py:145
 msgid "Korean"
 msgstr "Korean"
 
-#: models.py:195
+#: models.py:194
 msgid "Not arranged yet"
 msgstr "Not arranged yet"
 
-#: models.py:275
+#: models.py:271
+#| msgid "Tutorial Propose"
+msgid "Tutorial"
+msgstr "Tutorial"
+
+#: models.py:272
+msgid "Sprint"
+msgstr "Sprint"
+
+#: models.py:284
 msgid "1 hour"
 msgstr "1 hour"
 
-#: models.py:276
+#: models.py:285
 msgid "2 hours"
 msgstr "2 hours"
 
-#: models.py:277
+#: models.py:286
 msgid "4 hours"
 msgstr "4 hours"
 
-#: models.py:289
+#: models.py:298
 msgid "10 people"
 msgstr "10 people"
 
-#: models.py:290
+#: models.py:299
 msgid "45 people"
 msgstr "45 people"
 
-#: models.py:291
+#: models.py:300
 msgid "100 people"
 msgstr "100 people"
 
-#: settings.py:190
+#: settings.py:192
 msgid "PyCon APAC 2016 one-time login token"
 msgstr "PyCon APAC 2016 one-time login token"
 
-#: settings.py:191 templates/base.html.py:7 templates/base.html.py:13
+#: settings.py:193 templates/base.html.py:7 templates/base.html.py:13
 #: templates/base.html:14 templates/mail/token_html.html.py:2
 msgid "PyCon APAC 2016"
 msgstr "PyCon APAC 2016"
@@ -326,11 +348,11 @@ msgstr "PyCon APAC 2016 is a product of PyCon Korea Organizing Team"
 msgid "Powered by Django"
 msgstr "Powered by Django"
 
-#: templates/footer.html:21
+#: templates/footer.html:20
 msgid "Hosted on Naver D2"
 msgstr "Hosted on <a href=\"http://d2.naver.com/\">Naver D2</a>"
 
-#: templates/footer.html:27
+#: templates/footer.html:25
 msgid "Stay connected"
 msgstr "Stay connected"
 
@@ -418,6 +440,7 @@ msgid "Logout"
 msgstr "Logout"
 
 #: templates/pyconkr/announcement_detail.html:13
+#: templates/pyconkr/tutorialproposal_detail.html:31
 msgid "Back to list"
 msgstr "Back to list"
 
@@ -502,13 +525,7 @@ msgstr "Submit preferences"
 msgid "Up to 5 items can be selected."
 msgstr "Up to 5 items can be selected."
 
-#: templates/pyconkr/proposal_detail.html:21
-#: templates/pyconkr/tutorialproposal_detail.html:22
-msgid "Detailed description"
-msgstr "Detailed description (required)"
-
 #: templates/pyconkr/proposal_detail.html:26
-#: templates/pyconkr/tutorialproposal_detail.html:27
 msgid "Comment to reviewers"
 msgstr "Comment to reviewers (optional)"
 
@@ -524,6 +541,31 @@ msgstr "Speaker"
 #: templates/pyconkr/sponsor_detail.html:5
 msgid "Sponsor"
 msgstr "Sponsor"
+
+#: templates/pyconkr/tutorialproposal_detail.html:35
+msgid "Leave this event"
+msgstr "Leave this event"
+
+#: templates/pyconkr/tutorialproposal_detail.html:39
+msgid "Join this event"
+msgstr "Join this event"
+
+#: templates/pyconkr/tutorialproposal_detail.html:43
+msgid "Attendees"
+msgstr "Attendees"
+
+#: templates/pyconkr/tutorialproposal_detail.html:45
+msgid "No attendees, yet."
+msgstr "No attendees, yet."
+
+#: templates/pyconkr/tutorialproposal_list.html:7
+#| msgid "Proposal"
+msgid "Propose a tutorial"
+msgstr "Proposal a tutorial"
+
+#: templates/pyconkr/tutorialproposal_list.html:16
+msgid "Joined"
+msgstr "Joined"
 
 #: views.py:172
 msgid "Preferences are successfully updated."
@@ -553,17 +595,21 @@ msgstr "Proposal successfully updated."
 msgid "Proposal successfully created."
 msgstr "Proposal successfully created."
 
-#: views.py:372
+#: views.py:383
 msgid "Tutorial proposal successfully created."
 msgstr "Tutorial proposal successfully created."
 
-#: views.py:403 views.py:418
-msgid "Tutorial Proposal"
-msgstr "Tutorial Proposal"
-
-#: views.py:411
+#: views.py:423
 msgid "Tutorial proposal successfully updated."
 msgstr "Tutorial proposal successfully updated."
+
+#: views.py:430
+#| msgid "Update profile"
+msgid "Update tutorial"
+msgstr "Update tutorial"
+
+#~ msgid "Tutorial Proposal"
+#~ msgstr "Tutorial Proposal"
 
 #~ msgid "Registration receipt"
 #~ msgstr "Registration receipt"
