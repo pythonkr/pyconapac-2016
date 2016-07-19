@@ -371,9 +371,11 @@ class TutorialProposalList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(TutorialProposalList, self).get_context_data(**kwargs)
-        proposal = TutorialProposal.objects.filter(user=self.request.user)
-        context['show_propose_button'] = not proposal.exists()
-        context['joined_tutorials'] = TutorialCheckin.objects.filter(user=self.request.user).values_list('tutorial_id', flat=True)
+
+        if self.request.user.is_authenticated():
+            proposal = TutorialProposal.objects.filter(user=self.request.user)
+            context['show_propose_button'] = not proposal.exists()
+            context['joined_tutorials'] = TutorialCheckin.objects.filter(user=self.request.user).values_list('tutorial_id', flat=True)
         return context
 
 
@@ -400,10 +402,8 @@ class TutorialProposalCreate(SuccessMessageMixin, CreateView):
 
 
 class TutorialProposalDetail(DetailView):
+    model = TutorialProposal
     context_object_name = 'tutorial'
-
-    def get_object(self, queryset=None):
-        return get_object_or_404(TutorialProposal, pk=self.request.user.tutorialproposal.pk)
 
     def get_context_data(self, **kwargs):
         context = super(TutorialProposalDetail, self).get_context_data(**kwargs)
