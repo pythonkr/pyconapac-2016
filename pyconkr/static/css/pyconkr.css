@@ -349,7 +349,7 @@ input[type=file] {
 .sponsors li {
     list-style: none;
     display: inline-block;
-    width: 45%;
+    width: 30%;
     max-width: 240px;
     padding: 3%;
     box-sizing: border-box;
@@ -366,12 +366,17 @@ input[type=file] {
 
 .sponsors .sponsor-1 {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
 }
 
 .sponsors .sponsor-2 {
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
+}
+
+.sponsors .sponsor-3 {
+    width: 45%;
+    max-width: 360px;
 }
 
 .banners {
