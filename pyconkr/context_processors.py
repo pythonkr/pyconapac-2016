@@ -61,7 +61,6 @@ def default(request):
                 ('cfp', {'title': _('Call for proposals')}),
                 ('howto', {'title': _('How to propose')}),
                 ('propose', {'title': _('Propose')}),
-                ('tutorial-propose', {'title': _('Tutorial Propose')}),
             ]),
         }),
         ('registration', {
@@ -85,18 +84,20 @@ def default(request):
             title = v['title']
 
             if 'submenu' in v:
+                submenu = v['submenu']
+
                 for sk, sv in v['submenu'].iteritems():
-                    subpath = '{}{}/'.format(path, sk)
+                    sv['path'] = '{}{}/'.format(path, sk)
+                    subpath = sv['path'][:-2]
 
                     if rp.startswith(subpath):
                         sv['active'] = True
                         title = sv['title']
-                        submenu = v['submenu']
 
     now = datetime.now()
     banners = Banner.objects.filter(begin__lte=now, end__gte=now)
 
-    return {
+    c = {
         'menu': menu,
         'submenu': submenu,
         'banners': banners,
@@ -104,6 +105,7 @@ def default(request):
         'domain': settings.DOMAIN,
         'base_content': base_content.content if base_content else '',
     }
+    return c
 
 
 def profile(request):

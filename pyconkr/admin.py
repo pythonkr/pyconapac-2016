@@ -7,11 +7,11 @@ from django.db import models
 from django_summernote.admin import SummernoteModelAdmin
 from django_summernote.widgets import SummernoteWidget
 from modeltranslation.admin import TranslationAdmin
-from pyconkr.models import TutorialProposal
 from sorl.thumbnail.admin import AdminImageMixin
 from .models import (Room, Program, ProgramTime, ProgramDate, ProgramCategory,
                      Speaker, Sponsor, SponsorLevel, Preference,
-                     Profile, Announcement, EmailToken, Proposal, Banner)
+                     Profile, Announcement, EmailToken, Proposal, Banner,
+                     TutorialProposal, TutorialCheckin, )
 from .actions import convert_proposal_to_program
 
 
@@ -163,3 +163,8 @@ admin.site.register(Banner, BannerAdmin)
 class PreferenceAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'program',)
 admin.site.register(Preference, PreferenceAdmin)
+
+
+class TutorialCheckinAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'tutorial',)
+admin.site.register(TutorialCheckin, TutorialCheckinAdmin)

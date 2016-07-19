@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.core.urlresolvers import reverse
@@ -254,6 +253,9 @@ class Proposal(models.Model):
                                 ),
                                 default='E')
 
+    def __unicode__(self):
+        return self.title
+
 
 class TutorialProposal(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -297,6 +299,9 @@ class TutorialProposal(models.Model):
                                     ('M', _('45 people')),
                                     ('L', _('100 people')),
                                 ))
+
+    def __unicode__(self):
+        return self.title
 
     def get_absolute_url(self):
         return reverse('tutorial', args=[self.id])
@@ -350,3 +355,11 @@ class Preference(models.Model):
 
     class Meta:
         unique_together = ('user', 'program')
+
+
+class TutorialCheckin(models.Model):
+    user = models.ForeignKey(User)
+    tutorial = models.ForeignKey(TutorialProposal)
+
+    class Meta:
+        unique_together = ('user', 'tutorial')

@@ -184,9 +184,25 @@ input[type=file] {
     background-color: white;
 }
 
-.navbar .profile-thumb {
+.nav .profile-thumb {
     border-radius: 50%;
     margin-right: 0.2rem;
+}
+
+.attendees li {
+    list-style: none;
+    display: inline-block;
+    margin: 5px;
+}
+
+.attendees li .profile-thumb {
+    width: 32px;
+    height: auto;
+    border-radius: 32px;
+}
+
+.attendees li .name {
+    font-size: 0.8rem;
 }
 
 .wrap {

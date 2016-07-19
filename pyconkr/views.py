@@ -19,7 +19,7 @@ from .forms import (EmailLoginForm, SpeakerForm, ProgramForm,
 from .helper import sendEmailToken
 from .models import (Room, Program, ProgramDate, ProgramTime, ProgramCategory,
                      Speaker, Sponsor, Announcement, Preference, TutorialProposal,
-                     EmailToken, Profile, Proposal)
+                     EmailToken, Profile, Proposal, TutorialCheckin)
 from registration.models import Registration, Option
 
 logger = logging.getLogger(__name__)
@@ -96,7 +96,7 @@ class PatronList(ListView):
 
         if patron_option:
             patron_option = patron_option.first()
-            return queryset.filter(option=patron_option,payment_status='paid').order_by('-additional_price')
+            return queryset.filter(option=patron_option, payment_status='paid').order_by('-additional_price')
 
         return None
 
@@ -369,6 +369,13 @@ class ProposalCreate(SuccessMessageMixin, CreateView):
 class TutorialProposalList(ListView):
     model = TutorialProposal
 
+    def get_context_data(self, **kwargs):
+        context = super(TutorialProposalList, self).get_context_data(**kwargs)
+        proposal = TutorialProposal.objects.filter(user=self.request.user)
+        context['show_propose_button'] = not proposal.exists()
+        context['joined_tutorials'] = TutorialCheckin.objects.filter(user=self.request.user).values_list('tutorial_id', flat=True)
+        return context
+
 
 class TutorialProposalCreate(SuccessMessageMixin, CreateView):
     form_class = TutorialProposalForm
@@ -382,7 +389,7 @@ class TutorialProposalCreate(SuccessMessageMixin, CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         proposal = TutorialProposal.objects.filter(user=request.user)
-        if not proposal.exists():
+        if proposal.exists():
             return redirect('tutorial', proposal.first().id)
         if request.user.profile.name == '':
             return redirect('profile_edit')
@@ -393,14 +400,19 @@ class TutorialProposalCreate(SuccessMessageMixin, CreateView):
 
 
 class TutorialProposalDetail(DetailView):
-    context_object_name = 'proposal'
+    context_object_name = 'tutorial'
 
     def get_object(self, queryset=None):
         return get_object_or_404(TutorialProposal, pk=self.request.user.tutorialproposal.pk)
 
     def get_context_data(self, **kwargs):
         context = super(TutorialProposalDetail, self).get_context_data(**kwargs)
-        context['title'] = _("Tutorial Proposal")
+
+        if self.request.user.is_authenticated():
+            context['attendees'] = \
+                TutorialCheckin.objects.filter(tutorial=self.object)
+            context['joined'] = \
+                TutorialCheckin.objects.filter(user=self.request.user, tutorial=self.object).exists()
         return context
 
 
@@ -415,8 +427,20 @@ class TutorialProposalUpdate(SuccessMessageMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(TutorialProposalUpdate, self).get_context_data(**kwargs)
-        context['title'] = _("Tutorial Proposal")
+        context['title'] = _("Update tutorial")
         return context
 
     def get_success_url(self):
         return reverse('tutorial', args=(self.object.id,))
+
+
+def tutorial_join(request, pk):
+    tutorial = get_object_or_404(TutorialProposal, pk=pk)
+
+    if request.GET.get('leave'):
+        TutorialCheckin.objects.filter(user=request.user, tutorial=tutorial).delete()
+    else:
+        tc = TutorialCheckin(user=request.user, tutorial=tutorial)
+        tc.save()
+
+    return redirect('tutorial', pk)

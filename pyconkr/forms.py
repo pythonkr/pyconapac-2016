@@ -136,17 +136,17 @@ class TutorialProposalForm(forms.ModelForm):
 
     class Meta:
         model = TutorialProposal
-        fields = ('title', 'brief', 'desc', 'comment', 'difficulty', 'duration', 'language', 'capacity', )
+        fields = ('title', 'type', 'brief', 'desc', 'difficulty', 'duration', 'language', 'capacity', )
         widgets = {
             'desc': SummernoteInplaceWidget(),
             'comment': SummernoteInplaceWidget(),
         }
 
         labels = {
-            'title': _('Proposal title (required)'),
-            'brief': _('Brief (required)'),
-            'desc': _('Detailed description (required)'),
-            'comment': _('Comment to reviewers (optional)'),
+            'title': _('Title'),
+            'type': _('Type'),
+            'brief': _('Brief'),
+            'desc': _('Detailed description'),
 
             'difficulty': _('Session difficulty'),
             'duration': _('Session duration'),
