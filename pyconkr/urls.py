@@ -5,7 +5,7 @@ from django.contrib.flatpages import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth.decorators import login_required
 from pyconkr.views import TutorialProposalCreate, TutorialProposalDetail, \
-    TutorialProposalUpdate
+    TutorialProposalUpdate, TutorialProposalList
 
 from .views import index, schedule, robots
 from .views import RoomDetail
@@ -51,6 +51,10 @@ urlpatterns = [
         SpeakerUpdate.as_view(), name='speaker_edit'),
     url(r'^programs?/schedule/$',
         schedule, name='schedule'),
+    url(r'^programs?/tutorials?/$',
+        TutorialProposalList.as_view(), name='tutorials'),
+    url(r'^programs?/tutorial/(?P<pk>\d+)$',
+        login_required(TutorialProposalDetail.as_view()), name='tutorial'),
     url(r'^cfp/propose/$',
         login_required(ProposalCreate.as_view()), name='propose'),
     url(r'^cfp/tutorial-propose/$',
@@ -59,8 +63,6 @@ urlpatterns = [
         login_required(ProposalDetail.as_view()), name='proposal'),
     url(r'^profile/proposal/edit$',
         login_required(ProposalUpdate.as_view()), name='proposal-update'),
-    url(r'^profile/tutorial-proposal/$',
-        login_required(TutorialProposalDetail.as_view()), name='tutorial-proposal'),
     url(r'^profile/tutorial-proposal/edit$',
         login_required(TutorialProposalUpdate.as_view()), name='tutorial-proposal-update'),
     url(r'^profile$',

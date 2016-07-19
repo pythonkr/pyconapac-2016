@@ -39,6 +39,7 @@ def default(request):
                 ('preference', {'title': _('Preference survey')}),
                 ('keynote', {'title': _('Keynotes')}),
                 ('speaker', {'title': _('Speakers')}),
+                ('tutorials', {'title': _('Sprint and Tutorial')}),
                 ('lightning_talk', {'title': _('Lightning talk')}),
                 ('ost', {'title': _('Open Spaces')}),
             ]),

@@ -263,6 +263,13 @@ class TutorialProposal(models.Model):
     desc = models.TextField(max_length=4000)
     comment = models.TextField(max_length=4000, null=True, blank=True)
 
+    type = models.CharField(max_length=1,
+                            default='T',
+                            choices=(
+                                ('T', _('Tutorial')),
+                                ('S', _('Sprint')),
+                            ))
+
     difficulty = models.CharField(max_length=1,
                                   choices=(
                                       ('B', _('Beginner')),
@@ -290,6 +297,9 @@ class TutorialProposal(models.Model):
                                     ('M', _('45 people')),
                                     ('L', _('100 people')),
                                 ))
+
+    def get_absolute_url(self):
+        return reverse('tutorial', args=[self.id])
 
 
 class Profile(models.Model):

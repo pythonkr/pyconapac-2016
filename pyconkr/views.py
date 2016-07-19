@@ -366,6 +366,10 @@ class ProposalCreate(SuccessMessageMixin, CreateView):
         return reverse('proposal')
 
 
+class TutorialProposalList(ListView):
+    model = TutorialProposal
+
+
 class TutorialProposalCreate(SuccessMessageMixin, CreateView):
     form_class = TutorialProposalForm
     template_name = "pyconkr/proposal_form.html"
@@ -377,14 +381,15 @@ class TutorialProposalCreate(SuccessMessageMixin, CreateView):
         return super(TutorialProposalCreate, self).form_valid(form)
 
     def dispatch(self, request, *args, **kwargs):
-        if TutorialProposal.objects.filter(user=request.user).exists():
-            return redirect('tutorial-proposal')
+        proposal = TutorialProposal.objects.filter(user=request.user)
+        if not proposal.exists():
+            return redirect('tutorial', proposal.first().id)
         if request.user.profile.name == '':
             return redirect('profile_edit')
         return super(TutorialProposalCreate, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('tutorial-proposal')
+        return reverse('tutorial', args=(self.object.id,))
 
 
 class TutorialProposalDetail(DetailView):
@@ -392,11 +397,6 @@ class TutorialProposalDetail(DetailView):
 
     def get_object(self, queryset=None):
         return get_object_or_404(TutorialProposal, pk=self.request.user.tutorialproposal.pk)
-
-    def dispatch(self, request, *args, **kwargs):
-        if not TutorialProposal.objects.filter(user=request.user).exists():
-            return redirect('tutorial-propose')
-        return super(TutorialProposalDetail, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(TutorialProposalDetail, self).get_context_data(**kwargs)
@@ -419,4 +419,4 @@ class TutorialProposalUpdate(SuccessMessageMixin, UpdateView):
         return context
 
     def get_success_url(self):
-        return reverse('tutorial-proposal')
+        return reverse('tutorial', args=(self.object.id,))
