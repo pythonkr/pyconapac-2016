@@ -58,7 +58,7 @@
 <ul class="attendees">
 {% for attend in attendees %}
     <li>
-        <img class="profile-thumb" src="/media/{{ user.profile.image }}">
+        <img class="profile-thumb" src="/media/{{ attend.user.profile.image }}">
         <span class="name">{{ attend.user.profile.name }}</span>
     </li>
 {% endfor %}
