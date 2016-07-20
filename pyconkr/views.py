@@ -407,12 +407,15 @@ class TutorialProposalDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(TutorialProposalDetail, self).get_context_data(**kwargs)
+        context['attendees'] = \
+            TutorialCheckin.objects.filter(tutorial=self.object)
 
         if self.request.user.is_authenticated():
-            context['attendees'] = \
-                TutorialCheckin.objects.filter(tutorial=self.object)
             context['joined'] = \
                 TutorialCheckin.objects.filter(user=self.request.user, tutorial=self.object).exists()
+        else:
+            context['joined'] = False
+
         return context
 
 

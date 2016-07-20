@@ -54,7 +54,7 @@ urlpatterns = [
     url(r'^programs?/tutorials/$',
         TutorialProposalList.as_view(), name='tutorials'),
     url(r'^programs?/tutorial/(?P<pk>\d+)$',
-        login_required(TutorialProposalDetail.as_view()), name='tutorial'),
+        TutorialProposalDetail.as_view(), name='tutorial'),
     url(r'^programs?/tutorial/(?P<pk>\d+)/join/$',
         login_required(tutorial_join), name='tutorial-join'),
     url(r'^cfp/propose/$',
