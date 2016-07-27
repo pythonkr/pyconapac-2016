@@ -265,7 +265,7 @@ class TutorialProposal(models.Model):
 
     title = models.CharField(max_length=255)
     brief = models.TextField(max_length=1000)
-    desc = models.TextField(max_length=4000)
+    desc = models.TextField()
     comment = models.TextField(max_length=4000, null=True, blank=True)
 
     type = models.CharField(max_length=1,
