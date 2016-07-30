@@ -58,7 +58,11 @@
 <ul class="attendees">
 {% for attend in attendees %}
     <li>
+        {% if user.profile.image %}
         <img class="profile-thumb" src="/media/{{ attend.user.profile.image }}">
+        {% else %}
+        <span class="glyphicon glyphicon-user"></span>
+        {% endif %}
         <span class="name">{{ attend.user.profile.name }}</span>
     </li>
 {% endfor %}
