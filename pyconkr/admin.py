@@ -15,6 +15,19 @@ from .models import (Room, Program, ProgramTime, ProgramDate, ProgramCategory,
 from .actions import convert_proposal_to_program
 
 
+class SummernoteWidgetWithCustomToolbar(SummernoteWidget):
+    def template_contexts(self):
+        contexts = super(SummernoteWidgetWithCustomToolbar, self).template_contexts()
+        contexts['width'] = '960px'
+        contexts['toolbar'] = [
+            ['style', ['style', 'bold', 'italic', 'underline', 'clear']],
+            ['para', ['ul', 'ol', 'height']],
+            ['insert', ['link', 'hr', 'picture', 'video']],
+            ['misc', ['fullscreen', 'codeview']],
+        ]
+        return contexts
+
+
 class RoomAdmin(SummernoteModelAdmin, TranslationAdmin):
     list_display = ('id', 'name',)
     list_editable = ('name',)
@@ -41,6 +54,7 @@ admin.site.register(ProgramCategory, ProgramCategoryAdmin)
 
 
 class SponsorAdmin(SummernoteModelAdmin, TranslationAdmin):
+    formfield_overrides = {models.TextField: {'widget': SummernoteWidgetWithCustomToolbar}}
     list_display = ('id', 'slug', 'name',)
     ordering = ('name',)
     list_editable = ('slug', 'name',)
@@ -84,19 +98,6 @@ class EmailTokenAdmin(admin.ModelAdmin):
     list_display = ('email', 'token', 'created')
     search_fields = ('email',)
 admin.site.register(EmailToken, EmailTokenAdmin)
-
-
-class SummernoteWidgetWithCustomToolbar(SummernoteWidget):
-    def template_contexts(self):
-        contexts = super(SummernoteWidgetWithCustomToolbar, self).template_contexts()
-        contexts['width'] = '960px'
-        contexts['toolbar'] = [
-            ['style', ['style', 'bold', 'italic', 'underline', 'clear']],
-            ['para', ['ul', 'ol', 'height']],
-            ['insert', ['link', 'hr', 'picture', 'video']],
-            ['misc', ['fullscreen', 'codeview']],
-        ]
-        return contexts
 
 
 class FlatPageAdmin(TranslationAdmin):
