@@ -13,7 +13,7 @@ from models import Option, Registration
 User = get_user_model()
 
 
-@override_config(REGISTRATION_OPEN=datetime.date.today(), REGISTRATION_CLOSE=datetime.date.today()+datetime.timedelta(days=1))
+@override_config(REGISTRATION_OPEN=datetime.date.today()-datetime.timedelta(days=1), REGISTRATION_CLOSE=datetime.date.today()+datetime.timedelta(days=1))
 class RegistrationTest(TestCase):
     def test_patron_has_additional_price(self):
         option = Option.objects.create(name='patron', price=1000, has_additional_price=True, is_active=True)

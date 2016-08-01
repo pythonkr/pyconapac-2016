@@ -54,7 +54,6 @@ def status(request):
 
 @login_required
 def payment(request, option_id):
-
     if not _is_ticket_open():
         return redirect('registration_index')
 
@@ -76,7 +75,6 @@ def payment(request, option_id):
         form = RegistrationForm(initial={'email': request.user.email,
                                          'option': product,
                                          'base_price': product.price})
-
     return render(request, 'registration/payment.html', {
         'title': _('Registration'),
         'form': form,
