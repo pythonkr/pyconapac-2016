@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 import requests
+import datetime
 
 
 class IamporterError(Exception):
     def __init__(self, code=None, message=None):
         self.code = code
         self.message = message
-
+        return super(IamporterError, self).__init__('{code}: {message}'.format(code=code, message=message))
 
 def get_access_token(api_key, api_secret):
     url = 'https://api.iamport.kr/users/getToken'
@@ -16,7 +17,7 @@ def get_access_token(api_key, api_secret):
     ))
 
     if response.status_code != 200:
-        raise IOError  # TODO
+        raise IamporterError(response.status_code, response.content)
 
     # TODO : validate expire time
     result = response.json()
@@ -45,7 +46,7 @@ class Iamporter(object):
 
     def _parse_response(self, response):
         if response.status_code != 200 or not response.content:
-            raise IOError
+            raise IamporterError(response.status_code, response.content)
 
         result = response.json()
 
@@ -88,5 +89,24 @@ class Iamporter(object):
 
     def find_by_merchant_uid(self, merchant_uid):
         url = 'https://api.iamport.kr/payments/find/{merchant_uid}'.format(merchant_uid=merchant_uid)
-
         return self._get(url)
+
+    def get_paid_list(self, since, until=datetime.datetime.now()):
+        url = 'https://api.iamport.kr/payments/status/{payment_status}'.format(payment_status='paid')
+        since = int(since.strftime('%s'))
+        until = int(until.strftime('%s'))
+        data = {
+                'from': since,
+                'to': until,
+                'page': 1,
+               }
+        full_list = []
+        while True:
+            result = self._get(url, data)
+            full_list.extend(result['list'])
+            if result['next'] != 0:
+                data['page'] += 1
+                continue
+            else:
+                break
+        return full_list
