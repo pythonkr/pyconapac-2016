@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from django.http import HttpResponse
 from django.core.mail import send_mass_mail
 from django.shortcuts import render
 from constance import config
@@ -91,22 +90,6 @@ def cancel_registration(modeladmin, request, queryset):
 
 cancel_registration.short_description = "Cancel registration"
 
-def export_registrations(modeladmin, request, queryset):
-    for obj in queryset:
-        message = (subject, body, from_email, [obj.email])
-        messages.append(message)
-
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="pyconapac2016.csv"'
-
-    writer = csv.writer(response)
-    writer.writerow(['Name', 'Email', 'Company', 'paymentoption'])
-    for obj in queryset:
-        writer.writerow([str(obj.name), str(obj.email), str(obj.company), str(obj.option.name)])
-
-    return response
-
-export_registrations.short_description = "Export Registration"
 
 class OptionAdmin(admin.ModelAdmin):
     list_display = ('name', 'is_active', 'price')
@@ -123,5 +106,5 @@ class RegistrationAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email')
     readonly_fields = ('created', )
     ordering = ('id',)
-    actions = (send_bankpayment_alert_email, cancel_registration, export_registrations)
+    actions = (send_bankpayment_alert_email, cancel_registration)
 admin.site.register(Registration, RegistrationAdmin)
