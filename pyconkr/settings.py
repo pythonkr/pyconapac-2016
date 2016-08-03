@@ -59,6 +59,7 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'constance',
     'constance.backends.database',
+    'django_csv_exports',
 ) + (
     # local apps
     'pyconkr',
