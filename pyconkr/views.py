@@ -96,7 +96,7 @@ class PatronList(ListView):
 
         if patron_option:
             patron_option = patron_option.first()
-            return queryset.filter(option=patron_option, payment_status='paid').order_by('-additional_price')
+            return queryset.filter(option=patron_option, payment_status='paid').order_by('-additional_price', 'created')
 
         return None
 
