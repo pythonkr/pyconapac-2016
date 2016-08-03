@@ -103,6 +103,7 @@ class RegistrationAdmin(admin.ModelAdmin):
                     'payment_status', 'created', 'confirmed', 'canceled')
     list_editable = ('payment_status',)
     list_filter = ('option', 'payment_method', 'payment_status')
+    csv_fields = ['name', 'email', 'company', 'option', ]
     search_fields = ('name', 'email')
     readonly_fields = ('created', )
     ordering = ('id',)

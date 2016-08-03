@@ -10,3 +10,4 @@ django-constance
 django-picklefield
 django-dynamic-fixture
 sorl-thumbnail
+django-csv-exports
