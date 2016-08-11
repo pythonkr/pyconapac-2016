@@ -1,4 +1,4 @@
-Django
+Django==1.9.9
 Pillow
 django-allauth
 django-crispy-forms
