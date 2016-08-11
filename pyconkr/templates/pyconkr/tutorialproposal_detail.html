@@ -58,12 +58,20 @@
 <ul class="attendees">
 {% for attend in attendees %}
     <li>
-        {% if attend.user.profile.image %}
-        <img class="profile-thumb" src="/media/{{ attend.user.profile.image }}">
+        {% if attend.picture %}
+        <img class="profile-thumb" src="/media/{{ attend.picture }}">
         {% else %}
         <span class="glyphicon glyphicon-user"></span>
         {% endif %}
-        <span class="name">{{ attend.user.profile.name }}</span>
+        <span class="name">{{ attend.name }}</span>
+	{% if not attend.registered %}
+	<span class="label label-danger">{% trans "Not registered user" %}</span>
+	{% endif %}
+	{% if attend.waiting %}
+	<span class="label label-warning">{% trans "Waiting" %}</span>
+	{% else %}
+	<span class="label label-success">{% trans "Checked in" %}</span>
+	{% endif %}
     </li>
 {% endfor %}
 </ul>

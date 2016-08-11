@@ -5,8 +5,11 @@ from django.http import HttpResponse
 from django.test import Client
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.contrib.auth import get_user_model
+from django_dynamic_fixture import G
 
+from pyconkr.models import TutorialCheckin, TutorialProposal
 from pyconkr.helper import render_io_error
+from registration.models import Registration
 
 User = get_user_model()
 
@@ -60,3 +63,26 @@ class ProposeTest(TestCase):
         response = client.get(reverse('propose'))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['location'], reverse('profile_edit'))
+
+class TutorialTest(TestCase):
+    def test_tutorial_detail_attendees(self):
+        # set capacity for test waiting flag
+        tutorial = G(TutorialProposal, capacity='S')
+        first_user = G(User, email='first@email.com')
+        second_user = G(User, email='second@email.com')
+        G(Registration, user=second_user, payment_status='paid')
+        many_users = [G(User, email=str(x)+'@email.com') for x in range(9)]
+        first_checkin = G(TutorialCheckin, tutorial=tutorial, user=first_user)
+        second_checkin = G(TutorialCheckin, tutorial=tutorial, user=second_user)
+        many_checkins = [G(TutorialCheckin, tutorial=tutorial, user=x) for x in
+                         many_users]
+        response = self.client.get(reverse('tutorial', kwargs={'pk': tutorial.pk}))
+        attendees = response.context['attendees']
+        self.assertEqual(len(attendees), 11)
+        # user email head?
+        self.assertEqual(attendees[0]['name'], 'first')
+        self.assertEqual(attendees[0]['registered'], False)
+        self.assertEqual(attendees[1]['registered'], True)
+        # waiting order by pk
+        self.assertEqual(attendees[0]['waiting'], False)
+        self.assertEqual(attendees[10]['waiting'], True)

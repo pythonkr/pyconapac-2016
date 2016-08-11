@@ -407,8 +407,31 @@ class TutorialProposalDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(TutorialProposalDetail, self).get_context_data(**kwargs)
-        context['attendees'] = \
-            TutorialCheckin.objects.filter(tutorial=self.object)
+        capacity = self.object.capacity
+        if capacity == 'S':
+            capacity = 10
+        elif capacity == 'M':
+            capacity = 45
+        elif capacity == 'L':
+            capacity = 100
+        else:
+            raise Exception('invalid TutorialProposal model')
+        checkin_ids = \
+        TutorialCheckin.objects.filter(tutorial=self.object).\
+                                order_by('id').values_list('id',flat=True)
+        limit_bar_id = 65539
+        if capacity < len(checkin_ids):
+            limit_bar_id = checkin_ids[capacity-1]
+        attendees = TutorialCheckin.objects.filter(tutorial=self.object)
+        attendees = [{'name': x.user.profile.name if x.user.profile.name != '' else
+                      x.user.email.split('@')[0],
+                      'picture': x.user.profile.image,
+                      'registered':
+                      Registration.objects.filter(user=x.user,
+                      payment_status='paid').exists(),
+                      'waiting': True if x.id > limit_bar_id else False
+                     } for x in attendees]
+        context['attendees'] = attendees
 
         if self.request.user.is_authenticated():
             context['joined'] = \
