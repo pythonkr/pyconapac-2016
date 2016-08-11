@@ -36,6 +36,7 @@ class Registration(models.Model):
         choices=(
             ('card', u'Credit Card'),
             ('bank', u'Bank Transfer'),
+            ('vbank', u'Virtual Bank Transfer'),
         )
     )
     payment_status = models.CharField(
